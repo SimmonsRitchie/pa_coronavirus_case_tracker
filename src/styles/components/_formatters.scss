@@ -1,0 +1,5 @@
+.formatters__separator::before {
+  content: "•";
+  display: inline-block;
+  padding-right: 3px;
+}
