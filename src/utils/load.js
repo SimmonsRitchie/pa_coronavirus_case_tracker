@@ -1,12 +1,8 @@
 import { csv } from "d3-fetch";
-import SURVEY from "~/data/dummy-data.csv";
 
 const googleSheetUrl = (googleSheetId, gid=0) => {
   return `https://docs.google.com/spreadsheets/d/e/${googleSheetId}/pub?gid=${gid}&single=true&output=csv`
 }
-
-const cases = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTSjpwdfT574IFWdhyn8ZUCAOyDr2kHMfzBJLC8qMeCrsE0fl4NfN9LFk9E_GunrKYWM5baIpTbF_nv/pub?gid=0&single=true&output=csv"
-const deaths = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTSjpwdfT574IFWdhyn8ZUCAOyDr2kHMfzBJLC8qMeCrsE0fl4NfN9LFk9E_GunrKYWM5baIpTbF_nv/pub?gid=1683428846&single=true&output=csv"
 
 export const loadData = () => {
   
@@ -20,10 +16,17 @@ export const loadData = () => {
   return Promise.all([
     csv(googleSheetUrl(documentId, casesGid)),
     csv(googleSheetUrl(documentId, deathsGid)),
-  ]).then(([paCases, paDeaths]) => {
+    import('~/data/pa_county.json')
+
+  ]).then(([
+    paCases, 
+    paDeaths, 
+    countyMap
+  ]) => {
     const data = {}
     data["paCases"] = paCases
     data["paDeaths"] = paDeaths
+    data["countyMap"] = countyMap
     return data
   })
 };
