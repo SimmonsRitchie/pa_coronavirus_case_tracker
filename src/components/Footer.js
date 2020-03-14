@@ -8,7 +8,7 @@ simply remove it entirely.
 import React from "react";
 import Dot from "./Formatters";
 
-const Footer = ({ lastUpdated }) => {
+const Footer = ({ lastUpdated= "n/a" }) => {
   const spotlight = "https://www.spotlightpa.org/";
 
   const CREDITS = [
@@ -23,8 +23,7 @@ const Footer = ({ lastUpdated }) => {
         <div>
           <div className="footer__notes is-size-7">
             <i>
-              You can enter a footnote for the widget here if you'd like,
-              explaining some aspect of it that might not be clear.
+              Cases include presumptive and confirmed.
             </i>
           </div>
           <div className="footer__credit-container">
