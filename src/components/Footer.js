@@ -8,8 +8,9 @@ simply remove it entirely.
 import React from "react";
 import Dot from "./Formatters";
 
-const Footer = ({ lastUpdated= "n/a" }) => {
+const Footer = ({ lastUpdated }) => {
   const spotlight = "https://www.spotlightpa.org/";
+  const lastUpdatedClean = lastUpdated ? lastUpdated : "n/a"
 
   const CREDITS = [
     { creditType: "Source", name: "Pa Department of Health" },
