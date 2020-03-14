@@ -1,10 +1,12 @@
 import React from 'react';
 
-const Stats = () => {
+const Stats = ({confirmedCases="...", deaths="..."}) => {
   return ( 
     <div>
-    <div>Confirmed infections: </div>
-    <div>Deaths: </div>
+    <div>Cases</div>
+    <div>{confirmedCases}</div>
+    <div>Deaths</div>
+    <div>{deaths}</div>
     </div> );
 }
  
