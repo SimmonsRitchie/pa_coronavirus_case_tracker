@@ -9,22 +9,11 @@
   padding-bottom: $xs-size;
 }
 
-.footer__byline-source {
+.footer__credit-container {
   display: block;
 }
 
-.footer__byline {
+.footer__credit-line {
   display: inline-block;
   padding-right: 3px;
-
-}
-
-.footer__separator::before {
-  content: "•";
-  display: inline-block;
-  padding-right: 3px;
-}
-
-.footer__source {
-  display: inline-block;
 }

@@ -6,31 +6,50 @@ simply remove it entirely.
 */
 
 import React from "react";
+import Dot from "./Formatters";
 
-const Footer = () => {
+const Footer = ({ lastUpdated }) => {
   const spotlight = "https://www.spotlightpa.org/";
+
+  const CREDITS = [
+    { creditType: "Source", name: "Pa Department of Health" },
+    { creditType: "Last updated", name: lastUpdated },
+    { creditType: "Interactive", name: "Daniel Simmons-Ritchie" }
+  ];
+
   return (
     <div>
       <div className="footer__container">
         <div>
           <div className="footer__notes is-size-7">
             <i>
-              You can enter a footnote for the widget here if you'd like, explaining some aspect of it that might not be clear.
+              You can enter a footnote for the widget here if you'd like,
+              explaining some aspect of it that might not be clear.
             </i>
           </div>
-          <div className="footer__byline-source is-size-7 has-text-grey">
-            <span>Source: Source of data.</span>
-            <span className="footer__source">
-              <span className="footer__separator"></span>
-              <span className="footer__byline">
-                Chart: Your Name Here,{" "}
-                <a href={spotlight}>Spotlight PA</a>
-              </span>
-            </span>
+          <div className="footer__credit-container">
+          {CREDITS.map((item, idx) => {
+            const {creditType, name} = item
+            const includeDot = (idx + 1) < CREDITS.length
+            return <CreditLine
+              key={idx}
+              creditType={creditType}
+              name={name}
+              includeDot={includeDot}
+            />}
+            )}
           </div>
         </div>
       </div>
     </div>
+  );
+};
+
+const CreditLine = ({ creditType, name, includeDot = false }) => {
+  return (
+    <span className="footer__credit-line is-size-7 has-text-grey">
+      {creditType}: {name} {includeDot && <Dot />}
+    </span>
   );
 };
 
