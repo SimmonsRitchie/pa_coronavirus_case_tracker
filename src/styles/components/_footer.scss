@@ -1,0 +1,30 @@
+.footer__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer__notes {
+  padding-bottom: $xs-size;
+}
+
+.footer__byline-source {
+  display: block;
+}
+
+.footer__byline {
+  display: inline-block;
+  padding-right: 3px;
+
+}
+
+.footer__separator::before {
+  content: "•";
+  display: inline-block;
+  padding-right: 3px;
+}
+
+.footer__source {
+  display: inline-block;
+}

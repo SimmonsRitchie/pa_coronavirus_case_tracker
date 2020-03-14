@@ -1,0 +1,17 @@
+.header__container {
+  margin-bottom: $xs-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.header__container-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  max-width: 500px;
+}
+
+

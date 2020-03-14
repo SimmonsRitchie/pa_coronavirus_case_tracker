@@ -1,0 +1,36 @@
+{
+  "name": "pa-coronavirus-tracker",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Spotlight PA",
+  "license": "MIT",
+  "scripts": {
+    "build": "parcel build src/index.html",
+    "build:prod": "parcel build src/index.html --public-url https://interactives.data.spotlightpa.org/2020/pa-coronavirus-tracker/",
+    "clean": "find dist -mindepth 1 -delete || mkdir dist",
+    "deploy": "npm run clean && npm run build:prod && s3deploy -source dist -bucket interactives.data.spotlightpa.org -path 2020/pa-coronavirus-tracker/ -region us-east-2  -distribution-id EFR0HZ7VA3Q92 -public-access",
+    "start": "parcel src/index.html",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.28",
+    "bulma": "^0.7.5",
+    "d3-fetch": "^1.1.2",
+    "d3-scale": "^3.2.1",
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4",
+    "raf": "3.3.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "react-spinners": "^0.6.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-plugin-emotion": "^10.0.29",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "sass": "^1.26.3"
+  }
+}
