@@ -22,27 +22,27 @@ class Main extends React.Component {
   }
 
   render() {
-    const paCases = this.props.data.paCases
-    const paTotalCasesPerDay = paCases.filter(item => item.county.toLowerCase() === 'total')
-    console.log(paCases)
-    console.log(paTotalCasesPerDay)
-
-    const mostRecentDate = Object.keys(paTotalCasesPerDay[0]).slice(-1)[0]
-    const paTotalCases = paTotalCasesPerDay[mostRecentDate]
-    // const totalCases = paCases[mostRecentDate]
-    // console.log(mostRecentDate)
-
-    const totalCases =0
-    const deaths =0
+    const getTotalRow = (arrayOfRows) => arrayOfRows.filter(item => item.county.toLowerCase() === 'total')[0]
+    const getMostRecentDate = (rowObj) => Object.keys(rowObj).slice(-1)[0]
+    // cases data
+    const arrCases = this.props.data.paCases
+    const objTotalCasesPerDay = getTotalRow(arrCases)
+    const mostRecentDateCases = getMostRecentDate(objTotalCasesPerDay)
+    const paTotalCases = objTotalCasesPerDay[mostRecentDateCases]
+    // deaths data
+    const arrDeaths = this.props.data.paDeaths
+    const objTotalDeathsPerDay = getTotalRow(arrDeaths)
+    const mostRecentDateDeaths = getMostRecentDate(objTotalDeathsPerDay)
+    const paTotalDeaths = objTotalDeathsPerDay[mostRecentDateDeaths]
 
     return (
       <div className="container__outer">
         <div className="container__inner">
           <Header/>
           <Body>
-            <Stats confirmedCases={totalCases} deaths={deaths}/>
+            <Stats cases={paTotalCases} deaths={paTotalDeaths}/>
           </Body>
-          <Footer />
+          <Footer lastUpdated={mostRecentDateCases}/>
         </div>
       </div>
     );
