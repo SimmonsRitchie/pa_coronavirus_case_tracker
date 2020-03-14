@@ -23,7 +23,6 @@ ReactDOM.render(<Loader />, document.getElementById('app'))
 
 // RENDER APP AFTER LOADING DATA
 loadData().then( data => {
-  console.log(data.paTally)
   renderApp(data)
 }).catch(e=>{
   console.error(e);
