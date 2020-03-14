@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Stats = ({confirmedCases="...", deaths="..."}) => {
+const Stats = ({cases, deaths}) => {
   return ( 
     <div>
     <div>Cases</div>
-    <div>{confirmedCases}</div>
+    <div>{cases ? cases : "..."}</div>
     <div>Deaths</div>
-    <div>{deaths}</div>
+    <div>{deaths ? deaths : "..."}</div>
     </div> );
 }
  
