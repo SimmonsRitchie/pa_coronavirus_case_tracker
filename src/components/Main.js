@@ -2,9 +2,10 @@ import React from "react";
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
-
+import DataContextProvider from "../context/DataContext"
 import {pymSendHeight} from '../utils/handlePym'
 import Stats from "./Stats";
+import DataDisplay from "./DataDisplay";
 
 class Main extends React.Component {
 
@@ -35,14 +36,19 @@ class Main extends React.Component {
     const mostRecentDateDeaths = getMostRecentDate(objTotalDeathsPerDay)
     const paTotalDeaths = objTotalDeathsPerDay[mostRecentDateDeaths]
 
+    console.log(this.props.data.countyMap)
+
     return (
       <div className="container__outer">
         <div className="container__inner">
-          <Header/>
-          <Body>
-            <Stats cases={paTotalCases} deaths={paTotalDeaths}/>
-          </Body>
-          <Footer lastUpdated={mostRecentDateCases}/>
+          <DataContextProvider data={this.props.data}>
+            <Header/>
+            <Body>
+                <Stats cases={paTotalCases} deaths={paTotalDeaths}/>
+                <DataDisplay />
+            </Body>
+            <Footer lastUpdated={mostRecentDateCases}/>
+          </DataContextProvider>
         </div>
       </div>
     );
