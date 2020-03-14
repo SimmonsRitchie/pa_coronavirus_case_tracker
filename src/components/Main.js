@@ -22,18 +22,27 @@ class Main extends React.Component {
   }
 
   render() {
-    const paTally = this.props.data.paTally
-    const mostRecentDate = Object.keys(paTally[0]).slice(-1)[0]
-    console.log(mostRecentDate)
+    const paCases = this.props.data.paCases
+    const paTotalCasesPerDay = paCases.filter(item => item.county.toLowerCase() === 'total')
+    console.log(paCases)
+    console.log(paTotalCasesPerDay)
+
+    const mostRecentDate = Object.keys(paTotalCasesPerDay[0]).slice(-1)[0]
+    const paTotalCases = paTotalCasesPerDay[mostRecentDate]
+    // const totalCases = paCases[mostRecentDate]
+    // console.log(mostRecentDate)
+
+    const totalCases =0
+    const deaths =0
 
     return (
       <div className="container__outer">
         <div className="container__inner">
           <Header/>
           <Body>
-            <Stats/>
+            <Stats confirmedCases={totalCases} deaths={deaths}/>
           </Body>
-          <Footer lastUpdated={mostRecentDate}/>
+          <Footer />
         </div>
       </div>
     );
