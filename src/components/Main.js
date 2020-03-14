@@ -4,6 +4,7 @@ import Body from "./Body";
 import Footer from "./Footer";
 
 import {pymSendHeight} from '../utils/handlePym'
+import Stats from "./Stats";
 
 class Main extends React.Component {
 
@@ -21,12 +22,18 @@ class Main extends React.Component {
   }
 
   render() {
+    const paTally = this.props.data.paTally
+    const mostRecentDate = Object.keys(paTally[0]).slice(-1)[0]
+    console.log(mostRecentDate)
+
     return (
       <div className="container__outer">
         <div className="container__inner">
-          <Header />
-          <Body data={this.props.data}/>
-          <Footer />
+          <Header/>
+          <Body>
+            <Stats/>
+          </Body>
+          <Footer lastUpdated={mostRecentDate}/>
         </div>
       </div>
     );
