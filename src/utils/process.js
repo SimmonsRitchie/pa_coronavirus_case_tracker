@@ -1,5 +1,6 @@
 import { feature } from "topojson-client";
 import {geoCentroid} from "d3-geo"
+import {join} from "../utils/join"
 
 class ProcessTopo {
   constructor(topoJson, objectsName) {
@@ -8,6 +9,7 @@ class ProcessTopo {
     * topoJson (obj): Topojson object
     * objectsName (str): Name of object property where feature is located. eg. "gz_2010_us_040_00_500k"
     */
+    this.topoJson = topoJson
     this.geoJson = this._convertTopo2Geo(topoJson, objectsName)
   }
 
@@ -25,11 +27,21 @@ class ProcessTopo {
     return this.geoJson
   }
 
+  getTopoJson() {
+    return this.topoJson
+  }
+
+  joinData({data, leftOn=null, rightOn=null, appendKey=null}) {
+    console.log(data)
+    this.geoJson.features.map(feature => {
+    })
+  }
+
   getCentroids() {
     // Returns an array of centroids from geojson object
       const arrCentroids = this.geoJson.features.map(feature => {
         const centroid = geoCentroid(feature)
-        return centroid
+        return {coordinates: centroid, properties: feature.properties}
       })
       return arrCentroids
     }
