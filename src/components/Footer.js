@@ -7,7 +7,6 @@ const Footer = () => {
   // Get date of last update based on data columns
   const { data } = useContext(DataContext);
   const lastUpdated = getMostRecentDate(data.paCases, data.paDeaths)
-  console.log(lastUpdated)
 
   const CREDITS = [
     { creditType: "Source", name: "Pa Department of Health data compiled by Spotlight PA" },

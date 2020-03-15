@@ -2,7 +2,6 @@ import moment from 'moment'
 
 const extractDateFromData = (sheet) => {
   // 1) Get the total row
-  console.log(sheet)
   const totalRow = getRowByName(sheet, "county","total")
   // 2) Get second to last item in total row 
   const dateStr = getSecondToLastCol(totalRow)
