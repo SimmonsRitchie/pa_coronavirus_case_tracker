@@ -13,7 +13,7 @@ const Footer = ({ lastUpdated }) => {
   const lastUpdatedClean = lastUpdated ? lastUpdated : "n/a"
 
   const CREDITS = [
-    { creditType: "Source", name: "Pa Department of Health" },
+    { creditType: "Source", name: "Pa Department of Health data compiled by Spotlight PA" },
     { creditType: "Last updated", name: lastUpdated },
     { creditType: "Interactive", name: "Daniel Simmons-Ritchie" }
   ];
