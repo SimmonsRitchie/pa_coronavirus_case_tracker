@@ -1,17 +1,13 @@
-/* Footer: insert credit, footnotes and data source.
-
-Note: The logo can look awkward depending on the footnote text (especially if it wraps).
-You may need to adjust the css to hide the spotlight logo for smaller screen widths or
-simply remove it entirely.
-*/
-
-import React from "react";
+import React, {useContext} from "react";
 import Dot from "./Formatters";
+import { DataContext } from "../context/DataContext";
+import { getMostRecentDate} from "../utils/parse"
 
-const Footer = ({ lastUpdated }) => {
-  
-  
-  const lastUpdatedClean = lastUpdated ? lastUpdated : "n/a"
+const Footer = () => {
+  // Get date of last update based on data columns
+  const { data } = useContext(DataContext);
+  const lastUpdated = getMostRecentDate(data.paCases, data.paDeaths)
+  console.log(lastUpdated)
 
   const CREDITS = [
     { creditType: "Source", name: "Pa Department of Health data compiled by Spotlight PA" },
