@@ -1,17 +1,18 @@
 import React, { useContext } from "react";
+import { geoPath, geoCentroid} from "d3-geo"
 import {
   ComposableMap,
   ZoomableGroup,
   Geographies,
-  Geography
+  Geography,
+  Marker
 } from "react-simple-maps";
 import { DataContext } from "../context/DataContext";
 
 const BubbleMap = () => {
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
-  const countyMap = data.countyMap;
-  console.log(countyMap);
+  const {countyMap, countyCentroids} = data
 
   return (
     <div className="map__container">
@@ -36,7 +37,7 @@ const BubbleMap = () => {
           <Geographies geography={countyMap}>
             {({ geographies }) =>
               geographies.map(geo => {
-                console.log(geo)
+                // console.log(geo)
                 return (
                   <Geography
                     key={geo.rsmKey}
@@ -67,6 +68,12 @@ const BubbleMap = () => {
               })
             }
           </Geographies>
+          {countyCentroids.map((centroid, idx) => {
+            return (
+              <Marker key={idx} coordinates={centroid}>
+                <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
+              </Marker>
+          )})}
         </ZoomableGroup>
       </ComposableMap>
     </div>)

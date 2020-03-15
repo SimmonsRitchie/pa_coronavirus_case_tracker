@@ -1,5 +1,5 @@
 import { csv } from "d3-fetch";
-
+import { convertTopo2Geo, getCentroids } from "./process"
 const googleSheetUrl = (googleSheetId, gid=0) => {
   return `https://docs.google.com/spreadsheets/d/e/${googleSheetId}/pub?gid=${gid}&single=true&output=csv`
 }
@@ -24,9 +24,12 @@ export const loadData = () => {
     countyMap
   ]) => {
     const data = {}
+    const geoJsonCountyMap = convertTopo2Geo(countyMap,"PA-County2")
+    const countyCentroids = getCentroids(geoJsonCountyMap)
     data["paCases"] = paCases 
     data["paDeaths"] = paDeaths
     data["countyMap"] = countyMap
+    data["countyCentroids"] = countyCentroids
     return data
   })
 };
