@@ -11,7 +11,7 @@ class ProcessTopo {
     * @params:
     * objectsName (str): Name of object property where feature is located. eg. "gz_2010_us_040_00_500k"
     */
-    this.geoJson = (this.topojson, {
+    this.geoJson = feature(this.topojson, {
       type: "GeometryCollection",
       geometries: this.topojson.objects[objectsName]["geometries"]
     });
