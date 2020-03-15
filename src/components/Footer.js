@@ -9,13 +9,14 @@ import React from "react";
 import Dot from "./Formatters";
 
 const Footer = ({ lastUpdated }) => {
-  const spotlight = "https://www.spotlightpa.org/";
+  
+  
   const lastUpdatedClean = lastUpdated ? lastUpdated : "n/a"
 
   const CREDITS = [
     { creditType: "Source", name: "Pa Department of Health data compiled by Spotlight PA" },
     { creditType: "Last updated", name: lastUpdated },
-    { creditType: "Interactive", name: "Daniel Simmons-Ritchie" }
+    { creditType: "Interactive", name: "Daniel Simmons-Ritchie, Spotlight PA" }
   ];
 
   return (
