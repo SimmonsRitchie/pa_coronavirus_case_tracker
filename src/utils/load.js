@@ -1,8 +1,6 @@
 import { csv } from "d3-fetch";
 import ProcessTopo from "./process"
-const googleSheetUrl = (googleSheetId, gid=0) => {
-  return `https://docs.google.com/spreadsheets/d/e/${googleSheetId}/pub?gid=${gid}&single=true&output=csv`
-}
+import {googleSheetUrl} from "./gSheets"
 
 export const loadData = () => {
   
@@ -24,11 +22,17 @@ export const loadData = () => {
     countyMap
   ]) => {
     const data = {}
-    const topoCountyMaps = new ProcessTopo(countyMap, "PA-County2")
+    const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
+    // geoJsonCountyMap.joinData({
+    //   data: paCases,
+    //   leftOn: "",
+    //   rightOn: null,
+    //   appendKey: "total"
+    // })
     data["paCases"] = paCases 
     data["paDeaths"] = paDeaths
-    data["countyMap"] = countyMap
-    data["countyCentroids"] = topoCountyMaps.getCentroids()
+    data["countyMap"] = geoJsonCountyMap.getTopoJson()
+    data["countyCentroids"] = geoJsonCountyMap.getCentroids()
     return data
   })
 };
