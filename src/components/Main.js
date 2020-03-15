@@ -2,55 +2,52 @@ import React from "react";
 import Header from "./Header";
 import Body from "./Body";
 import Footer from "./Footer";
-import DataContextProvider from "../context/DataContext"
-import {pymSendHeight} from '../utils/handlePym'
+import DataContextProvider from "../context/DataContext";
+import { pymSendHeight } from "../utils/handlePym";
 import Stats from "./Stats";
 import DataDisplay from "./DataDisplay";
+import Container from "./Container";
 
 class Main extends React.Component {
-
   componentDidMount() {
     // This is intended to fix bug where app is clipped at bottom
     // on initial load.
-    pymSendHeight({timeout: 500})
-    pymSendHeight({timeout: 1000})
+    pymSendHeight({ timeout: 500 });
+    pymSendHeight({ timeout: 1000 });
   }
 
   componentDidUpdate() {
-    // Because our app changes height based on displayed content, we 
+    // Because our app changes height based on displayed content, we
     // update the iframe height after DOM elements have been updated.
-    pymSendHeight()
+    pymSendHeight();
   }
 
   render() {
-    const getTotalRow = (arrayOfRows) => arrayOfRows.filter(item => item.county.toLowerCase() === 'total')[0]
-    const getMostRecentDate = (rowObj) => Object.keys(rowObj).slice(-1)[0]
+    const getTotalRow = arrayOfRows =>
+      arrayOfRows.filter(item => item.county.toLowerCase() === "total")[0];
+    const getMostRecentDate = rowObj => Object.keys(rowObj).slice(-1)[0];
     // cases data
-    const arrCases = this.props.data.paCases
-    const objTotalCasesPerDay = getTotalRow(arrCases)
-    const mostRecentDateCases = getMostRecentDate(objTotalCasesPerDay)
-    const paTotalCases = objTotalCasesPerDay[mostRecentDateCases]
+    const arrCases = this.props.data.paCases;
+    const objTotalCasesPerDay = getTotalRow(arrCases);
+    const mostRecentDateCases = getMostRecentDate(objTotalCasesPerDay);
+    const paTotalCases = objTotalCasesPerDay[mostRecentDateCases];
     // deaths data
-    const arrDeaths = this.props.data.paDeaths
-    const objTotalDeathsPerDay = getTotalRow(arrDeaths)
-    const mostRecentDateDeaths = getMostRecentDate(objTotalDeathsPerDay)
-    const paTotalDeaths = objTotalDeathsPerDay[mostRecentDateDeaths]
-
-    console.log(this.props.data.countyMap)
+    const arrDeaths = this.props.data.paDeaths;
+    const objTotalDeathsPerDay = getTotalRow(arrDeaths);
+    const mostRecentDateDeaths = getMostRecentDate(objTotalDeathsPerDay);
+    const paTotalDeaths = objTotalDeathsPerDay[mostRecentDateDeaths];
 
     return (
-      <div className="container__outer">
-        <div className="container__inner">
-          <DataContextProvider data={this.props.data}>
-            <Header/>
-            <Body>
-                <Stats cases={paTotalCases} deaths={paTotalDeaths}/>
-                <DataDisplay />
-            </Body>
-            <Footer lastUpdated={mostRecentDateCases}/>
-          </DataContextProvider>
-        </div>
-      </div>
+      <Container>
+        <DataContextProvider data={this.props.data}>
+          <Header />
+          <Body>
+            <Stats cases={paTotalCases} deaths={paTotalDeaths} />
+            <DataDisplay />
+          </Body>
+          <Footer lastUpdated={mostRecentDateCases} />
+        </DataContextProvider>
+      </Container>
     );
   }
 }
