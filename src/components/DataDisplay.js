@@ -1,5 +1,6 @@
 import React from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import BubbleMap from "./BubbleMap"
 import 'react-tabs/style/react-tabs.css';
 
 const DataDisplay = () => {
@@ -12,7 +13,7 @@ const DataDisplay = () => {
           <Tab>Data</Tab>
         </TabList>
         <TabPanel>
-          <div>Map</div>
+          <BubbleMap/>
         </TabPanel>
         <TabPanel>
           <div>Cases per day</div>
