@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { geoPath, geoCentroid} from "d3-geo"
+import {scaleSqrt} from "d3-scale"
 import {
   ComposableMap,
   ZoomableGroup,
@@ -37,7 +37,6 @@ const BubbleMap = () => {
           <Geographies geography={countyMap}>
             {({ geographies }) =>
               geographies.map(geo => {
-                // console.log(geo)
                 return (
                   <Geography
                     key={geo.rsmKey}
@@ -69,9 +68,14 @@ const BubbleMap = () => {
             }
           </Geographies>
           {countyCentroids.map((centroid, idx) => {
+
+            // var radius = scaleSqrt()
+            // .domain([0, 1e6])
+            // .range([0, 15]);
+            // console.log(radius(3))
             return (
-              <Marker key={idx} coordinates={centroid}>
-                <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} />
+              <Marker key={idx} coordinates={centroid.coordinates}>
+                <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} onMouseEnter={() => {console.log('Hi!')}}/>
               </Marker>
           )})}
         </ZoomableGroup>
