@@ -30,10 +30,13 @@ const BubbleMap = () => {
       >
         <ZoomableGroup 
         center={PA_CENTER} 
-        zoom={1}>
+        zoom={1}
+        disablePanning={true}
+        >
           <Geographies geography={countyMap}>
             {({ geographies }) =>
               geographies.map(geo => {
+                console.log(geo)
                 return (
                   <Geography
                     key={geo.rsmKey}
