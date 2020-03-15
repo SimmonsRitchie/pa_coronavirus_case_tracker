@@ -16,7 +16,7 @@ export const loadData = () => {
   return Promise.all([
     csv(googleSheetUrl(documentId, casesGid)),
     csv(googleSheetUrl(documentId, deathsGid)),
-    import('~/data/pa_county.json')
+    import('~/data/pa_county.json') // topojson file
 
   ]).then(([
     paCases, 
@@ -24,7 +24,7 @@ export const loadData = () => {
     countyMap
   ]) => {
     const data = {}
-    data["paCases"] = paCases
+    data["paCases"] = paCases 
     data["paDeaths"] = paDeaths
     data["countyMap"] = countyMap
     return data
