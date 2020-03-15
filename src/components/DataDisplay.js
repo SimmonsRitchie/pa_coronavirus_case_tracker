@@ -5,8 +5,7 @@ import 'react-tabs/style/react-tabs.css';
 
 const DataDisplay = () => {
   return (
-    <div>
-      <Tabs>
+      <Tabs className="data-display__container">
         <TabList>
           <Tab>Map</Tab>
           <Tab>Cases per day</Tab>
@@ -22,7 +21,6 @@ const DataDisplay = () => {
           <div>Raw data</div>
         </TabPanel>
       </Tabs>
-    </div>
   );
 };
 
