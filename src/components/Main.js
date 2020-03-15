@@ -23,30 +23,15 @@ class Main extends React.Component {
   }
 
   render() {
-    const getTotalRow = arrayOfRows =>
-      arrayOfRows.filter(item => item.county.toLowerCase() === "total")[0];
-    // Get most recent date by selecting second to last item in row array
-    const getMostRecentDate = rowObj => Object.keys(rowObj).slice(-2,-1)[0]; 
-    // cases data
-    const arrCases = this.props.data.paCases;
-    const objTotalCasesPerDay = getTotalRow(arrCases);
-    const mostRecentDateCases = getMostRecentDate(objTotalCasesPerDay);
-    const paTotalCases = objTotalCasesPerDay["total"];
-    // deaths data
-    const arrDeaths = this.props.data.paDeaths;
-    const objTotalDeathsPerDay = getTotalRow(arrDeaths);
-    const mostRecentDateDeaths = getMostRecentDate(objTotalDeathsPerDay);
-    const paTotalDeaths = objTotalDeathsPerDay["total"];
-
     return (
       <Container>
         <DataContextProvider data={this.props.data}>
           <Header />
           <Body>
-            <Stats cases={paTotalCases} deaths={paTotalDeaths} />
+            <Stats />
             <DataDisplay />
           </Body>
-          <Footer lastUpdated={mostRecentDateCases} />
+          <Footer />
         </DataContextProvider>
       </Container>
     );
