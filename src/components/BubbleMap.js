@@ -12,7 +12,6 @@ const BubbleMap = () => {
   const { data } = useContext(DataContext);
   const countyMap = data.countyMap;
   console.log(countyMap);
-  // console.log(kittens.countyMap)
 
   return (
     <div className="map__container">
