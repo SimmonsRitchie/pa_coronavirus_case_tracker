@@ -1,5 +1,5 @@
-### Boilerplate Spotlight React Widget
-This is a template for creating embeddable React JS widgets or data visualizations for Spotlight PA articles. It incorporates Spotlight PA styles and the Bulma CSS framework.
+### Pa. Coronavirus Tracker
+React JS interactive that displays stats on coronavirus cases and deaths in Pennsylvania.
 
 [Parcel.js](https://github.com/parcel-bundler/parcel) is used to bundle the source files.
 
