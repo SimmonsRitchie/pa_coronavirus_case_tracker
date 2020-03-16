@@ -1,6 +1,5 @@
 import { feature } from "topojson-client";
 import {geoCentroid} from "d3-geo"
-import {join} from "../utils/join"
 
 class ProcessTopo {
   constructor(topoJson, objectsName) {
@@ -31,10 +30,32 @@ class ProcessTopo {
     return this.topoJson
   }
 
-  joinData({data, leftOn=null, rightOn=null, appendKey=null}) {
-    console.log(data)
-    this.geoJson.features.map(feature => {
+  joinData({data, leftOn, rightOn, joinPrefix="added_"}) {
+    // prefix key names in lookup table
+    data = data.map(obj => {
+      return Object.keys(obj).reduce(
+        (acc, key) => ({
+          ...acc,
+          ...{ [key !== leftOn ? joinPrefix + key : key]: obj[key] }
+        }),
+        {}
+      );
     })
+    // Create lookup table
+    const rowById = data.reduce((accumulator, d) => {
+      const new_obj = {...d}
+      delete new_obj[leftOn] // remove common key from new obj
+      accumulator[d[leftOn]] = new_obj;
+      return accumulator;
+    }, {});
+    console.log(rowById)
+
+
+    // connect look up table
+    this.geoJson.features.forEach(d => {
+      Object.assign(d.properties, rowById[d.properties[rightOn]]);
+    })
+    console.log(this.geoJson)
   }
 
   getCentroids() {
