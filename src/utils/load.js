@@ -22,13 +22,20 @@ export const loadData = () => {
     countyMap
   ]) => {
     const data = {}
+    console.log(paCases)
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
-    // geoJsonCountyMap.joinData({
-    //   data: paCases,
-    //   leftOn: "",
-    //   rightOn: null,
-    //   appendKey: "total"
-    // })
+    geoJsonCountyMap.joinData({
+      data: paCases,
+      leftOn:"county",
+      rightOn:"NAME",
+      joinPrefix: "cases_"
+    })
+    geoJsonCountyMap.joinData({
+      data: paDeaths,
+      leftOn:"county",
+      rightOn:"NAME",
+      joinPrefix: "deaths_"
+    })
     data["paCases"] = paCases 
     data["paDeaths"] = paDeaths
     data["countyMap"] = geoJsonCountyMap.getTopoJson()
