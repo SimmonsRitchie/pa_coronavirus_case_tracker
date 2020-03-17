@@ -43,27 +43,26 @@ const BubbleMap = () => {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    fill="green"
-                    style={{
-                      default: {
-                        stroke: "white",
-                        strokeWidth: 0.75,
-                        outline: "none"
-                      },
-                      hover: {
-                        opacity: "0.5",
-                        stroke: "white",
-                        strokeWidth: 2,
-                        outline: "pink"
-                      },
-                      pressed: {
-                      opacity: "0.5",
-                      stroke: "white",
-                      strokeWidth: 0.75,
-                      outline: "none"
-                      }
-                    }
-                    }
+                    // style={{
+                    //   default: {
+                    //     stroke: "#0059ff",
+                    //     strokeWidth: 1.5,
+                    //     outline: "#0059ff"
+                    //   }
+                    //   hover: {
+                    //     opacity: "0.5",
+                    //     stroke: "white",
+                    //     strokeWidth: 2,
+                    //     outline: "pink"
+                    //   },
+                    //   pressed: {
+                    //   opacity: "0.5",
+                    //   stroke: "white",
+                    //   strokeWidth: 0.75,
+                    //   outline: "none"
+                    //   }
+                    //   }
+                    // }
                   />
                 );
               })
@@ -74,7 +73,7 @@ const BubbleMap = () => {
             const deathsTotal = centroid.properties.deaths_total
             return (
               <Marker key={idx} coordinates={centroid.coordinates}>
-                <circle r={scale.radius(casesTotal)} fill="#F00" stroke="#fff" strokeWidth={2} onMouseEnter={() => {console.log('Hi!')}}/>
+                <circle r={scale.radius(casesTotal)} className="bubble-map__bubble" onMouseEnter={() => {console.log('Hi!')}}/>
               </Marker>
           )})}
         </ZoomableGroup>

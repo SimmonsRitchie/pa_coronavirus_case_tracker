@@ -1,0 +1,17 @@
+// React simple map - overrides
+.rsm-geography {
+  stroke: white;
+  fill: $map-fill;
+  stroke-width: 2;
+
+}
+
+.bubble-map__bubble {
+  stroke: $bubble-stroke;
+  fill: $bubble-fill;
+  fill-opacity: $bubble-fill-opacity;
+  stroke-width: 2;
+  &:hover {
+    stroke: $background-light-accent;
+  }
+}
