@@ -15,7 +15,6 @@ export const loadData = () => {
     paDeaths, 
     countyMap
   ]) => {
-    console.log(paCases)
     // process cases
     const processCases = new ProcessData(paCases)
     const cleanPaCases = processCases.rearrange().getData()
@@ -23,7 +22,6 @@ export const loadData = () => {
     // process deaths
     const processDeaths = new ProcessData(paDeaths)
     const cleanPaDeaths = processDeaths.rearrange().getData()
-    console.log(cleanPaDeaths)
 
     // process map data
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
@@ -46,7 +44,6 @@ export const loadData = () => {
     data["paDeaths"] = cleanPaDeaths
     data["countyMap"] = countyMap
     data["countyCentroids"] = geoJsonCountyMap.getCentroids()
-    console.log(data["countyCentroids"])
     return data
   })
 };
