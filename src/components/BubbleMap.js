@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
   ComposableMap,
   ZoomableGroup,
@@ -6,10 +6,13 @@ import {
   Geography,
   Marker
 } from "react-simple-maps";
+import ReactTooltip from "react-tooltip"
 import { DataContext } from "../context/DataContext";
 import ScaleRadius from "../utils/ScaleRadius"
+import Tooltip from "./Tooltip"
 
-const BubbleMap = ({setTooltipContent}) => {
+const BubbleMap = () => {
+  const [tooltipContent, setTooltipContent] = useState('')
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
   const {countyMap, countyCentroids} = data
@@ -78,6 +81,9 @@ const BubbleMap = ({setTooltipContent}) => {
           )})}
         </ZoomableGroup>
       </ComposableMap>
+      <ReactTooltip type="dark">
+      {tooltipContent && <Tooltip content={tooltipContent} />}
+      </ReactTooltip>
     </div>)
 };
 

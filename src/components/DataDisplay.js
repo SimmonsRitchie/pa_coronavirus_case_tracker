@@ -1,35 +1,35 @@
 import React, {useState} from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import ReactTooltip from 'react-tooltip'
-import Tooltip from "./Tooltip"
 import BubbleMap from "./BubbleMap"
 import 'react-tabs/style/react-tabs.css';
 
 const DataDisplay = () => {
-  const [tooltipContent, setTooltipContent] = useState('')
+  const [display, setDisplay] = useState('map')
+
+  const DISPLAY_TYPE = {
+    map: <BubbleMap />,
+    chart: <div>Chart</div>,
+    data: <div>Map</div>,
+  };
+
+  const changeDisplay = (e) => {
+    setDisplay(e.target.id)
+  }
 
   return (
-      <Tabs className="data-display__container">
-        <TabList>
-          <Tab>Map</Tab>
-          <Tab>Cases per day</Tab>
-          <Tab>Data</Tab>
-        </TabList>
-        <TabPanel>
-          <BubbleMap setTooltipContent={setTooltipContent}/>
-          <ReactTooltip type="dark">
-          {tooltipContent && <Tooltip content={tooltipContent} />
-            }
-            </ReactTooltip>
-        </TabPanel>
-        <TabPanel>
-          <div>Cases per day</div>
-        </TabPanel>
-        <TabPanel>
-          <div>Raw data</div>
-        </TabPanel>
-      </Tabs>
+    <div className="data-display__container">
+      <DataDisplayButtons changeDisplay={changeDisplay}/>
+      {DISPLAY_TYPE[display]}
+    </div>
   );
 };
+
+const DataDisplayButtons = ({changeDisplay}) => {
+  return ( 
+    <div className="data-display-buttons__container">
+      <button id={"map"} onClick={changeDisplay}>Cases per county</button>
+      <button id={"chart"} onClick={changeDisplay}>Cases per day</button>
+    </div>
+  );
+}
 
 export default DataDisplay;
