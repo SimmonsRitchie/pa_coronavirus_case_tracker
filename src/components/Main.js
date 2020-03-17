@@ -9,6 +9,7 @@ import DataDisplay from "./DataDisplay";
 import Container from "./Container";
 
 class Main extends React.Component {
+
   componentDidMount() {
     // This is intended to fix bug where app is clipped at bottom
     // on initial load.

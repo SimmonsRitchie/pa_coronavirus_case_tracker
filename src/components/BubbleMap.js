@@ -9,7 +9,7 @@ import {
 import { DataContext } from "../context/DataContext";
 import ScaleRadius from "../utils/ScaleRadius"
 
-const BubbleMap = () => {
+const BubbleMap = ({setTooltipContent}) => {
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
   const {countyMap, countyCentroids} = data
@@ -53,7 +53,27 @@ const BubbleMap = () => {
             const deathsTotal = centroid.properties.deaths_total
             return (
               <Marker key={idx} coordinates={centroid.coordinates}>
-                <circle r={scale.radius(casesTotal)} className="bubble-map__bubble" onMouseEnter={() => {console.log('Hi!')}}/>
+                <circle 
+                r={scale.radius(casesTotal)} 
+                className="bubble-map__bubble" 
+                onMouseEnter={() => {
+                  const { 
+                    NAME,
+                    cases_total,
+                    deaths_total,
+                  } = centroid.properties;
+                  setTooltipContent({
+                    county: NAME, 
+                    casesTotal: cases_total,
+                    deathsTotal: deaths_total
+                  });
+                }}
+                onMouseLeave={() => {
+                  setTooltipContent("");
+                }}
+                
+                
+                />
               </Marker>
           )})}
         </ZoomableGroup>
