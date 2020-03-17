@@ -9,11 +9,15 @@ const Stats = () => {
   const deaths = getTotalFromSheet(data.paDeaths)
 
   return (
-    <div>
-      <div>Cases</div>
-      <div>{cases ? cases : "..."}</div>
-      <div>Deaths</div>
-      <div>{deaths ? deaths : "..."}</div>
+    <div className="stats__container">
+      <div className="stats__sub-container">
+        <div className="stats__title">Cases</div>
+        <div className="stats__number">{cases !== undefined ? cases : "..."}</div>
+      </div>
+      <div className="stats__number-container">
+        <div className="stats__title">Deaths</div>
+        <div  className="stats__number">{deaths !== undefined ? deaths : "..."}</div>
+      </div>
     </div>
   );
 };

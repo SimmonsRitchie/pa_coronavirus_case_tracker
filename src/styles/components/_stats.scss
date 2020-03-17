@@ -1,0 +1,26 @@
+.stats__container {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-evenly;
+}
+
+.stats__sub-container {
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats__title {
+  font-size: $size-7;
+  font-weight: $weight-bold;
+  text-align: center;
+}
+
+.stats__number {
+  font-size: $size-4;
+  color: $bubble-stroke;
+  text-align: center;
+
+}
