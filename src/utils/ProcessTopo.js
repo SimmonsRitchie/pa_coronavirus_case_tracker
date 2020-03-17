@@ -59,9 +59,12 @@ class ProcessTopo {
         const centroid = geoCentroid(feature)
         return {coordinates: centroid, properties: feature.properties}
       })
-      // TODO: Sort centroids from large to small case counts
-
-      return arrCentroids
+      // Sort centroids from large to small case counts so that small bubbles
+      // are not hidden beneath big ones on map
+      const sortedCentroids = arrCentroids.sort((a, b) => {
+        return b.properties.cases_total - a.properties.cases_total
+      })
+      return sortedCentroids
     }
 }
 
