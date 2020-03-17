@@ -1,26 +1,20 @@
 import { csv } from "d3-fetch";
 import ProcessTopo from "./process"
-import {googleSheetUrl} from "./gSheets"
+import CASES_CSV from "~/data/cases.csv"
+import DEATHS_CSV from "~/data/deaths.csv"
 
 export const loadData = () => {
-  
-  // Google sheet document ID
-  const documentId = "2PACX-1vTSjpwdfT574IFWdhyn8ZUCAOyDr2kHMfzBJLC8qMeCrsE0fl4NfN9LFk9E_GunrKYWM5baIpTbF_nv"
-  // GID is an ID for each individual sheet of the document
-  const casesGid = "0"
-  const deathsGid = "1683428846"
-
   /* Fetch and parse files.*/
   return Promise.all([
-    csv(googleSheetUrl(documentId, casesGid)),
-    csv(googleSheetUrl(documentId, deathsGid)),
+    csv(CASES_CSV),
+    csv(DEATHS_CSV),
     import('~/data/pa_county.json') // topojson file
-
   ]).then(([
     paCases, 
     paDeaths, 
     countyMap
   ]) => {
+    console.log(paCases)
     const data = {}
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
     geoJsonCountyMap.joinData({
