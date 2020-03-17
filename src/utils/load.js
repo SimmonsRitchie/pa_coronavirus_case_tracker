@@ -25,7 +25,7 @@ export const loadData = () => {
 
     // process map data
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
-    geoJsonCountyMap
+    const countyCentroids = geoJsonCountyMap
       .joinData({
       data: cleanPaCases,
       leftOn:"county",
@@ -36,14 +36,14 @@ export const loadData = () => {
       leftOn:"county",
       rightOn:"NAME",
       joinPrefix: "deaths_"
-    })
+    }).getCentroids()
 
     // Add to data object
     const data = {}
     data["paCases"] = cleanPaCases 
     data["paDeaths"] = cleanPaDeaths
     data["countyMap"] = countyMap
-    data["countyCentroids"] = geoJsonCountyMap.getCentroids()
+    data["countyCentroids"] = countyCentroids
     return data
   })
 };
