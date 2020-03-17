@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import BubbleMap from "./BubbleMap"
 import 'react-tabs/style/react-tabs.css';
+import DataDisplayButtons from "./DataDisplayButtons"
 
 const DataDisplay = () => {
   const [display, setDisplay] = useState('map')
@@ -11,28 +12,38 @@ const DataDisplay = () => {
     data: <div>Data</div>,
   };
 
+  const DISPLAY_BUTTONS = [
+    {
+      "id": "map",
+      "text": "Map"
+    },
+    {
+      "id": "chart",
+      "text": "Chart"
+    },
+    {
+      "id": "data",
+      "text": "Data"
+    },
+  ]
+
+
   const changeDisplay = (e) => {
     setDisplay(e.target.id)
   }
 
   return (
     <div className="data-display__container">
-      <DataDisplayButtons changeDisplay={changeDisplay}/>
-      {DISPLAY_TYPE[display]}
+      <DataDisplayButtons 
+        buttons={DISPLAY_BUTTONS}
+        selected={display}
+        handleClick={changeDisplay}/>
+      <div>
+        {DISPLAY_TYPE[display]}
+      </div>
     </div>
   );
 };
 
-const DataDisplayButtons = ({changeDisplay}) => {
-  return ( 
-    <div className="data-display-buttons__container">
-      <div className="buttons are-small has-addons is-centered">
-        <button className="button" id={"map"} onClick={changeDisplay}>Map</button>
-        <button className="button" id={"chart"} onClick={changeDisplay}>Chart</button>
-        <button className="button" id={"data"} onClick={changeDisplay}>Data</button>
-      </div>
-    </div>
-  );
-}
 
 export default DataDisplay;
