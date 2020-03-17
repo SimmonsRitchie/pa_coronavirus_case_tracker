@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import BubbleMap from "./BubbleMap"
-import 'react-tabs/style/react-tabs.css';
 import DataDisplayButtons from "./DataDisplayButtons"
 
 const DataDisplay = () => {
