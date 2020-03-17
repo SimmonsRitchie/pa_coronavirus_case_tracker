@@ -25,13 +25,13 @@ export const loadData = () => {
 
     // process map data
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
-    geoJsonCountyMap.joinData({
+    geoJsonCountyMap
+      .joinData({
       data: cleanPaCases,
       leftOn:"county",
       rightOn:"NAME",
       joinPrefix: "cases_"
-    })
-    geoJsonCountyMap.joinData({
+    }).joinData({
       data: cleanPaDeaths,
       leftOn:"county",
       rightOn:"NAME",

@@ -50,6 +50,7 @@ class ProcessTopo {
     this.geoJson.features.forEach(d => {
       Object.assign(d.properties, rowById[d.properties[rightOn]]);
     })
+    return this
   }
 
   getCentroids() {
@@ -59,6 +60,7 @@ class ProcessTopo {
         return {coordinates: centroid, properties: feature.properties}
       })
       // TODO: Sort centroids from large to small case counts
+
       return arrCentroids
     }
 }
