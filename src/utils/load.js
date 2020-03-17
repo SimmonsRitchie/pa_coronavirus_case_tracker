@@ -1,5 +1,6 @@
 import { csv } from "d3-fetch";
-import ProcessTopo from "./processTopo"
+import ProcessTopo from "./ProcessTopo"
+import ProcessData from "./ProcessData"
 import CASES_CSV from "~/data/cases.csv"
 import DEATHS_CSV from "~/data/deaths.csv"
 
@@ -15,24 +16,37 @@ export const loadData = () => {
     countyMap
   ]) => {
     console.log(paCases)
-    const data = {}
+    // process cases
+    const processCases = new ProcessData(paCases)
+    const cleanPaCases = processCases.rearrange().getData()
+    
+    // process deaths
+    const processDeaths = new ProcessData(paDeaths)
+    const cleanPaDeaths = processDeaths.rearrange().getData()
+    console.log(cleanPaDeaths)
+
+    // process map data
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
     geoJsonCountyMap.joinData({
-      data: paCases,
+      data: cleanPaCases,
       leftOn:"county",
       rightOn:"NAME",
       joinPrefix: "cases_"
     })
     geoJsonCountyMap.joinData({
-      data: paDeaths,
+      data: cleanPaDeaths,
       leftOn:"county",
       rightOn:"NAME",
       joinPrefix: "deaths_"
     })
-    data["paCases"] = paCases 
-    data["paDeaths"] = paDeaths
-    data["countyMap"] = geoJsonCountyMap.getTopoJson()
+
+    // Add to data object
+    const data = {}
+    data["paCases"] = cleanPaCases 
+    data["paDeaths"] = cleanPaDeaths
+    data["countyMap"] = countyMap
     data["countyCentroids"] = geoJsonCountyMap.getCentroids()
+    console.log(data["countyCentroids"])
     return data
   })
 };
