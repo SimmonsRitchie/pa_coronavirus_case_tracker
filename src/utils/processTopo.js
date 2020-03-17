@@ -26,10 +26,6 @@ class ProcessTopo {
     return this.geoJson
   }
 
-  getTopoJson() {
-    return this.topoJson
-  }
-
   joinData({data, leftOn, rightOn, joinPrefix="added_"}) {
     // prefix key names in lookup table
     data = data.map(obj => {
