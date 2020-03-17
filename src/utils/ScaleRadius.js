@@ -6,7 +6,6 @@ class ScaleRadius {
     this.dataArr = dataArr
     this.maxVal = max(dataArr) 
     this.maxRange = maxRange
-    console.log("Max val",this.maxVal)
   }
 
   radius(num) {

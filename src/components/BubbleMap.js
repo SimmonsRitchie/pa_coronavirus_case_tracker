@@ -72,8 +72,6 @@ const BubbleMap = () => {
           {countyCentroids.map((centroid, idx) => {
             const casesTotal = centroid.properties.cases_total
             const deathsTotal = centroid.properties.deaths_total
-            console.log("cases",casesTotal)
-            console.log("radius",scale.radius(casesTotal))
             return (
               <Marker key={idx} coordinates={centroid.coordinates}>
                 <circle r={scale.radius(casesTotal)} fill="#F00" stroke="#fff" strokeWidth={2} onMouseEnter={() => {console.log('Hi!')}}/>
