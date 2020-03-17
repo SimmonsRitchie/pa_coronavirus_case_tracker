@@ -4,15 +4,8 @@
 $dark-red: #801515;
 $bold-red: red;
 $dark-blue: #0935a282;
-
-// CLASSES
-$map-fill: $dark-blue;
-
-$bubble-stroke: $dark-red;
-$bubble-fill: $bold-red;
-$bubble-fill-opacity: 0.3;
-
-
+$pink: #c4acd2;
+$faint-pink: #f9f3ff82;
 
 // Sunlight Foundation - base colors
 $background: #EFECEA;
@@ -23,6 +16,16 @@ $text-light: #8E8883;
 $line-white: #FFFFFF;
 $line-grey-accent: #C0C0BB;
 $map-hover: #e5e5e5;
+
+// CLASSES
+$map-fill: $faint-pink;
+$map-stroke: $pink;
+
+$bubble-stroke: $dark-red;
+$bubble-fill: $bold-red;
+$bubble-fill-opacity: 0.3;
+$bubble-hover-stroke: black;
+
 
 // Sunlight Foundation - 'thing' colors
 $yellow:#E3BA22;
