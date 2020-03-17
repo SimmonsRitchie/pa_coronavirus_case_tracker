@@ -43,26 +43,6 @@ const BubbleMap = () => {
                   <Geography
                     key={geo.rsmKey}
                     geography={geo}
-                    // style={{
-                    //   default: {
-                    //     stroke: "#0059ff",
-                    //     strokeWidth: 1.5,
-                    //     outline: "#0059ff"
-                    //   }
-                    //   hover: {
-                    //     opacity: "0.5",
-                    //     stroke: "white",
-                    //     strokeWidth: 2,
-                    //     outline: "pink"
-                    //   },
-                    //   pressed: {
-                    //   opacity: "0.5",
-                    //   stroke: "white",
-                    //   strokeWidth: 0.75,
-                    //   outline: "none"
-                    //   }
-                    //   }
-                    // }
                   />
                 );
               })
