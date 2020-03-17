@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import {scaleSqrt} from "d3-scale"
 import {
   ComposableMap,
   ZoomableGroup,
@@ -8,11 +7,14 @@ import {
   Marker
 } from "react-simple-maps";
 import { DataContext } from "../context/DataContext";
+import ScaleRadius from "../utils/ScaleRadius"
 
 const BubbleMap = () => {
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
   const {countyMap, countyCentroids} = data
+  const arrCases = countyCentroids.map(item => item.properties.cases_total)
+  const scale = new ScaleRadius(arrCases)
 
   return (
     <div className="map__container">
@@ -68,14 +70,13 @@ const BubbleMap = () => {
             }
           </Geographies>
           {countyCentroids.map((centroid, idx) => {
-
-            // var radius = scaleSqrt()
-            // .domain([0, 1e6])
-            // .range([0, 15]);
-            // console.log(radius(3))
+            const casesTotal = centroid.properties.cases_total
+            const deathsTotal = centroid.properties.deaths_total
+            console.log("cases",casesTotal)
+            console.log("radius",scale.radius(casesTotal))
             return (
               <Marker key={idx} coordinates={centroid.coordinates}>
-                <circle r={10} fill="#F00" stroke="#fff" strokeWidth={2} onMouseEnter={() => {console.log('Hi!')}}/>
+                <circle r={scale.radius(casesTotal)} fill="#F00" stroke="#fff" strokeWidth={2} onMouseEnter={() => {console.log('Hi!')}}/>
               </Marker>
           )})}
         </ZoomableGroup>
