@@ -58,6 +58,7 @@ class ProcessTopo {
         const centroid = geoCentroid(feature)
         return {coordinates: centroid, properties: feature.properties}
       })
+      // TODO: Sort centroids from large to small case counts
       return arrCentroids
     }
 }
