@@ -8,7 +8,7 @@ const DataDisplay = () => {
   const DISPLAY_TYPE = {
     map: <BubbleMap />,
     chart: <div>Chart</div>,
-    data: <div>Map</div>,
+    data: <div>Data</div>,
   };
 
   const changeDisplay = (e) => {
@@ -26,8 +26,11 @@ const DataDisplay = () => {
 const DataDisplayButtons = ({changeDisplay}) => {
   return ( 
     <div className="data-display-buttons__container">
-      <button id={"map"} onClick={changeDisplay}>Cases per county</button>
-      <button id={"chart"} onClick={changeDisplay}>Cases per day</button>
+      <div className="buttons are-small has-addons is-centered">
+        <button className="button" id={"map"} onClick={changeDisplay}>Map</button>
+        <button className="button" id={"chart"} onClick={changeDisplay}>Chart</button>
+        <button className="button" id={"data"} onClick={changeDisplay}>Data</button>
+      </div>
     </div>
   );
 }
