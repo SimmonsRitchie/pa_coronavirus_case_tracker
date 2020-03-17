@@ -1,6 +1,6 @@
 import { csv } from "d3-fetch";
-import ProcessTopo from "./ProcessTopo"
-import ProcessData from "./ProcessData"
+import ProcessTopo from "./rocessTopo"
+import ProcessData from "./rocessData"
 import CASES_CSV from "~/data/cases.csv"
 import DEATHS_CSV from "~/data/deaths.csv"
 
