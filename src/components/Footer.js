@@ -1,12 +1,16 @@
 import React, {useContext} from "react";
 import Dot from "./Formatters";
 import { DataContext } from "../context/DataContext";
-import { getMostRecentDate} from "../utils/parse"
+import { determineMostRecentDate} from "../utils/parse"
 
 const Footer = () => {
   // Get date of last update based on data columns
   const { data } = useContext(DataContext);
-  const lastUpdated = getMostRecentDate(data.paCases, data.paDeaths)
+  console.log(data.paCases)
+  const lastUpdated = determineMostRecentDate([
+    data.paCases[0].dates, 
+    data.paDeaths[0].dates
+  ])
 
   const CREDITS = [
     { creditType: "Source", name: "Pa Department of Health data compiled by Spotlight PA" },
