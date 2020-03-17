@@ -17,11 +17,19 @@ $line-white: #FFFFFF;
 $line-grey-accent: #C0C0BB;
 $map-hover: #e5e5e5;
 
-// CLASSES
+//* THEME
+$main-accent: $dark-red;
+
+// HEADER
+$header-title-color: $main-accent;
+
+// STATS
+$stats-number-color: $main-accent;
+
+// MAP
 $map-fill: $faint-pink;
 $map-stroke: $pink;
-
-$bubble-stroke: $dark-red;
+$bubble-stroke: $main-accent;
 $bubble-fill: $bold-red;
 $bubble-fill-opacity: 0.3;
 $bubble-hover-stroke: black;
