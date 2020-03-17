@@ -8,7 +8,6 @@ class ProcessData {
     this.data = data
   }
 
-
   // PUBLIC METHODS
   rearrange() {
     // Moves data into new object structure.
