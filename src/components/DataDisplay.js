@@ -40,17 +40,18 @@ const DataDisplay = () => {
         buttons={DISPLAY_BUTTONS}
         selected={display}
         handleClick={changeDisplay}/>
-        <SizeMe
-          className="data-display__data-container"
-          monitorHeight
-          monitorWidth
-          refreshRate={128}
-          refreshMode={"debounce"}
-          render={({ size }) => {
-            return (getDisplay(size)[display])
+        <div className="data-display__data-container">
+          <SizeMe
+            monitorHeight
+            monitorWidth
+            refreshRate={128}
+            refreshMode={"debounce"}
+            render={({ size }) => {
+              return (getDisplay(size)[display])
+            }
           }
-        }
-        />
+          />
+        </div>
     </div>
   );
 };
