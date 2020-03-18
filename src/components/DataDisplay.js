@@ -5,7 +5,7 @@ import LineChart from "./LineChart"
 import { SizeMe } from "react-sizeme";
 
 const DataDisplay = () => {
-  const [display, setDisplay] = useState('map')
+  const [display, setDisplay] = useState('chart')
 
   const getDisplay = size => ({
     map: <BubbleMap size={size}/>,
