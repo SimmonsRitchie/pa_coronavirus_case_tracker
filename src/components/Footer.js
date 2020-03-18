@@ -27,16 +27,18 @@ const Footer = () => {
             </i>
           </div>
           <div className="footer__credit-container">
-          {CREDITS.map((item, idx) => {
-            const {creditType, name} = item
-            const includeDot = (idx + 1) < CREDITS.length
-            return <CreditLine
-              key={idx}
-              creditType={creditType}
-              name={name}
-              includeDot={includeDot}
-            />}
-            )}
+            <span className="footer__credit-line is-size-7 has-text-grey">
+              {CREDITS.map((item, idx) => {
+                const {creditType, name} = item
+                const includeDot = (idx + 1) < CREDITS.length
+                return <CreditLine
+                  key={idx}
+                  creditType={creditType}
+                  name={name}
+                  includeDot={includeDot}
+                />}
+                )}
+            </span>
           </div>
         </div>
       </div>
@@ -46,9 +48,9 @@ const Footer = () => {
 
 const CreditLine = ({ creditType, name, includeDot = false }) => {
   return (
-    <span className="footer__credit-line is-size-7 has-text-grey">
+    <React.Fragment>
       {creditType}: {name} {includeDot && <Dot />}
-    </span>
+    </React.Fragment>
   );
 };
 
