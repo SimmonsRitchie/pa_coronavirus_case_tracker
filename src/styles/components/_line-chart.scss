@@ -1,4 +1,16 @@
 
 .line-chart__container {
+  width: 100%;
+}
 
+.line-chart__x-axis {
+  text {
+    font-size: $size-7;
+  }
+}
+
+.line-chart__y-axis {
+  text {
+    font-size: $size-7;
+  }
 }

@@ -9,11 +9,12 @@ import {
   YAxis
 } from "react-vis";
 import moment from 'moment';
-import { DataContext } from "../context/DataContext";
-import { getRowByName } from "../utils/parse"
-
+import { DataContext } from "~/context/DataContext";
+import { getRowByName } from "~/utils/parse"
+import { xTickCalc} from "~/utils/chartHelpers"
 
 const LineChart = ({size}) => {
+  const screenWidth = window.innerWidth
   const { data } = useContext(DataContext);
   const casesTotalRow = getRowByName(data.paCases, "county","total")
   const xYPoints = casesTotalRow.dates.map( item => {
@@ -23,39 +24,36 @@ const LineChart = ({size}) => {
     }
   })
   console.log(xYPoints)
-
-  const series1 = [
-    { x: 0, y: 8 },
-    { x: 1, y: 5 },
-    { x: 2, y: 4 },
-    { x: 3, y: 9 },
-    { x: 4, y: 1 },
-    { x: 5, y: 7 },
-    { x: 6, y: 6 },
-    { x: 7, y: 3 },
-    { x: 8, y: 2 },
-    { x: 9, y: 0 }
-  ];
-  console.log(series1)
-  const dynamicWidth = size.width
   const dynamicHeight = size.width * 0.6
+  const xTickTotal = xTickCalc(screenWidth)
+
 
   return (
-      <div style={{
-        width:"100%",
-        height: dynamicHeight
-      }}>
-        <FlexibleXYPlot        
-        xType={'time'}
-        yType={'linear'}
-
-        >
-        <HorizontalGridLines />
-
-          <LineSeries data={xYPoints} />
-          <XAxis />
-          <YAxis />
-        </FlexibleXYPlot>
+      <div className="line-chart__container">
+        <div style={{
+          width:"100%",
+          height: dynamicHeight
+        }}>
+          <FlexibleXYPlot
+          margin={{right: 20}}        
+          xType={'time'}
+          yType={'linear'}
+          >
+          <HorizontalGridLines tickTotal={5}/>
+            <LineSeries data={xYPoints}/>
+            <XAxis
+              className={"line-chart__x-axis"}
+              tickTotal={xTickTotal}
+              tickFormat={(val) => {
+                val = moment(val)
+                return val.format("MMM D")
+              }}/>
+            <YAxis
+              className={"line-chart__y-axis"}
+              tickTotal={5}
+            />
+          </FlexibleXYPlot>
+        </div>
       </div>
   );
 };
