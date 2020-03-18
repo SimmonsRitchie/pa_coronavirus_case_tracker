@@ -15,10 +15,10 @@ class ProcessData {
       const {county, total} = item
       const dates = []
       Object.keys(item).forEach(key => {
-        const validDate = moment(key, "YYYY-MM-DD").isValid()
-        if (validDate){
+        const dateValue = moment(key, "YYYY-MM-DD")
+        if (dateValue.isValid()){
           dates.push({
-            "date": key,
+            "date": dateValue, // store as moment instance
             "count": +item[key]
           })
         }
