@@ -12,9 +12,9 @@ import ScaleRadius from "../utils/ScaleRadius"
 import Tooltip from "./Tooltip"
 
 const BubbleMap = () => {
-  const [tooltipContent, setTooltipContent] = useState('')
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
+  const [tooltipContent, setTooltipContent] = useState('')
   const {countyMap, countyCentroids} = data
   const arrCases = countyCentroids.map(item => item.properties.cases_total)
   const scale = new ScaleRadius(arrCases)
