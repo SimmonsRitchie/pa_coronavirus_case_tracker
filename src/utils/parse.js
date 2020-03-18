@@ -13,14 +13,9 @@ const getMostRecentDate = (dateArr) => {
   return moment.max(validDates)
 
 }
-export const determineMostRecentDate = (arrsOfDates) => {
-  // Takes an array of array, returns the most recent valid date from child array
-  const mostRecentDates = arrsOfDates.map(arr => getMostRecentDate(arr))
-  // Get most recent date from array
-  const mostRecentDate = moment.max(mostRecentDates)
-  // Formatting or return 'n/a' if undefined
-  const finalDate = mostRecentDate ?  mostRecentDate.format("MMM Do, YYYY") : 'n/a'
-  return finalDate
+export const determineMostRecentDate = (arrOfDates) => {
+  // Expects an array of moment objects, return the most recent date
+  return moment.max(arrOfDates)
 }
 
 

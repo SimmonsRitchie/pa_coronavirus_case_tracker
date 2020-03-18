@@ -1,4 +1,5 @@
 import moment from 'moment'
+import {getRowByName} from "./parse"
 
 class ProcessData {
   constructor(data) {
@@ -23,12 +24,37 @@ class ProcessData {
           })
         }
       })
+
       return {
         county,
         dates,
         total: +total 
       }
     })
+    return this
+  }
+
+  nest(keyName) {
+    // Nests data into another layer
+    this.data = {
+      [keyName]: this.data
+    }
+    return this
+  }
+
+  addSummary() {
+    // adds an extra object with summary information
+    console.log("data", this.data.countyData)
+    const totalRow = getRowByName(this.data.countyData, "county", "total")
+    const mostRecentDate = moment.max(totalRow.dates.map(item => item.date))
+    const oldestDate = moment.min(totalRow.dates.map(item => item.date))
+    const meta = {
+      county: "meta",
+      total: totalRow.total,
+      mostRecentDate,
+      oldestDate
+    }
+    this.data["meta"] = meta
     return this
   }
 

@@ -5,8 +5,8 @@ import { DataContext } from "../context/DataContext";
 
 const Stats = () => {
   const { data } = useContext(DataContext);
-  const cases = getTotalFromSheet(data.paCases)
-  const deaths = getTotalFromSheet(data.paDeaths)
+  const cases = data.paCases.meta.total
+  const deaths = data.paDeaths.meta.total
 
   return (
     <div className="stats__container">

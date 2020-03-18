@@ -19,7 +19,7 @@ const LineChart = ({ size }) => {
   const [crosshairValues, setCrosshairValues] = useState();
   const screenWidth = window.innerWidth;
   const { data } = useContext(DataContext);
-  const casesTotalRow = getRowByName(data.paCases, "county", "total");
+  const casesTotalRow = getRowByName(data.paCases.countyData, "county", "total");
   const xYPoints = casesTotalRow.dates.map(item => {
     return {
       x: item.date,
