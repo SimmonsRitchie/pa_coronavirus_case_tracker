@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "parcel build src/index.html",
-    "build:prod": "parcel build src/index.html --public-url https://interactives.data.spotlightpa.org/2020/coronavirus/pa-coronavirus-tracker/",
+    "build:prod": "parcel build src/index.html --experimental-scope-hoisting --public-url https://interactives.data.spotlightpa.org/2020/coronavirus/pa-coronavirus-tracker/",
     "clean": "find dist -mindepth 1 -delete || mkdir dist",
     "deploy": "npm run clean && npm run build:prod && s3deploy -source dist -bucket interactives.data.spotlightpa.org -path 2020/coronavirus/pa-coronavirus-tracker/ -region us-east-2  -distribution-id EFR0HZ7VA3Q92 -public-access",
     "start": "parcel src/index.html",
