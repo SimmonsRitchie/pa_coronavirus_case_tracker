@@ -6,7 +6,6 @@ import { determineMostRecentDate} from "../utils/parse"
 const Footer = () => {
   // Get date of last update based on data columns
   const { data } = useContext(DataContext);
-  console.log(data.paCases)
   const lastUpdated = determineMostRecentDate([
     data.paCases[0].dates, 
     data.paDeaths[0].dates
