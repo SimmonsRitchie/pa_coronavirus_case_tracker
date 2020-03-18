@@ -19,3 +19,29 @@ export const getTotalFromSheet = (sheet) => {
   const totalRow = getRowByName(sheet, "county","total")
   return totalRow.total
 }
+
+
+const createLookUpTable = (arr, key) => {
+  return arr.reduce((accumulator, d) => {
+    accumulator[d[key]] = d;
+    return accumulator;
+  }, {});
+}
+
+export const createMergedCountyData = (arrCases, arrDeaths) => {
+  // convert arr2 into look up table
+  const arrDeathsLookUp = createLookUpTable(arrDeaths, "county")
+  const mergedData =[]
+  arrCases.forEach((item, idx) => {
+    const {county, total} = item
+    if (county !== "total") {
+      mergedData.push({
+        county, 
+        casesTotal: total,
+        deathsTotal: arrDeathsLookUp[county].total
+      }) 
+    }
+  })
+  const sortedData = mergedData.sort((a, b) => b.casesTotal - a.casesTotal)
+  return sortedData
+}

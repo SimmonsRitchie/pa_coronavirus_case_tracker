@@ -3,6 +3,7 @@ import ProcessTopo from "./ProcessTopo"
 import ProcessData from "./ProcessData"
 import CASES from "~/data/cases.csv"
 import DEATHS from "~/data/deaths.csv"
+import {createMergedCountyData} from "./parse"
 
 export const loadData = () => {
   /* Fetch and parse files.*/
@@ -49,6 +50,9 @@ export const loadData = () => {
       joinPrefix: "deaths_"
     }).getCentroids()
 
+    // Create merged data
+    const mergedData = createMergedCountyData(cleanPaCases[nestedDataLabel], cleanPaDeaths[nestedDataLabel])
+    console.log(mergedData)
     // Add to data object
     const data = {}
     data["paCases"] = cleanPaCases 
