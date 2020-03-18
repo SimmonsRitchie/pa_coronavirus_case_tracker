@@ -1,5 +1,10 @@
-.data-table__container {
+.data-table__container-outer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.data-table__container {
+  font-size: $size-7;
+  overflow-y: scroll;
 }
