@@ -51,14 +51,14 @@ export const loadData = () => {
     }).getCentroids()
 
     // Create merged data
-    const mergedData = createMergedCountyData(cleanPaCases[nestedDataLabel], cleanPaDeaths[nestedDataLabel])
-    console.log(mergedData)
+    const countyTotals = createMergedCountyData(cleanPaCases[nestedDataLabel], cleanPaDeaths[nestedDataLabel])
     // Add to data object
     const data = {}
     data["paCases"] = cleanPaCases 
     data["paDeaths"] = cleanPaDeaths
     data["countyMap"] = countyMap
     data["countyCentroids"] = countyCentroids
+    data["countyTotals"] = countyTotals
     return data
   })
 };
