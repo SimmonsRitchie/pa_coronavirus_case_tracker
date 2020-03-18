@@ -1,14 +1,24 @@
 import { csv } from "d3-fetch";
 import ProcessTopo from "./ProcessTopo"
 import ProcessData from "./ProcessData"
-import CASES_CSV from "~/data/cases.csv"
-import DEATHS_CSV from "~/data/deaths.csv"
+import CASES from "~/data/cases.csv"
+import DEATHS from "~/data/deaths.csv"
 
 export const loadData = () => {
   /* Fetch and parse files.*/
+  let casesPath, deathsPath
+  if (process.env.NODE_ENV === "development") {
+    console.log("dev mode: using dummy data");
+    casesPath = CASES
+    deathsPath = DEATHS
+  } else {
+    const domain = process.env.FETCH_DOMAIN;
+    casesPath = domain + "cases.csv"
+    deathsPath = domain + "deaths.csv"
+  }
   return Promise.all([
-    csv(CASES_CSV),
-    csv(DEATHS_CSV),
+    csv(casesPath),
+    csv(deathsPath),
     import('~/data/pa_county.json') // topojson file
   ]).then(([
     paCases, 
