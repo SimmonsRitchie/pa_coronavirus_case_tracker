@@ -29,8 +29,7 @@ const Footer = () => {
         <div>
           <div className="footer__notes is-size-7">
             <i>
-              Note: 'Cases' includes presumptive and confirmed coronavirus
-              cases.
+              {/* Insert footnote if needed */}
             </i>
           </div>
           <div className="footer__credit-container">
