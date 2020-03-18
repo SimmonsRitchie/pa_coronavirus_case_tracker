@@ -8,10 +8,21 @@ import {
   XAxis,
   YAxis
 } from "react-vis";
+import moment from 'moment';
+import { DataContext } from "../context/DataContext";
+import { getRowByName } from "../utils/parse"
 
 
 const LineChart = ({size}) => {
-
+  const { data } = useContext(DataContext);
+  const casesTotalRow = getRowByName(data.paCases, "county","total")
+  const xYPoints = casesTotalRow.dates.map( item => {
+    return {
+      x: item.date,
+      y: +item.count
+    }
+  })
+  console.log(xYPoints)
 
   const series1 = [
     { x: 0, y: 8 },
@@ -25,8 +36,7 @@ const LineChart = ({size}) => {
     { x: 8, y: 2 },
     { x: 9, y: 0 }
   ];
-
-  const myPalette = ["red", "green", "blue"];
+  console.log(series1)
   const dynamicWidth = size.width
   const dynamicHeight = size.width * 0.6
 
@@ -35,10 +45,14 @@ const LineChart = ({size}) => {
         width:"100%",
         height: dynamicHeight
       }}>
-        <FlexibleXYPlot        >
+        <FlexibleXYPlot        
+        xType={'time'}
+        yType={'linear'}
+
+        >
         <HorizontalGridLines />
 
-          <LineSeries data={series1} />
+          <LineSeries data={xYPoints} />
           <XAxis />
           <YAxis />
         </FlexibleXYPlot>
