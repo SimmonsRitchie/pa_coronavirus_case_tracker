@@ -1,12 +1,14 @@
 .tooltip__container {
   max-width: 30%;
   max-width: 170px;
+  color: $tooltip-font-color;
+  font-family: $family-sans-serif;
+  font-size: $size-7;
 }
 
 .tooltip__label {
-  font-weight: 600;
+  font-weight: $weight-semibold;
 }
-
 
 .tooltip__footnote-container {
   padding-top: $xs-size;
