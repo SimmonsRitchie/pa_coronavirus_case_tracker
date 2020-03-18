@@ -42,7 +42,6 @@ const DataDisplay = () => {
         handleClick={changeDisplay}/>
         <div className="data-display__data-container">
           <SizeMe
-            monitorHeight
             monitorWidth
             refreshRate={128}
             refreshMode={"debounce"}

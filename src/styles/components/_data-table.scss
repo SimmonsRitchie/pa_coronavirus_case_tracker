@@ -4,7 +4,27 @@
   align-items: center;
 }
 
-.data-table__container {
+.data-table__container-inner {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.data-table__table-container {
   font-size: $size-7;
   overflow-y: auto;
+
+  thead {
+    display: block;
+  }
+
+}
+
+.data-table__body {
+  display:block;
+  overflow:auto;
+  height:200px;
+  width:100%;
 }

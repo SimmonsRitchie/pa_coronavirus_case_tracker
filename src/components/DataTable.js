@@ -1,26 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { DataContext } from "~/context/DataContext";
 
+ 
 const DataTable = ({size}) => {
   const { data } = useContext(DataContext);
+  const [bodyHeight, setBodyHeight] = useState(0)
   const countyTotals = data.countyTotals;
+  const elHead = useRef(null)
   const dynamicHeight = size.width * 0.6;
-
+  useEffect(() => {
+    // We need to set height of table body so that scroll bar on tbody works correctly
+    // We derive the height by subtracting the thead height.
+    const theadHeight = elHead.current.getBoundingClientRect().height
+    const dynamicBodyHeight = dynamicHeight - theadHeight;
+    setBodyHeight(dynamicBodyHeight)
+  })
   return (
     <div className="data-table__container-outer">
-      <div className="data-table__container" style={{height: dynamicHeight}}>
-        <table className="table is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>County </th>
-              <th>Deaths</th>
-              <th>Cases</th>
-            </tr>
-          </thead>
-          <tbody>
-          {countyTotals.map((row, idx) => <DataTableRow key={idx} {...row}/>)}
-          </tbody>
-        </table>
+      <div className="data-table__container-inner">
+        <div className="data-table__table-container" style={{height: dynamicHeight}}>
+          <table className="table is-hoverable is-fullwidth">
+            <thead ref={elHead}>
+              <tr>
+                <th>County </th>
+                <th>Deaths</th>
+                <th>Cases</th>
+              </tr>
+            </thead>
+            <tbody className="data-table__body" style={{height: bodyHeight}}>
+            {countyTotals.map((row, idx) => <DataTableRow key={idx} {...row}/>)}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
