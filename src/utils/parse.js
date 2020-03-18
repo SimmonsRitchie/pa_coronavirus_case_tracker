@@ -42,6 +42,13 @@ export const createMergedCountyData = (arrCases, arrDeaths) => {
       }) 
     }
   })
-  const sortedData = mergedData.sort((a, b) => b.casesTotal - a.casesTotal)
+  const sortedData = sortCountyTotals(mergedData, false)
   return sortedData
+}
+
+export const sortCountyTotals = (data, asc=true) => {
+  const ascFunc = (a, b) => (a - b)
+  const descFunc = (a, b) => (b - a)
+  const selectedSortFunc = asc ? ascFunc : descFunc
+  return data.sort((a, b) => selectedSortFunc(a.casesTotal, b.casesTotal))
 }
