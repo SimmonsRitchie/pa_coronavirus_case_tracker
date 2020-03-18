@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Main from './components/Main'
 import Loader from './components/Loader'
 import { loadData } from './utils/load'
+import '../node_modules/react-vis/dist/style.css';
 
 // RENDERAPP
 // Function below checks to see whether we have already rendered the page
