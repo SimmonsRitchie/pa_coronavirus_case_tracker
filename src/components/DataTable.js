@@ -5,7 +5,6 @@ const DataTable = ({size}) => {
   const { data } = useContext(DataContext);
   const countyTotals = data.countyTotals;
   const dynamicHeight = size.width * 0.6;
-  console.log(countyTotals);
 
   return (
     <div className="data-table__container-outer">
