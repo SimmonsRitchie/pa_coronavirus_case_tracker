@@ -1,18 +1,6 @@
 import moment from 'moment'
 
 
-const getMostRecentDate = (dateArr) => {
-  // Get list of valid ISO dates
-  const validDates = dateArr.filter(item => {
-    const moDate = moment(item, "YYYY-MM-DD")
-    if (moDate.isValid()) {
-      return moDate
-    }
-  }) 
-  // Get max date from array
-  return moment.max(validDates)
-
-}
 export const determineMostRecentDate = (arrOfDates) => {
   // Expects an array of moment objects, return the most recent date
   return moment.max(arrOfDates)
