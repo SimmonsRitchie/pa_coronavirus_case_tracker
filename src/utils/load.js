@@ -26,12 +26,13 @@ export const loadData = () => {
     countyMap
   ]) => {
     // process cases
+    const nestedDataLabel = "countyData"
     const processCases = new ProcessData(paCases)
-    const cleanPaCases = processCases.rearrange().nest("countyData").addSummary().getData()
+    const cleanPaCases = processCases.rearrange().nest(nestedDataLabel).addSummary(nestedDataLabel).getData()
     
     // process deaths
     const processDeaths = new ProcessData(paDeaths)
-    const cleanPaDeaths = processDeaths.rearrange().nest("countyData").addSummary().getData()
+    const cleanPaDeaths = processDeaths.rearrange().nest(nestedDataLabel).addSummary(nestedDataLabel).getData()
 
     // process map data
     const geoJsonCountyMap = new ProcessTopo(countyMap, "PA-County2")
@@ -50,7 +51,6 @@ export const loadData = () => {
 
     // Add to data object
     const data = {}
-    console.log(cleanPaCases)
     data["paCases"] = cleanPaCases 
     data["paDeaths"] = cleanPaDeaths
     data["countyMap"] = countyMap

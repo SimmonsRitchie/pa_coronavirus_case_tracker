@@ -42,10 +42,9 @@ class ProcessData {
     return this
   }
 
-  addSummary() {
-    // adds an extra object with summary information
-    console.log("data", this.data.countyData)
-    const totalRow = getRowByName(this.data.countyData, "county", "total")
+  addSummary(keyName) {
+    // Adds meta data to this.data based on data in this.data[keyName]
+    const totalRow = getRowByName(this.data[keyName], "county", "total")
     const mostRecentDate = moment.max(totalRow.dates.map(item => item.date))
     const oldestDate = moment.min(totalRow.dates.map(item => item.date))
     const meta = {
