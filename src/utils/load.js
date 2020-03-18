@@ -40,6 +40,7 @@ export const loadData = () => {
 
     // Add to data object
     const data = {}
+    console.log(paCases)
     data["paCases"] = cleanPaCases 
     data["paDeaths"] = cleanPaDeaths
     data["countyMap"] = countyMap
