@@ -16,11 +16,11 @@ const DataDisplay = () => {
   const DISPLAY_BUTTONS = [
     {
       "id": "map",
-      "text": "Map"
+      "text": "Cases by county"
     },
     {
       "id": "chart",
-      "text": "Chart"
+      "text": "Cases by day"
     },
     {
       "id": "data",

@@ -14,3 +14,23 @@
     font-size: $size-7;
   }
 }
+
+.line-chart__crosshair-container {
+  background-color: black;
+  opacity: 0.9;
+  color: $tooltip-font-color;
+  font-size: $size-7;
+  overflow: hidden;
+  white-space: nowrap;
+
+  // react component tooltip styles
+  border-radius: 3px;
+  padding: 8px 21px;
+  pointer-events: none;
+  transition: opacity 0.3s ease-out;
+  z-index: 999;
+}
+
+.line-chart__crosshair-label {
+  @extend .tooltip__label;
+}
