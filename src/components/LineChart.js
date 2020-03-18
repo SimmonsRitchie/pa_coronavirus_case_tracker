@@ -34,20 +34,9 @@ const LineChart = ({ size }) => {
   };
 
   const _onNearestX = (value, {index}) => {
-    //const val = DATA.map(d => d[index])
     const val = [xYPoints[index]]
-    // const val = DATA[0][index]
-    console.log("data", DATA)
-    console.log("recieved value",value)
-    console.log("recieved index",index)
-    console.log("processed val", val)
     setCrosshairValues(val);
   };
-
-  const DATA = [
-    [{x: 1, y: 10}, {x: 2, y: 7}, {x: 3, y: 15}],
-    [{x: 1, y: 20}, {x: 2, y: 5}, {x: 3, y: 15}]
-  ];
 
   return (
     <div className="line-chart__container">
