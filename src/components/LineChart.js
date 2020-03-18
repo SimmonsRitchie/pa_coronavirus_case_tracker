@@ -63,7 +63,8 @@ const LineChart = ({ size }) => {
           />
           {crosshairValues && <Crosshair values={crosshairValues}>
             <div className="line-chart__crosshair-container">
-              <div className="line-chart__crosshair-label">{crosshairValues[0].y} cases</div>
+              <div className="line-chart__crosshair-label">{crosshairValues[0].x.format("MMM D")}</div>
+              <div>{crosshairValues[0].y} cases</div>
             </div>
           </Crosshair>}
         </FlexibleXYPlot>
