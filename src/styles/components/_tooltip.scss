@@ -8,6 +8,11 @@
 
 .tooltip__label {
   font-weight: $weight-semibold;
+  white-space: nowrap;
+}
+
+.tooltip__item {
+  white-space: nowrap;
 }
 
 .tooltip__footnote-container {
