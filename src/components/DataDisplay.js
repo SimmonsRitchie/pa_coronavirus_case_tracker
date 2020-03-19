@@ -6,7 +6,7 @@ import { SizeMe } from "react-sizeme";
 import DataTable from "./DataTable";
 
 const DataDisplay = () => {
-  const [display, setDisplay] = useState('data')
+  const [display, setDisplay] = useState('map')
 
   const getDisplay = size => ({
     map: <BubbleMap size={size}/>,
