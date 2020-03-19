@@ -2,12 +2,12 @@ import React, { useContext, useRef, useEffect, useState } from "react";
 import { DataContext } from "~/context/DataContext";
 
  
-const DataTable = ({size}) => {
+const DataTable = ({size, heightRatio}) => {
   const { data } = useContext(DataContext);
   const [bodyHeight, setBodyHeight] = useState(0)
   const countyTotals = data.countyTotals;
   const elHead = useRef(null)
-  const dynamicHeight = size.width * 0.6;
+  const dynamicHeight = size.width * heightRatio;
   useEffect(() => {
     // We need to set height of table body so that scroll bar on tbody works correctly
     // We derive the height by subtracting the thead height.

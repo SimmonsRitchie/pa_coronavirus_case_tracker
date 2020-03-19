@@ -6,14 +6,15 @@ import { SizeMe } from "react-sizeme";
 import DataTable from "./DataTable";
 
 const DataDisplay = () => {
+  // Data container height is set to HEIGHT_RATIO * width of container
+  const HEIGHT_RATIO = 0.7
   const [display, setDisplay] = useState('map')
-
-  const getDisplay = size => ({
-    map: <BubbleMap size={size}/>,
-    chart: <LineChart size={size}/>,
-    data: <DataTable size={size}/>,
-  });
-
+  const getDisplay = (size) => {
+    return ({
+    map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO}/>,
+    chart: <LineChart size={size} heightRatio={HEIGHT_RATIO}/>,
+    data: <DataTable size={size} heightRatio={HEIGHT_RATIO}/>,
+  })};
   const DISPLAY_BUTTONS = [
     {
       "id": "map",
@@ -46,7 +47,7 @@ const DataDisplay = () => {
             refreshMode={"debounce"}
             render={({ size }) => {
               return (
-                <div className="data-display__data-container" style={{height: size.width * 0.7}}>
+                <div className="data-display__data-container" style={{height: size.width * HEIGHT_RATIO}}>
                 {getDisplay(size)[display]}
                 </div>
                 )
