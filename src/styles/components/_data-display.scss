@@ -1,9 +1,11 @@
 .data-display__container {
   width: 100%;
-  padding: $xs-size;
+  // padding: $xs-size;
 }
 
 .data-display__data-container {
   width: 100%;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

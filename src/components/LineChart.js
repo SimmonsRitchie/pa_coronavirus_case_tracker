@@ -19,7 +19,11 @@ const LineChart = ({ size }) => {
   const [crosshairValues, setCrosshairValues] = useState();
   const screenWidth = window.innerWidth;
   const { data } = useContext(DataContext);
-  const casesTotalRow = getRowByName(data.paCases.countyData, "county", "total");
+  const casesTotalRow = getRowByName(
+    data.paCases.countyData,
+    "county",
+    "total"
+  );
   const xYPoints = casesTotalRow.dates.map(item => {
     return {
       x: item.date,
@@ -33,8 +37,8 @@ const LineChart = ({ size }) => {
     setCrosshairValues(null);
   };
 
-  const _onNearestX = (value, {index}) => {
-    const val = [xYPoints[index]]
+  const _onNearestX = (value, { index }) => {
+    const val = [xYPoints[index]];
     setCrosshairValues(val);
   };
 
@@ -46,7 +50,12 @@ const LineChart = ({ size }) => {
           height: dynamicHeight
         }}
       >
-        <FlexibleXYPlot margin={{ right: 20 }} xType={"time"} yType={"linear"} onMouseLeave={_onMouseLeave}>
+        <FlexibleXYPlot
+          margin={{ right: 20 }}
+          xType={"time"}
+          yType={"linear"}
+          onMouseLeave={_onMouseLeave}
+        >
           <HorizontalGridLines tickTotal={5} />
           <XAxis
             className={"line-chart__x-axis"}
@@ -62,12 +71,16 @@ const LineChart = ({ size }) => {
             data={xYPoints}
             onNearestX={_onNearestX}
           />
-          {crosshairValues && <Crosshair values={crosshairValues}>
-            <div className="line-chart__crosshair-container">
-              <div className="line-chart__crosshair-label">{crosshairValues[0].x.format("MMM D")}</div>
-              <div>{crosshairValues[0].y} cases</div>
-            </div>
-          </Crosshair>}
+          {crosshairValues && (
+            <Crosshair values={crosshairValues}>
+              <div className="line-chart__crosshair-container">
+                <div className="line-chart__crosshair-label">
+                  {crosshairValues[0].x.format("MMM D")}
+                </div>
+                <div>{crosshairValues[0].y} cases</div>
+              </div>
+            </Crosshair>
+          )}
         </FlexibleXYPlot>
       </div>
     </div>

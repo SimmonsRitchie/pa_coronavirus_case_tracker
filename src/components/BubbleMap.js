@@ -20,7 +20,7 @@ const BubbleMap = () => {
   const scale = new ScaleRadius(arrCases)
 
   return (
-    <div className="map__container">
+    <div className="bubble-map__container">
       <ComposableMap
       data-tip={""}
       projection={"geoMercator"}

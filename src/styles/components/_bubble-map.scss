@@ -1,8 +1,6 @@
-// React simple map - overrides
-.rsm-geography {
-  stroke: $map-stroke;
-  fill: $map-fill;
-  stroke-width: 1.6;
+
+.bubble-map__container {
+  width: 100%;
 }
 
 .bubble-map__bubble {
@@ -14,3 +12,11 @@
     stroke: $bubble-hover-stroke;
   }
 }
+
+// React simple map - overrides
+.rsm-geography {
+  stroke: $map-stroke;
+  fill: $map-fill;
+  stroke-width: 1.6;
+}
+
