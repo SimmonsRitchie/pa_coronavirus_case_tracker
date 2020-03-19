@@ -15,7 +15,7 @@ import { DataContext } from "~/context/DataContext";
 import { getRowByName } from "~/utils/parse";
 import { xTickCalc } from "~/utils/chartHelpers";
 
-const LineChart = ({ size, heightRatio }) => {
+const LineChart = ({ size, heightRatio, margin }) => {
   const [crosshairValues, setCrosshairValues] = useState();
   const screenWidth = window.innerWidth;
   const { data } = useContext(DataContext);
@@ -30,7 +30,7 @@ const LineChart = ({ size, heightRatio }) => {
       y: +item.count
     };
   });
-  const dynamicHeight = size.width * heightRatio;
+  const dynamicHeight = size.width * (heightRatio - margin);
   const xTickTotal = xTickCalc(screenWidth);
 
   const _onMouseLeave = () => {

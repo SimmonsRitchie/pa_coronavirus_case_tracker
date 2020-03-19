@@ -8,12 +8,13 @@ import DataTable from "./DataTable";
 const DataDisplay = () => {
   // Data container height is set to HEIGHT_RATIO * width of container
   const HEIGHT_RATIO = 0.7
+  const MARGIN = 0.05
   const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
     return ({
-    map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO}/>,
-    chart: <LineChart size={size} heightRatio={HEIGHT_RATIO}/>,
-    data: <DataTable size={size} heightRatio={HEIGHT_RATIO}/>,
+    map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
+    chart: <LineChart size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
+    data: <DataTable size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
   })};
   const DISPLAY_BUTTONS = [
     {
