@@ -14,7 +14,7 @@ what size screen you're viewing it on. */
 }
 
 .show-for-desktop {
-    @media (max-width: $desktop-breakpoint - .01rem) {
+    @media (max-width: $mid-breakpoint) {
         display: none;
     }
 }

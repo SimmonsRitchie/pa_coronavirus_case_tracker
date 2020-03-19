@@ -1,3 +1,14 @@
 .data-display-buttons__container {
   padding-bottom: $m-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.data-display-buttons__container-mobile {
+  width: 70%;
+}
+
+.data-display-button__button-mobile {
+  padding-bottom: $xs-size;
 }
