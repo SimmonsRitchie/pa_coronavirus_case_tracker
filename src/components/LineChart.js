@@ -58,6 +58,7 @@ const LineChart = ({ size }) => {
           />
           <YAxis className={"line-chart__y-axis"} tickTotal={5} />
           <LineSeries
+            className={"line-chart__line-series-1"}
             data={xYPoints}
             onNearestX={_onNearestX}
           />

@@ -34,3 +34,7 @@
 .line-chart__crosshair-label {
   @extend .tooltip__label;
 }
+
+.line-chart__line-series-1 {
+  stroke: $main-complement !important;
+}
