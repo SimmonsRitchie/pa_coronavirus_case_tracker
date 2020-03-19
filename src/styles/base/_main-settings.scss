@@ -15,6 +15,8 @@ $prince-blue: #558abf;
 $burnt-red: #af3f0c;
 $slate-blue: #607d9a;
 $remorse-red: #b11a0e;
+$almost-black: #0c0c0c;
+// $faint-grey: 
 
 // Sunlight Foundation - base colors
 $background: #EFECEA;
@@ -27,7 +29,7 @@ $line-grey-accent: #C0C0BB;
 $map-hover: #e5e5e5;
 
 //* THEME
-$main-complement: $queen-blue;
+$main-complement: $almost-black;
 $main: $remorse-red;
 $main-accent: $prince-blue;
 $text-on-dark: $line-white;
@@ -43,7 +45,7 @@ $stats-number-color: $main;
 
 // MAP
 $map-stroke: $main-complement;
-$map-fill: fade-out($main-complement, 0.97);
+$map-fill: fade-out($main-complement, 0.99);
 $bubble-stroke: $main;
 $bubble-fill: #e61f0e;
 $bubble-fill-opacity: 0.3;
