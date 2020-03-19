@@ -51,7 +51,7 @@ const LineChart = ({ size, heightRatio, margin }) => {
         }}
       >
         <FlexibleXYPlot
-          margin={{ right: 20 }}
+          margin={{ right: size.width * 0.06, left: size.width * 0.06 }}
           xType={"time"}
           yType={"linear"}
           onMouseLeave={_onMouseLeave}
