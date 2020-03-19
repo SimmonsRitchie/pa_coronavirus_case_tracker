@@ -31,6 +31,7 @@ const LineChart = ({ size, heightRatio, margin }) => {
     };
   });
   const dynamicHeight = size.width * (heightRatio - margin);
+  const dynamicMargin = size.width < 550 ? 50 : size.width * 0.08;
   const xTickTotal = xTickCalc(screenWidth);
 
   const _onMouseLeave = () => {
@@ -51,7 +52,7 @@ const LineChart = ({ size, heightRatio, margin }) => {
         }}
       >
         <FlexibleXYPlot
-          margin={{ right: size.width * 0.06, left: size.width * 0.06 }}
+          margin={{ right: dynamicMargin, left: dynamicMargin }}
           xType={"time"}
           yType={"linear"}
           onMouseLeave={_onMouseLeave}
