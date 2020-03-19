@@ -4,7 +4,7 @@ const DataDisplayButtons = ({buttons, selected, handleClick}) => {
 
   return ( 
     <div className="data-display-buttons__container">
-      <div className="buttons are-small has-addons is-centered">
+      <div className="buttons are-normal has-addons is-centered">
         {buttons.map(item => {
           const selectedClass = item.id === selected ? 'is-primary' : ""
           return (
