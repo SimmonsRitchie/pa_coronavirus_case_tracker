@@ -17,6 +17,7 @@ MODIFIER - changes the style of the block
 
 */
 
+@import './mixins/responsive';
 @import './base/bulma-settings';
 @import './base/main-settings';
 @import './components/container';

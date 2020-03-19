@@ -19,9 +19,6 @@
   font-size: $size-7;
   overflow-y: auto;
   width: 100%;
-
-  @media (min-width: $mid-breakpoint) {
-    font-size: $size-6;
-  }
+  @include desktop-fontsize;
 }
 

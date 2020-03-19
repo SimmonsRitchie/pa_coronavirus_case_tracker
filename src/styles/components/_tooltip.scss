@@ -3,7 +3,7 @@
   max-width: 170px;
   color: $tooltip-font-color;
   font-family: $family-sans-serif;
-  font-size: $size-7;
+  @include desktop-fontsize;
 }
 
 .tooltip__label {
@@ -15,6 +15,5 @@
 }
 
 .tooltip__footnote {
-
   font-style: italic;
 }

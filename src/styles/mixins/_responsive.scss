@@ -1,0 +1,6 @@
+
+@mixin desktop-fontsize {
+  @media (min-width: $mid-breakpoint) {
+    font-size: $size-6;
+  }
+}

@@ -6,12 +6,16 @@
 .line-chart__x-axis {
   text {
     font-size: $size-7;
+    @include desktop-fontsize;
+
   }
 }
 
 .line-chart__y-axis {
   text {
     font-size: $size-7;
+    @include desktop-fontsize;
+
   }
 }
 
@@ -22,6 +26,7 @@
   font-size: $size-7;
   overflow: hidden;
   white-space: nowrap;
+  @include desktop-fontsize;
 
   // react component tooltip styles
   border-radius: 3px;
