@@ -1,16 +1,26 @@
 .stats__container {
   display: flex;
-  flex-direction: row;
-  width: 50%;
-  justify-content: space-evenly;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   padding-bottom: $s-size;
 }
 
-.stats__sub-container {
-  flex-direction: column;
+.stats__row {
+  display: flex;
+  width: 80%;
+  max-width: 400px;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.stats__col {
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .stats__title {
