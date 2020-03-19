@@ -2,10 +2,19 @@
 // ----------------------------------------------------------------
 // COLORS
 $dark-red: #801515;
-$bold-red: red;
+$bold-red: #e61f0e;
 $dark-blue: #0935a282;
 $pink: #c4acd2;
 $faint-pink: #f9f3ff82;
+$violent-red: #db0050;
+$limp-peach: #caaa98;
+$faint-limp-peach: #fffcf9;
+$king-blue: #3587d8;
+$queen-blue: #3081c3;
+$prince-blue: #558abf;
+$burnt-red: #af3f0c;
+$slate-blue: #607d9a;
+$remorse-red: #b11a0e;
 
 // Sunlight Foundation - base colors
 $background: #EFECEA;
@@ -18,23 +27,25 @@ $line-grey-accent: #C0C0BB;
 $map-hover: #e5e5e5;
 
 //* THEME
-$main-accent: $dark-red;
+$main-complement: $queen-blue;
+$main: $remorse-red;
+$main-accent: $prince-blue;
 $text-on-dark: $line-white;
 
 //TOOLTIP:
 $tooltip-font-color: $text-on-dark;
 
 // HEADER
-$header-title-color: $main-accent;
+$header-title-color: $black;
 
 // STATS
-$stats-number-color: $main-accent;
+$stats-number-color: $main;
 
 // MAP
-$map-fill: $faint-pink;
-$map-stroke: $pink;
-$bubble-stroke: $main-accent;
-$bubble-fill: $bold-red;
+$map-stroke: $main-complement;
+$map-fill: fade-out($main-complement, 0.95);
+$bubble-stroke: $main;
+$bubble-fill: #e61f0e;
 $bubble-fill-opacity: 0.3;
 $bubble-hover-stroke: black;
 
