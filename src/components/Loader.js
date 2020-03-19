@@ -9,7 +9,7 @@ class MyLoader extends React.Component {
     };
   }
   render() {
-     const queenBlue = "#3081c3";
+    const queenBlue = "#3081c3";
     const spotlightBlue = "#009edb";
     const blue = "#a2f6e8";
 
