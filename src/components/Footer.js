@@ -13,14 +13,20 @@ const Footer = () => {
   const formattedDate = lastUpdated
     ? lastUpdated.format("MMM Do, YYYY")
     : "n/a";
+  const spotlightUrl = "https://www.spotlightpa.org"
 
   const CREDITS = [
     {
       creditType: "Source",
       name: "Pa Department of Health data compiled by Spotlight PA"
     },
-    { creditType: "Last updated", name: formattedDate },
-    { creditType: "Interactive", name: "Daniel Simmons-Ritchie, Spotlight PA" }
+    {
+      creditType: "Last updated",
+      name: formattedDate
+    },
+    { 
+      creditType: "Interactive", 
+      name: <span>Daniel Simmons-Ritchie, <a href={spotlightUrl} target="_blank">Spotlight PA</a></span> }
   ];
 
   return (
@@ -28,9 +34,7 @@ const Footer = () => {
       <div className="footer__container">
         <div>
           <div className="footer__notes is-size-7">
-            <i>
-              {/* Insert footnote if needed */}
-            </i>
+            <i>{/* Insert footnote if needed */}</i>
           </div>
           <div className="footer__credit-container">
             <span className="footer__credit-line is-size-7 has-text-grey">
