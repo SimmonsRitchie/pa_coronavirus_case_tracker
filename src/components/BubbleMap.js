@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import {
   ComposableMap,
   ZoomableGroup,
@@ -15,12 +15,20 @@ const BubbleMap = () => {
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
   const [tooltipContent, setTooltipContent] = useState('')
+  const [tooltipPlace, setTooltipPlace] = useState('')
   const {countyMap, countyCentroids} = data
   const arrCases = countyCentroids.map(item => item.properties.cases_total)
   const scale = new ScaleRadius(arrCases)
+  const containerEl = useRef(null)
+  const handleTooltipPlace = (e) => {
+    const mousePosX = e.clientX
+    const viewportCenterX = window.innerWidth / 2
+    const place = mousePosX < viewportCenterX ? 'right' : 'left'
+    setTooltipPlace(place)
+  }
 
   return (
-    <div className="bubble-map__container">
+    <div className="bubble-map__container" ref={containerEl}>
       <ComposableMap
       data-tip={""}
       projection={"geoMercator"}
@@ -59,7 +67,8 @@ const BubbleMap = () => {
                 <circle 
                 r={scale.radius(casesTotal)} 
                 className="bubble-map__bubble" 
-                onMouseEnter={() => {
+                onMouseEnter={(e) => {
+                  handleTooltipPlace(e)
                   const { 
                     NAME,
                     cases_total,
@@ -81,9 +90,9 @@ const BubbleMap = () => {
           )})}
         </ZoomableGroup>
       </ComposableMap>
-      <ReactTooltip type="dark">
-      {tooltipContent && <Tooltip content={tooltipContent} />}
-      </ReactTooltip>
+      {tooltipContent && <ReactTooltip type="dark" place={tooltipPlace} >
+      <Tooltip content={tooltipContent} />
+      </ReactTooltip>}
     </div>)
 };
 
