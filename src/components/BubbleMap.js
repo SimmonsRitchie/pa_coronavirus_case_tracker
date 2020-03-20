@@ -26,7 +26,6 @@ const BubbleMap = () => {
     const place = mousePosX < viewportCenterX ? 'right' : 'left'
     setTooltipPlace(place)
   }
-
   return (
     <div className="bubble-map__container" ref={containerEl}>
       <ComposableMap
@@ -65,6 +64,10 @@ const BubbleMap = () => {
             return (
               <Marker key={idx} coordinates={centroid.coordinates}>
                 <circle 
+                data-tip
+                data-for='mapTootltip'
+                data-place={tooltipPlace}
+                key={idx}
                 r={scale.radius(casesTotal)} 
                 className="bubble-map__bubble" 
                 onMouseEnter={(e) => {
@@ -90,10 +93,12 @@ const BubbleMap = () => {
           )})}
         </ZoomableGroup>
       </ComposableMap>
-      {tooltipContent && <ReactTooltip type="dark" place={tooltipPlace} >
-      <Tooltip content={tooltipContent} />
+      <ReactTooltip id="mapTootltip" type="dark" >
+      <Tooltip content={tooltipContent}/>
       </ReactTooltip>}
     </div>)
 };
+
+//
 
 export default BubbleMap;
