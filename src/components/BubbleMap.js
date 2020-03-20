@@ -85,8 +85,6 @@ const BubbleMap = () => {
                 onMouseLeave={() => {
                   setTooltipContent("");
                 }}
-                
-                
                 />
               </Marker>
           )})}
@@ -94,10 +92,9 @@ const BubbleMap = () => {
       </ComposableMap>
       <ReactTooltip id="mapTootltip" type="dark" >
       <Tooltip content={tooltipContent}/>
-      </ReactTooltip>}
+      </ReactTooltip>
     </div>)
-};
+}
 
-//
 
 export default BubbleMap;
