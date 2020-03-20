@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import {
   ComposableMap,
   ZoomableGroup,
@@ -19,7 +19,6 @@ const BubbleMap = () => {
   const {countyMap, countyCentroids} = data
   const arrCases = countyCentroids.map(item => item.properties.cases_total)
   const scale = new ScaleRadius(arrCases)
-  const containerEl = useRef(null)
   const handleTooltipPlace = (e) => {
     const mousePosX = e.clientX
     const viewportCenterX = window.innerWidth / 2
@@ -27,7 +26,7 @@ const BubbleMap = () => {
     setTooltipPlace(place)
   }
   return (
-    <div className="bubble-map__container" ref={containerEl}>
+    <div className="bubble-map__container">
       <ComposableMap
       data-tip={""}
       projection={"geoMercator"}
