@@ -19,16 +19,14 @@ import LineChartDisplay from "./LineChartDisplay";
 const CHART_TYPES = [
   {
     chartType: "semi-log",
-    title: "Trend",
     yAxisType: "log",
-    buttonText: "Trend",
+    buttonText: "Growth-adjusted",
     yAxisTickTotal: 2,
     chartDesc:
       "This graph is adjusted for exponential growth. A shallower curve means the rate of new cases is slowing."
   },
   {
     chartType: "linear",
-    title: "Total cases",
     buttonText: "Total",
     yAxisType: "linear",
     yAxisTickTotal: 5,
@@ -144,7 +142,7 @@ class LineChart extends Component {
             selected={chartType}
             handleButtonClick={this.handleButtonClick}
           />
-          <LineChartDisplay title={chartTitle} desc={chartDesc} />
+          <LineChartDisplay desc={chartDesc} />
         </div>
         <div className="line-chart__chart-outer-container" ref={this.chartContainer}
         >
