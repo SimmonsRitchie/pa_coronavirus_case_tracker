@@ -6,12 +6,12 @@ const LineChartButtons = ({buttons, selected, handleButtonClick}) => {
     <div className="line-chart-buttons__container">
       <div className="buttons are-normal has-addons is-centered">
         {buttons.map(item => {
-          const selectedClass = item.id === selected ? 'is-dark' : 'is-light'
+          const selectedClass = item.chartType === selected ? 'is-dark' : 'is-light'
           return <button 
-          key={item.id} 
-          id={item.id} 
+          key={item.chartType} 
+          id={item.chartType} 
           className={`button ${selectedClass}`} 
-          onClick={() => handleButtonClick(item.id)}>
+          onClick={() => handleButtonClick(item.chartType)}>
             {item.buttonText}
           </button>
         })}
