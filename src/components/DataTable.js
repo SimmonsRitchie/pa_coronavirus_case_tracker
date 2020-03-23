@@ -11,7 +11,7 @@ const DataTable = ({size, heightRatio, margin}) => {
   useEffect(() => {
     // We need to set height of table body so that scroll bar on tbody works correctly
     // We derive the height by subtracting the thead height.
-    const theadHeight = elHead.current.getBoundingClientRect().height
+    const theadHeight = elHead.current.offsetHeight
     const dynamicBodyHeight = dynamicHeight - theadHeight;
     setBodyHeight(dynamicBodyHeight)
   })
