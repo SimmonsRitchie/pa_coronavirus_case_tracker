@@ -1,11 +1,13 @@
 import React, { Component, useContext, useState } from "react";
+import { throttle } from "throttle-debounce"
 import {
   FlexibleXYPlot,
   LineSeries,
   HorizontalGridLines,
   XAxis,
   YAxis,
-  Crosshair
+  Crosshair,
+  XYPlot
 } from "react-vis";
 import moment from "moment";
 import { DataContext } from "~/context/DataContext";
@@ -27,7 +29,7 @@ const CHART_TYPES = [
   {
     chartType: "linear",
     title: "Total cases",
-    buttonText: "Totals",
+    buttonText: "Total",
     yAxisType: "linear",
     yAxisTickTotal: 5,
     chartDesc: "This graph shows a running total of cases."
@@ -35,11 +37,20 @@ const CHART_TYPES = [
 ];
 
 class LineChart extends Component {
-  state = {
-    ...CHART_TYPES[0],
-    crosshairValues: null,
-    xYPoints: null
-  };
+  constructor(props) {
+    super(props);
+    this.chartContainer = React.createRef()
+    this.state = {
+      ...CHART_TYPES[0],
+      crosshairValues: null,
+      xYPoints: null,
+      dynamicChartHeight: 0,
+      dynamicChartWidth: 0
+    };
+    this.resizeChart = this.resizeChart.bind(this);
+    this.throttledHandleWindowResize = throttle(300, this.resizeChart);
+  }
+
   static contextType = DataContext;
 
   componentDidMount() {
@@ -55,16 +66,34 @@ class LineChart extends Component {
         y: +item.count
       };
     });
-    this.setState({xYPoints})
+    this.resizeChart()
+    window.addEventListener("resize", this.throttledHandleWindowResize);
+    this.setState({
+      xYPoints
+    })
   }
 
-  _onMouseLeave = () => {
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.throttledHandleWindowResize);
+  }
+
+  resizeChart() {
+    // react-vis's graphs aren't responsive, so we resize the chart ourselves
+    const chartContainerHeight = this.chartContainer.current.offsetHeight
+    const chartContainerWidth = this.chartContainer.current.offsetWidth
+    this.setState({
+      dynamicChartHeight: chartContainerHeight,
+      dynamicChartWidth: chartContainerWidth,
+    })
+  }
+
+  onMouseLeave = () => {
     this.setState({
       crosshairValues: null
     });
   };
 
-  _onNearestX = (value, { index }) => {
+  onNearestX = (value, { index }) => {
     const val = [this.state.xYPoints[index]];
     this.setState({
       crosshairValues: val
@@ -93,20 +122,23 @@ class LineChart extends Component {
       chartDesc,
       yAxisTickTotal,
       yAxisType,
-      xYPoints
+      xYPoints,
+      dynamicChartHeight,
+      dynamicChartWidth
     } = this.state;
 
     // HANDLE SIZING
     const screenWidth = window.innerWidth;
-    const specialMargin = 0.2;
-    const dynamicHeight = size.width * (heightRatio - (margin + specialMargin));
     const dynamicMargin = size.width < 550 ? 50 : size.width * 0.08;
     const xTickTotal = xTickCalc(screenWidth);
 
-
     return (
-      <div className="line-chart__container">
-        <div className="line-chart__summary-container">
+      <div className="line-chart__container" 
+      style={{
+        width: "100%",
+        height: size.width * heightRatio
+      }}>
+        <div className="line-chart__summary-container" >
           <LineChartButtons
             buttons={CHART_TYPES}
             selected={chartType}
@@ -114,52 +146,50 @@ class LineChart extends Component {
           />
           <LineChartDisplay title={chartTitle} desc={chartDesc} />
         </div>
-        <div
-          style={{
-            width: "100%",
-            height: dynamicHeight
-          }}
+        <div className="line-chart__chart-outer-container" ref={this.chartContainer}
         >
-          <FlexibleXYPlot
-            margin={{ right: dynamicMargin, left: dynamicMargin }}
-            xType={"time"}
-            yType={yAxisType}
-            onMouseLeave={this._onMouseLeave}
-          >
-            <HorizontalGridLines />
-            <XAxis
-              className={"line-chart__x-axis"}
-              tickTotal={xTickTotal}
-              tickFormat={val => {
-                val = moment(val);
-                return val.format("MMM D");
-              }}
-            />
-            <YAxis
-              className={"line-chart__y-axis"}
-              tickTotal={yAxisTickTotal}
-              tickFormat={value => {
-                // To stop log scale from changing format into scientific notation
-                return +value;
-              }}
-            />
-            <LineSeries
-              className={"line-chart__line-series-1"}
-              data={xYPoints}
-              onNearestX={this._onNearestX}
-            />
-            {crosshairValues && (
-              <Crosshair values={crosshairValues}>
-                <div className="line-chart__crosshair-container">
-                  <div className="line-chart__crosshair-label">
-                    {crosshairValues[0].x.format("MMM D")}
+            <XYPlot
+              height={dynamicChartHeight}
+              width={dynamicChartWidth}
+              margin={{ right: dynamicMargin, left: dynamicMargin }}
+              xType={"time"}
+              yType={yAxisType}
+              onMouseLeave={this.onMouseLeave}
+            >
+              <HorizontalGridLines />
+              <XAxis
+                className={"line-chart__x-axis"}
+                tickTotal={xTickTotal}
+                tickFormat={val => {
+                  val = moment(val);
+                  return val.format("MMM D");
+                }}
+              />
+              <YAxis
+                className={"line-chart__y-axis"}
+                tickTotal={yAxisTickTotal}
+                tickFormat={value => {
+                  // To stop log scale from changing format into scientific notation
+                  return +value;
+                }}
+              />
+              <LineSeries
+                className={"line-chart__line-series-1"}
+                data={xYPoints}
+                onNearestX={this.onNearestX}
+              />
+              {crosshairValues && (
+                <Crosshair values={crosshairValues}>
+                  <div className="line-chart__crosshair-container">
+                    <div className="line-chart__crosshair-label">
+                      {crosshairValues[0].x.format("MMM D")}
+                    </div>
+                    <div>{crosshairValues[0].y} cases</div>
                   </div>
-                  <div>{crosshairValues[0].y} cases</div>
-                </div>
-              </Crosshair>
-            )}
-          </FlexibleXYPlot>
-        </div>
+                </Crosshair>
+              )}
+            </XYPlot>
+          </div>
       </div>
     );
   }
