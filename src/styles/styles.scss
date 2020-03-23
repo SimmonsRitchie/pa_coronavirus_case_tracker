@@ -17,9 +17,15 @@ MODIFIER - changes the style of the block
 
 */
 
-@import './mixins/responsive';
+// base
 @import './base/bulma-settings';
 @import './base/main-settings';
+
+// mixins
+@import './mixins/responsive';
+@import './mixins/subtitle';
+
+// components
 @import './components/container';
 @import './components/visibility';
 @import './components/header';
@@ -34,4 +40,6 @@ MODIFIER - changes the style of the block
 @import './components/line-chart';
 @import './components/stats';
 @import './components/data-table';
+@import './components/line-chart-display';
+@import './components/line-chart-buttons';
 

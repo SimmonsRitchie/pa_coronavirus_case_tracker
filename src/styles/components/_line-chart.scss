@@ -1,6 +1,11 @@
 
 .line-chart__container {
   width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
 .line-chart__x-axis {
@@ -42,4 +47,11 @@
 
 .line-chart__line-series-1 {
   stroke: $line-series-1-color !important;
+}
+
+.line-chart__summary-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
