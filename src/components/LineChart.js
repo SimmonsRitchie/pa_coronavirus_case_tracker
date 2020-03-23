@@ -54,10 +54,10 @@ const LineChart = ({ size, heightRatio, margin }) => {
         <FlexibleXYPlot
           margin={{ right: dynamicMargin, left: dynamicMargin }}
           xType={"time"}
-          yType={"linear"}
+          yType={"log"}
           onMouseLeave={_onMouseLeave}
         >
-          <HorizontalGridLines tickTotal={5} />
+          <HorizontalGridLines />
           <XAxis
             className={"line-chart__x-axis"}
             tickTotal={xTickTotal}
@@ -66,7 +66,13 @@ const LineChart = ({ size, heightRatio, margin }) => {
               return val.format("MMM D");
             }}
           />
-          <YAxis className={"line-chart__y-axis"} tickTotal={5} />
+          <YAxis 
+            className={"line-chart__y-axis"}
+            tickTotal={2}
+            tickFormat={(value, index, scale, tickTotal) => {
+                return +value
+            }}
+            />
           <LineSeries
             className={"line-chart__line-series-1"}
             data={xYPoints}
