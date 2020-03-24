@@ -1,5 +1,4 @@
 import React from "react";
-import ChartContainer from "../ChartContainer";
 import { throttle } from "throttle-debounce";
 
 function withResponsiveContainer(
