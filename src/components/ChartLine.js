@@ -51,7 +51,7 @@ class ChartLine extends Component {
       >
         <HorizontalGridLines />
         <XAxis
-          className={"chart__x-axis"}
+          className={"chart-line__x-axis"}
           tickTotal={xTickTotal}
           tickFormat={val => {
             val = moment(val);
@@ -59,7 +59,7 @@ class ChartLine extends Component {
           }}
         />
         <YAxis
-          className={"chart__y-axis"}
+          className={"chart-line__y-axis"}
           tickTotal={yAxisTickTotal}
           tickFormat={value => {
             // To stop log scale from changing format into scientific notation
@@ -67,14 +67,14 @@ class ChartLine extends Component {
           }}
         />
         <LineSeries
-          className={"chart__line-series-1"}
+          className={"chart-line__line-series-1"}
           data={xYPoints}
           onNearestX={this.onNearestX}
         />
         {crosshairValues && (
           <Crosshair values={crosshairValues}>
-            <div className="chart__crosshair-container">
-              <div className="chart__crosshair-label">
+            <div className="chart-line__crosshair-container">
+              <div className="chart-line__crosshair-label">
                 {crosshairValues[0].x.format("MMM D")}
               </div>
               <div>{crosshairValues[0].y} cases</div>
