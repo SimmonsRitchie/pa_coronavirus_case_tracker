@@ -9,3 +9,4 @@ const LineChartDisplay = ({desc}) => {
 }
  
 export default LineChartDisplay;
+ 
