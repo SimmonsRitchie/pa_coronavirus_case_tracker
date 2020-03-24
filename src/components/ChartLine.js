@@ -22,6 +22,11 @@ class ChartLine extends Component {
   };
 
   onNearestX = (value, { index }) => {
+    /**
+     * Event handler for onNearestX.
+     * @param {Object} value Selected value.
+     * @param {index} index Index of the value in the data array.
+     */
     const val = [this.props.xYPoints[index]];
     this.setState({
       crosshairValues: val
