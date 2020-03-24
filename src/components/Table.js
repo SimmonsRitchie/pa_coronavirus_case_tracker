@@ -2,7 +2,7 @@ import React, { useContext, useRef, useEffect, useState } from "react";
 import { DataContext } from "~/context/DataContext";
 
  
-const DataTable = ({size, heightRatio, margin}) => {
+const Table = ({size, heightRatio, margin}) => {
   const { data } = useContext(DataContext);
   const [bodyHeight, setBodyHeight] = useState(0)
   const countyTotals = data.countyTotals;
@@ -50,4 +50,4 @@ const DataTableRow = ({county, deathsTotal, casesTotal}) => {
 }
 
 
-export default DataTable;
+export default Table;
