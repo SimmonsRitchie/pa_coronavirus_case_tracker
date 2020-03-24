@@ -3,7 +3,7 @@ import React from 'react';
 const LineChartButtons = ({buttons, selected, handleButtonClick}) => {
 
   return ( 
-    <div className="line-chart-buttons__container">
+    <div className="chart-buttons__container">
       <div className="buttons are-normal has-addons is-centered">
         {buttons.map(item => {
           const selectedClass = item.chartType === selected ? 'is-dark' : 'is-light'

@@ -1,5 +1,5 @@
 
-.line-chart__container {
+.chart__container {
   width: 100%;
   height: 100%;
   display: flex;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.line-chart__x-axis {
+.chart__x-axis {
   text {
     font-size: $size-7;
     @include desktop-fontsize;
@@ -16,7 +16,7 @@
   }
 }
 
-.line-chart__y-axis {
+.chart__y-axis {
   text {
     font-size: $size-7;
     @include desktop-fontsize;
@@ -24,7 +24,7 @@
   }
 }
 
-.line-chart__crosshair-container {
+.chart__crosshair-container {
   background-color: black;
   opacity: 0.9;
   color: $tooltip-font-color;
@@ -41,15 +41,15 @@
   z-index: 999;
 }
 
-.line-chart__crosshair-label {
+.chart__crosshair-label {
   @extend .tooltip__label;
 }
 
-.line-chart__line-series-1 {
+.chart__line-series-1 {
   stroke: $line-series-1-color !important;
 }
 
-.line-chart__summary-container {
+.chart__summary-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -57,7 +57,7 @@
   align-items: center;
 }
 
-.line-chart__chart-outer-container {
+.chart__chart-outer-container {
   width: 100%;
   height: 100%;
 }

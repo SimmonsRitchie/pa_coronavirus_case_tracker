@@ -1,4 +1,4 @@
-import React, { Component, useContext, useState } from "react";
+import React, { Component } from "react";
 import { throttle } from "throttle-debounce"
 import {
   FlexibleXYPlot,
@@ -13,8 +13,8 @@ import moment from "moment";
 import { DataContext } from "~/context/DataContext";
 import { getRowByName } from "~/utils/parse";
 import { xTickCalc } from "~/utils/chartHelpers";
-import LineChartButtons from "./LineChartButtons";
-import LineChartDisplay from "./LineChartDisplay";
+import ChartButtons from "./ChartButtons";
+import ChartDisplay from "./ChartDisplay";
 
 const CHART_TYPES = [
   {
@@ -34,7 +34,7 @@ const CHART_TYPES = [
   }
 ];
 
-class LineChart extends Component {
+class Chart extends Component {
   constructor(props) {
     super(props);
     this.chartContainer = React.createRef()
@@ -116,7 +116,6 @@ class LineChart extends Component {
     const {
       crosshairValues,
       chartType,
-      chartTitle,
       chartDesc,
       yAxisTickTotal,
       yAxisType,
@@ -131,20 +130,20 @@ class LineChart extends Component {
     const xTickTotal = xTickCalc(screenWidth);
 
     return (
-      <div className="line-chart__container" 
+      <div className="chart__container" 
       style={{
         width: "100%",
         height: size.width * heightRatio
       }}>
-        <div className="line-chart__summary-container" >
-          <LineChartButtons
+        <div className="chart__summary-container" >
+          <ChartButtons
             buttons={CHART_TYPES}
             selected={chartType}
             handleButtonClick={this.handleButtonClick}
           />
-          <LineChartDisplay desc={chartDesc} />
+          <ChartDisplay desc={chartDesc} />
         </div>
-        <div className="line-chart__chart-outer-container" ref={this.chartContainer}
+        <div className="chart__chart-outer-container" ref={this.chartContainer}
         >
             <XYPlot
               height={dynamicChartHeight}
@@ -156,7 +155,7 @@ class LineChart extends Component {
             >
               <HorizontalGridLines />
               <XAxis
-                className={"line-chart__x-axis"}
+                className={"chart__x-axis"}
                 tickTotal={xTickTotal}
                 tickFormat={val => {
                   val = moment(val);
@@ -164,7 +163,7 @@ class LineChart extends Component {
                 }}
               />
               <YAxis
-                className={"line-chart__y-axis"}
+                className={"chart__y-axis"}
                 tickTotal={yAxisTickTotal}
                 tickFormat={value => {
                   // To stop log scale from changing format into scientific notation
@@ -172,14 +171,14 @@ class LineChart extends Component {
                 }}
               />
               <LineSeries
-                className={"line-chart__line-series-1"}
+                className={"chart__line-series-1"}
                 data={xYPoints}
                 onNearestX={this.onNearestX}
               />
               {crosshairValues && (
                 <Crosshair values={crosshairValues}>
-                  <div className="line-chart__crosshair-container">
-                    <div className="line-chart__crosshair-label">
+                  <div className="chart__crosshair-container">
+                    <div className="chart__crosshair-label">
                       {crosshairValues[0].x.format("MMM D")}
                     </div>
                     <div>{crosshairValues[0].y} cases</div>
@@ -193,4 +192,4 @@ class LineChart extends Component {
   }
 }
 
-export default LineChart;
+export default Chart;

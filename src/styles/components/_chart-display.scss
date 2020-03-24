@@ -1,4 +1,4 @@
-.line-chart-display__container {
+.chart-display__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,12 +6,12 @@
   flex-direction: column;
 }
 
-.line-chart-display__title {
+.chart-display__title {
   @include subtitle
 
 }
 
-.line-chart-display__desc {
+.chart-display__desc {
   width: 70%;
   font-size: $size-7;
   padding-bottom: $xs-size;

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import BubbleMap from "./BubbleMap"
 import DataDisplayButtons from "./DataDisplayButtons"
-import LineChart from "./LineChart"
+import LineChart from "./Chart"
 import { SizeMe } from "react-sizeme";
 import DataTable from "./DataTable";
 
