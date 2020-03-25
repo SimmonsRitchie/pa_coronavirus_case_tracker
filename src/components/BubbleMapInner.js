@@ -11,11 +11,8 @@ import ReactTooltip from "react-tooltip"
 import Tooltip from "./Tooltip"
 
 
-const PA_CENTER = [-77.641, 40.989];
-
-
 const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale}) => {
-
+  const PA_CENTER = [-77.641, 40.989];
   const [tooltipContent, setTooltipContent] = useState('')
   const [tooltipPlace, setTooltipPlace] = useState('')
 
@@ -104,5 +101,6 @@ const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale}) => {
 
   );
 }
+
  
 export default BubbleMapInner;
