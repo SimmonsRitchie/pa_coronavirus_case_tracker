@@ -50,10 +50,19 @@ function withResponsiveContainer(
       });
   }
 
+  style = {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center"
+  }
+
+
     render() {
       const { width, height } = this.state;
       return (
-        <div ref={this.containerRef} style={{width: "100%", height: "100%"}}>
+        <div ref={this.containerRef} style={this.style} >
             <Component
               height={height - (margin.top + margin.bottom)}
               width={width - (margin.left + margin.right)}
