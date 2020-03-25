@@ -33,6 +33,12 @@ const BubbleMap = () => {
   const [tooltipContent, setTooltipContent] = useState('')
   const [tooltipPlace, setTooltipPlace] = useState('')
   const {countyMap, countyCentroids} = data
+  let propKey
+  if (mapType === 'cases') {
+    propKey = "cases_total"
+  } else {
+    propKey = "deaths_total"
+  }
   const arrCases = countyCentroids.map(item => item.properties.cases_total)
   const scale = new ScaleRadius(arrCases)
   const handleTooltipPlace = (e) => {
@@ -44,69 +50,73 @@ const BubbleMap = () => {
   return (
     <div className="bubble-map__container">
         <DataDisplayToggles buttons={MAP_TYPES} selected={mapType} handleButtonClick={setMapType}/>
-      <ComposableMap
-      data-tip={""}
-      projection={"geoMercator"}
-        projectionConfig={{
-          scale: 7500,
-        }}
-        width={773}
-        height={449}
-        style={{
-          width: "100%",
-          height: "auto"
-        }}
-      >
-        <ZoomableGroup 
-        center={PA_CENTER} 
-        zoom={1}
-        disablePanning={true}
+      <div className="bubble-map__map-container">
+        <ComposableMap
+        data-tip={""}
+        projection={"geoMercator"}
+          projectionConfig={{
+            scale: 7500,
+          }}
+          width={773}
+          height={449}
+          style={{
+            width: "100%",
+            height: "auto"
+          }}
         >
-          <Geographies geography={countyMap}>
-            {({ geographies }) =>
-              geographies.map(geo => {
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
+          <ZoomableGroup 
+          center={PA_CENTER} 
+          zoom={1}
+          disablePanning={true}
+          >
+            <Geographies geography={countyMap}>
+              {({ geographies }) =>
+                geographies.map(geo => {
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                    />
+                  );
+                })
+              }
+            </Geographies>
+            {countyCentroids.map((centroid, idx) => {
+              const radiusData = centroid.properties[propKey]
+  
+              // const casesTotal = centroid.properties.cases_total
+              // const deathsTotal = centroid.properties.deaths_total
+              return (
+                <Marker key={idx} coordinates={centroid.coordinates}>
+                  <circle 
+                  data-tip
+                  data-for='mapTootltip'
+                  data-place={tooltipPlace}
+                  key={idx}
+                  r={scale.radius(radiusData)} 
+                  className="bubble-map__bubble" 
+                  onMouseEnter={(e) => {
+                    handleTooltipPlace(e)
+                    const { 
+                      NAME,
+                      cases_total,
+                      deaths_total,
+                    } = centroid.properties;
+                    setTooltipContent({
+                      county: NAME, 
+                      casesTotal: cases_total,
+                      deathsTotal: deaths_total
+                    });
+                  }}
+                  onMouseLeave={() => {
+                    setTooltipContent("");
+                  }}
                   />
-                );
-              })
-            }
-          </Geographies>
-          {countyCentroids.map((centroid, idx) => {
-            const casesTotal = centroid.properties.cases_total
-            const deathsTotal = centroid.properties.deaths_total
-            return (
-              <Marker key={idx} coordinates={centroid.coordinates}>
-                <circle 
-                data-tip
-                data-for='mapTootltip'
-                data-place={tooltipPlace}
-                key={idx}
-                r={scale.radius(casesTotal)} 
-                className="bubble-map__bubble" 
-                onMouseEnter={(e) => {
-                  handleTooltipPlace(e)
-                  const { 
-                    NAME,
-                    cases_total,
-                    deaths_total,
-                  } = centroid.properties;
-                  setTooltipContent({
-                    county: NAME, 
-                    casesTotal: cases_total,
-                    deathsTotal: deaths_total
-                  });
-                }}
-                onMouseLeave={() => {
-                  setTooltipContent("");
-                }}
-                />
-              </Marker>
-          )})}
-        </ZoomableGroup>
-      </ComposableMap>
+                </Marker>
+            )})}
+          </ZoomableGroup>
+        </ComposableMap>
+      </div>
       <ReactTooltip id="mapTootltip" type="dark" >
       <Tooltip content={tooltipContent}/>
       </ReactTooltip>

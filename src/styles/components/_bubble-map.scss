@@ -3,7 +3,7 @@
   width: 100%;
   height: 100%;
   @media (min-width: 550px) {
-    padding: $m-size;
+    padding-bottom: $m-size;
   }
 }
 
@@ -16,6 +16,13 @@
   &:hover {
     stroke: $bubble-hover-stroke;
   }
+}
+
+.bubble-map__map-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 // React simple map - overrides
