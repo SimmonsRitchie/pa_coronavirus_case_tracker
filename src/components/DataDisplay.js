@@ -7,7 +7,7 @@ import DataTable from "./DataTable";
 
 const DataDisplay = () => {
   // Data container height is set to HEIGHT_RATIO * width of container
-  const HEIGHT_RATIO = 0.7
+  const HEIGHT_RATIO = 0.8
   const MARGIN = 0.05
   const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
