@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { DataContext } from "~/context/DataContext";
 import { getRowByName } from "~/utils/parse";
 import { xTickCalc } from "~/utils/chartHelpers";
-import ChartButtons from "./ChartButtons";
+import ChartButtons from "./DataDisplayToggles";
 import ChartDisplay from "./ChartDisplay";
 import ChartLine from "./ChartLine";
 
