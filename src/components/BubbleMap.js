@@ -10,10 +10,30 @@ import ReactTooltip from "react-tooltip"
 import { DataContext } from "../context/DataContext";
 import ScaleRadius from "../utils/ScaleRadius"
 import Tooltip from "./Tooltip"
+import DataDisplayToggles from "./DataDisplayToggles";
+
+const MAP_TYPES = [
+  {
+    type: "semi-log",
+    yAxisType: "log",
+    buttonText: "Cases",
+    yAxisTickTotal: 2,
+    chartDesc:
+      "This chart shows cases per day adjusted for exponential growth to make it easier to see the overall trend. A flatter curve means the rate of new cases is slowing."
+  },
+  {
+    type: "linear",
+    buttonText: "Deaths",
+    yAxisType: "linear",
+    yAxisTickTotal: 5,
+    chartDesc: "This chart shows a running total of cases per day."
+  }
+];
 
 const BubbleMap = () => {
   const PA_CENTER = [-77.641, 40.989];
   const { data } = useContext(DataContext);
+  const [mapType, setMapType] = this.
   const [tooltipContent, setTooltipContent] = useState('')
   const [tooltipPlace, setTooltipPlace] = useState('')
   const {countyMap, countyCentroids} = data
@@ -27,6 +47,7 @@ const BubbleMap = () => {
   }
   return (
     <div className="bubble-map__container">
+      <DataDisplayToggles buttons={MAP_TYPES} />
       <ComposableMap
       data-tip={""}
       projection={"geoMercator"}
