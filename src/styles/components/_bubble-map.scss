@@ -1,7 +1,12 @@
 
 .bubble-map__container {
   width: 100%;
+  height: 100%;
+  @media (min-width: 550px) {
+    padding: $m-size;
+  }
 }
+
 
 .bubble-map__bubble {
   stroke: $bubble-stroke;
