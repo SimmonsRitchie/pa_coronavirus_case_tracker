@@ -101,13 +101,15 @@ class Chart extends Component {
           <ChartDisplay desc={chartDesc} />
 
         </div>
-        <ChartLine 
-        xYPoints={xYPoints}
-        yAxisType={yAxisType}
-        xTickTotal={xTickTotal}
-        yAxisTickTotal={yAxisTickTotal}
-        dynamicMargin={dynamicMargin}
-      />
+        <div className="chart__chart-container">
+          <ChartLine 
+          xYPoints={xYPoints}
+          yAxisType={yAxisType}
+          xTickTotal={xTickTotal}
+          yAxisTickTotal={yAxisTickTotal}
+          dynamicMargin={dynamicMargin}
+        />
+        </div>
       </div>
     );
   }
