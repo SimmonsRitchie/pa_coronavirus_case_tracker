@@ -13,14 +13,14 @@ const CHART_TYPES = [
     buttonText: "Growth-adjusted",
     yAxisTickTotal: 2,
     chartDesc:
-      "This graph is adjusted for exponential growth. A shallower curve means the rate of new cases is slowing."
+      "This chart shows cases per day adjusted for exponential growth. A shallower curve means the rate of new cases is slowing."
   },
   {
     chartType: "linear",
     buttonText: "Total",
     yAxisType: "linear",
     yAxisTickTotal: 5,
-    chartDesc: "This graph shows a running total of cases."
+    chartDesc: "This chart shows a running total of cases per day."
   }
 ];
 
@@ -38,6 +38,7 @@ class Chart extends Component {
 
   componentDidMount() {
     const { data } = this.context;
+    // GET CASES
     const casesTotalRow = getRowByName(
       data.paCases.countyData,
       "county",
@@ -49,6 +50,7 @@ class Chart extends Component {
         y: +item.count
       };
     });
+    // SET DATA
     this.setState({
       xYPoints
     });
