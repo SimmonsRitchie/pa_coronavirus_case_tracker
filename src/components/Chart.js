@@ -10,10 +10,10 @@ const CHART_TYPES = [
   {
     chartType: "semi-log",
     yAxisType: "log",
-    buttonText: "Growth-adjusted",
+    buttonText: "Adjusted",
     yAxisTickTotal: 2,
     chartDesc:
-      "This chart shows cases per day adjusted for exponential growth. A shallower curve means the rate of new cases is slowing."
+      "This chart shows cases per day adjusted for exponential growth to make it easier to see the overall trend. A flatter curve means the rate of new cases is slowing."
   },
   {
     chartType: "linear",
