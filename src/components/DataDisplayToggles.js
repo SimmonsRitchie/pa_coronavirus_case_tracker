@@ -3,7 +3,7 @@ import React from 'react';
 const DataDisplayToggles = ({buttons, selected, handleButtonClick}) => {
 
   return ( 
-    <div className="chart-buttons__container">
+    <div className="data-display-toggles__container">
       <div className="buttons are-normal has-addons is-centered">
         {buttons.map(item => {
           const selectedClass = item.type === selected ? 'is-dark' : 'is-light'
