@@ -3,7 +3,7 @@ import BubbleMap from "./BubbleMap"
 import DataDisplayButtons from "./DataDisplayButtons"
 import LineChart from "./Chart"
 import { SizeMe } from "react-sizeme";
-import DataTable from "./DataTable";
+import Table from "./Table";
 
 
 const DISPLAY_BUTTONS = [
@@ -31,7 +31,7 @@ const DataDisplay = () => {
     return ({
     map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
     chart: <LineChart size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
-    data: <DataTable size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
+    data: <Table size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
   })};
 
   const changeDisplay = (e) => {
