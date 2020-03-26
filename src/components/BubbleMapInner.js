@@ -9,9 +9,10 @@ import {
 } from "react-simple-maps";
 import ReactTooltip from "react-tooltip"
 import Tooltip from "./Tooltip"
+import withResponsiveContainer from "./hoc/withResponsiveContainer";
 
 
-const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale}) => {
+const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale, width, height}) => {
   const PA_CENTER = [-77.641, 40.989];
   const [tooltipContent, setTooltipContent] = useState('')
   const [tooltipPlace, setTooltipPlace] = useState('')
@@ -31,9 +32,8 @@ const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale}) => {
   }
 
   return ( 
-  <div className="bubble-map-inner__map-container">
+  <React.Fragment>
     <ComposableMap
-    data-tip={""}
     projection={"geoMercator"}
       projectionConfig={{
         scale: 7500,
@@ -41,8 +41,10 @@ const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale}) => {
       width={773}
       height={449}
       style={{
-        width: "100%",
+        width,
         height: "auto"
+        // width: "100%",
+        // height: "auto"
       }}
     >
       <ZoomableGroup 
@@ -97,10 +99,11 @@ const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale}) => {
     <ReactTooltip id="mapTootltip" type="dark" >
     <Tooltip content={tooltipContent}/>
     </ReactTooltip>
-  </div>
-
+  </React.Fragment>
   );
 }
 
- 
-export default BubbleMapInner;
+
+const responsiveChart = withResponsiveContainer(BubbleMapInner)
+
+export default responsiveChart;
