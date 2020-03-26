@@ -104,6 +104,6 @@ const BubbleMapInner = ({countyMap, countyCentroids, mapType, scale, width, heig
 }
 
 
-const responsiveChart = withResponsiveContainer(BubbleMapInner)
+const ResponsiveChart = withResponsiveContainer(BubbleMapInner)
 
-export default responsiveChart;
+export default ResponsiveChart;
