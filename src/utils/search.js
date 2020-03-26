@@ -1,11 +1,7 @@
 
 
 export const applySearchTerm = (searchString, searchData) => {
-  var matchedSearch = [];
-  for (var i=0; i<searchData.length; i++) {
-    if (searchData[i].county.indexOf(searchString) > -1) {
-      matchedSearch[i]=1;
-    }
-  }
+  const matchedSearch = searchData.filter(item => item.county.toLowerCase().includes(searchString) )
+  console.log(matchedSearch)
   return matchedSearch
 }
