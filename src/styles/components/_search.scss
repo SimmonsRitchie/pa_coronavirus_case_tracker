@@ -1,3 +1,14 @@
 .search__container {
-  @extend .data-display-toggles__container
+  @extend .data-display-toggles__container;
+  @extend .data-display-buttons__container-mobile;
+
+  // background-color: pink;
+  max-width: 375px;
+
+  // width: 100%;
+
+  // @media (min-width: 550px) {
+  //   width: 100%;
+  // }
+
 }

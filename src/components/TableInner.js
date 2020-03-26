@@ -1,7 +1,7 @@
-import React, {useRef, useState, useEffect} from "react";
+import React, { useRef, useState, useEffect } from "react";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
 
-const TableInner = ({countyTotals, width, height}) => {
+const TableInner = ({ countyTotals, width, height }) => {
   const [bodyHeight, setBodyHeight] = useState(0);
   const elHead = useRef(null);
   useEffect(() => {
@@ -24,9 +24,13 @@ const TableInner = ({countyTotals, width, height}) => {
             </tr>
           </thead>
           <tbody style={{ height: bodyHeight }}>
-            {countyTotals.map((row, idx) => (
-              <TableInnerRow key={idx} {...row} />
-            ))}
+            {countyTotals.length > 0 ? (
+              countyTotals.map((row, idx) => (
+                <TableInnerRow key={idx} {...row} />
+              ))
+            ) : (
+              <NoDataRow colSpan={3} />
+            )}
           </tbody>
         </table>
       </div>
@@ -46,9 +50,15 @@ const TableInnerRow = ({ county, deathsTotal, casesTotal }) => {
   );
 };
 
+const NoDataRow = ({ colSpan }) => {
+  return (
+    <tr className="table-inner__no-data-row">
+      <td colSpan={colSpan}>No search results</td>
+    </tr>
+  );
+};
 
 
-const ResponsiveChart = withResponsiveContainer(TableInner)
+const ResponsiveChart = withResponsiveContainer(TableInner);
 
 export default ResponsiveChart;
-

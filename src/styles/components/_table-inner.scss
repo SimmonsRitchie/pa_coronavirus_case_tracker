@@ -14,3 +14,13 @@
   @include desktop-fontsize;
 }
 
+.table-inner__no-data-row {
+
+  td {
+    text-align: center !important;
+    padding: $s-size !important;
+
+
+  }
+
+}

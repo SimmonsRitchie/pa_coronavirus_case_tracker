@@ -6,12 +6,10 @@ const Search = ({inputText, clearResults, handleTextChange}) => {
   return (
     <div className="search__container">
       <div className="field has-addons">
-        <p className="control">
-          <a className="button is-dark">Search</a>
-        </p>
-        <p className="control" >
+
+        <p className="control is-expanded" >
           <input 
-          className="input" 
+          className="input is-fullwidth" 
           placeholder="county" 
           type="text" 
           onChange={handleTextChange}
@@ -29,3 +27,7 @@ const Search = ({inputText, clearResults, handleTextChange}) => {
 };
 
 export default Search;
+
+// <p className="control">
+// <a className="button is-dark">Search</a>
+// </p>

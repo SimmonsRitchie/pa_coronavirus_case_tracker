@@ -49,13 +49,11 @@ class Table extends React.Component {
     const { filteredResults, searchText } = this.state;
     return (
       <div className="table__container-outer">
-        <div>
-          <Search
-            inputText={searchText}
-            handleTextChange={this.handleSearch}
-            clearResults={this.clearResults}
-          />
-        </div>
+        <Search
+          inputText={searchText}
+          handleTextChange={this.handleSearch}
+          clearResults={this.clearResults}
+        />
         <TableInner countyTotals={filteredResults} />
       </div>
     );
