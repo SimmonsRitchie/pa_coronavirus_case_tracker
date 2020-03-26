@@ -1,8 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import { throttle } from "throttle-debounce";
 
 function withResponsiveContainer(
-  Component, 
+  WrappedComponent, 
   {margin={
     top: 0, 
     right: 0, 
@@ -63,7 +63,7 @@ function withResponsiveContainer(
       const { width, height } = this.state;
       return (
         <div ref={this.containerRef} style={this.style} >
-            <Component
+            <WrappedComponent
               height={height - (margin.top + margin.bottom)}
               width={width - (margin.left + margin.right)}
               {...this.props}
