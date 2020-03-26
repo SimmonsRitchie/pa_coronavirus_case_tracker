@@ -12,7 +12,7 @@ const Table = ({ size, heightRatio, margin }) => {
       <div>
         <Search />
       </div>
-        <TableInner countyTotals={countyTotals} size={size} heightRatio={heightRatio} margin={margin}/>
+        <TableInner countyTotals={countyTotals}/>
     </div>
   );
 };
