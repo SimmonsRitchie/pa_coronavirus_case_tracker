@@ -2,9 +2,10 @@
 .bubble-map__container {
   width: 100%;
   height: 100%;
-  @media (min-width: 550px) {
-    padding-bottom: $m-size;
-  }
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bubble-map__summary-container {
