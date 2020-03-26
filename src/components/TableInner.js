@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
 
-const TableInner = ({ countyTotals, width, height }) => {
+const TableInner = ({ countyTotals, handleSort, width, height }) => {
   const [bodyHeight, setBodyHeight] = useState(0);
   const elHead = useRef(null);
   useEffect(() => {
@@ -16,13 +16,7 @@ const TableInner = ({ countyTotals, width, height }) => {
     <div className="table-inner__container">
       <div className="table-inner__table-container" style={{ height: height }}>
         <table className="table is-hoverable is-fullwidth">
-          <thead ref={elHead}>
-            <tr>
-              <th>County </th>
-              <th>Deaths</th>
-              <th>Cases</th>
-            </tr>
-          </thead>
+          <TableInnerHead  ref={elHead} handleSort={handleSort}/>
           <tbody style={{ height: bodyHeight }}>
             {countyTotals.length > 0 ? (
               countyTotals.map((row, idx) => (
@@ -50,6 +44,20 @@ const TableInnerRow = ({ county, deathsTotal, casesTotal }) => {
   );
 };
 
+const TableInnerHead = React.forwardRef(({handleSort}, ref) => (
+    <thead ref={ref}>
+      <tr>
+        <th>County 
+        <button id="county" onClick={handleSort}>X</button>
+        </th>
+        <th>Deaths</th>
+        <th>Cases</th>
+      </tr>
+    </thead>
+  )
+);
+
+
 const NoDataRow = ({ colSpan }) => {
   return (
     <tr className="table-inner__no-data-row">
@@ -57,7 +65,6 @@ const NoDataRow = ({ colSpan }) => {
     </tr>
   );
 };
-
 
 const ResponsiveChart = withResponsiveContainer(TableInner);
 

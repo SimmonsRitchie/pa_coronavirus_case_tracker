@@ -35,7 +35,6 @@ class Table extends React.Component {
       searchText,
       filteredResults
     })
-    //pass
   };
 
   clearResults = () => {
@@ -44,6 +43,11 @@ class Table extends React.Component {
       filteredResults: this.state.countyTotals
     })
   };
+
+  handleSort = (e) => {
+    const sortId = e.target.id
+    console.log(sortId)
+  }
 
   render() {
     const { filteredResults, searchText } = this.state;
@@ -54,7 +58,10 @@ class Table extends React.Component {
           handleTextChange={this.handleSearch}
           clearResults={this.clearResults}
         />
-        <TableInner countyTotals={filteredResults} />
+        <TableInner 
+          countyTotals={filteredResults}
+          handleSort={this.handleSort}
+        />
       </div>
     );
   }
