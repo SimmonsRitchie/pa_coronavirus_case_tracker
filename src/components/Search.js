@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const Search = ({inputText, clearResults, handleSearch}) => {
+const Search = ({inputText, clearResults, handleTextChange}) => {
   return (
     <div className="search__container">
       <div className="field has-addons">
@@ -14,7 +14,7 @@ const Search = ({inputText, clearResults, handleSearch}) => {
           className="input" 
           placeholder="county" 
           type="text" 
-          onChange={handleSearch}
+          onChange={handleTextChange}
           value={inputText}
           />
         </p>
