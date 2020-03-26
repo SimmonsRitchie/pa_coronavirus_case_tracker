@@ -5,9 +5,26 @@ import LineChart from "./Chart"
 import { SizeMe } from "react-sizeme";
 import DataTable from "./DataTable";
 
+
+const DISPLAY_BUTTONS = [
+  {
+    "id": "map",
+    "text": "County map"
+  },
+  {
+    "id": "chart",
+    "text": "Cases per day"
+  },
+  {
+    "id": "data",
+    "text": "Data"
+  },
+]
+
+
 const DataDisplay = () => {
   // Data container height is set to HEIGHT_RATIO * width of container
-  const HEIGHT_RATIO = 0.8
+  const HEIGHT_RATIO = 0.75
   const MARGIN = 0.05
   const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
@@ -16,21 +33,6 @@ const DataDisplay = () => {
     chart: <LineChart size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
     data: <DataTable size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
   })};
-  const DISPLAY_BUTTONS = [
-    {
-      "id": "map",
-      "text": "Cases by county"
-    },
-    {
-      "id": "chart",
-      "text": "Cases by day"
-    },
-    {
-      "id": "data",
-      "text": "Data"
-    },
-  ]
-
 
   const changeDisplay = (e) => {
     setDisplay(e.target.id)
