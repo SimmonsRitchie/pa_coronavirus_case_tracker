@@ -8,7 +8,7 @@ import ChartLine from "./ChartLine";
 
 const CHART_TYPES = [
   {
-    chartType: "semi-log",
+    type: "semi-log",
     yAxisType: "log",
     buttonText: "Adjusted",
     yAxisTickTotal: 2,
@@ -16,7 +16,7 @@ const CHART_TYPES = [
       "This chart shows cases per day adjusted for exponential growth to make it easier to see the overall trend. A flatter curve means the rate of new cases is slowing."
   },
   {
-    chartType: "linear",
+    type: "linear",
     buttonText: "Total",
     yAxisType: "linear",
     yAxisTickTotal: 5,
@@ -72,7 +72,7 @@ class Chart extends Component {
     // GET PROPS + STATE
     const { size, heightRatio } = this.props;
     const {
-      chartType,
+      type,
       chartDesc,
       yAxisTickTotal,
       yAxisType,
@@ -95,7 +95,7 @@ class Chart extends Component {
         <div className="chart__summary-container">
           <ChartButtons
             buttons={CHART_TYPES}
-            selected={chartType}
+            selected={type}
             handleButtonClick={this.handleButtonClick}
           />
           <ChartDisplay desc={chartDesc} />
