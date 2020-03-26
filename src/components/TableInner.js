@@ -13,8 +13,8 @@ const TableInner = ({countyTotals, width, height}) => {
   });
 
   return (
-    <div className="table__container-inner">
-      <div className="table__table-container" style={{ height: height }}>
+    <div className="table-inner__container">
+      <div className="table-inner__table-container" style={{ height: height }}>
         <table className="table is-hoverable is-fullwidth">
           <thead ref={elHead}>
             <tr>
@@ -23,7 +23,7 @@ const TableInner = ({countyTotals, width, height}) => {
               <th>Cases</th>
             </tr>
           </thead>
-          <tbody className="table__body" style={{ height: bodyHeight }}>
+          <tbody style={{ height: bodyHeight }}>
             {countyTotals.map((row, idx) => (
               <TableInnerRow key={idx} {...row} />
             ))}

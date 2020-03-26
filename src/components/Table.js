@@ -26,7 +26,11 @@ class Table extends React.Component {
 
   handleSearch = (e) => {
     const searchText = e.target.value
-    const filteredResults = applySearchTerm(searchText, this.state.countyTotals)
+    const filteredResults = applySearchTerm({
+      searchText, 
+      searchData:this.state.countyTotals, 
+      searchDataKey: "county"
+    })
     this.setState({
       searchText,
       filteredResults
@@ -36,7 +40,8 @@ class Table extends React.Component {
 
   clearResults = () => {
     this.setState({
-      searchText: ''
+      searchText: '',
+      filteredResults: this.state.countyTotals
     })
   };
 
