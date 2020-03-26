@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect } from "react";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+
 
 const TableInner = ({ countyTotals, handleSort, width, height }) => {
   const [bodyHeight, setBodyHeight] = useState(0);
@@ -47,8 +50,8 @@ const TableInnerRow = ({ county, deathsTotal, casesTotal }) => {
 const TableInnerHead = React.forwardRef(({handleSort}, ref) => (
     <thead ref={ref}>
       <tr>
-        <th>County 
-        <button id="county" onClick={handleSort}>X</button>
+        <th id="county" onClick={handleSort}>County 
+        <button ><FontAwesomeIcon icon={faChevronDown} /></button>
         </th>
         <th>Deaths</th>
         <th>Cases</th>
