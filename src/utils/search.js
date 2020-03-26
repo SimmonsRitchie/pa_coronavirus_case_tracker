@@ -7,6 +7,7 @@ export const applySearchTerm = ({searchText, searchData, searchDataKey}) => {
   * @param: searchProp. Key of each object that we want to search 
   *
   */
-  const matchedSearch = searchData.filter(item => item[searchDataKey].toLowerCase().includes(searchText) )
+  const cleanSearchText = searchText.toLowerCase()
+  const matchedSearch = searchData.filter(item => item[searchDataKey].toLowerCase().includes(cleanSearchText) )
   return matchedSearch
 }
