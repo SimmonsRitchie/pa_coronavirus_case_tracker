@@ -5,7 +5,7 @@ const Search = () => {
     <div className="search__container">
       <div className="field has-addons">
         <p className="control">
-          <a className="button is-dark">Search:</a>
+          <a className="button is-dark">Search</a>
         </p>
         <p className="control">
           <input className="input" type="text" placeholder="county" />
