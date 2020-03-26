@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
   return (
@@ -9,6 +11,11 @@ const Search = () => {
         </p>
         <p className="control">
           <input className="input" type="text" placeholder="county" />
+        </p>
+        <p className="control">
+          <a className="button is-light">
+            <FontAwesomeIcon icon={faTimes}  />
+          </a>
         </p>
       </div>
     </div>
