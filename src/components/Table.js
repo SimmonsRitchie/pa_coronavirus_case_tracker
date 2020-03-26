@@ -1,21 +1,48 @@
-import React, { useContext, useRef, useEffect, useState } from "react";
+import React from "react";
 import { DataContext } from "~/context/DataContext";
 import Search from "./Search";
 import TableInner from "./TableInner";
 
-const Table = ({ size, heightRatio, margin }) => {
-  const { data } = useContext(DataContext);
-  const countyTotals = data.countyTotals;
+class Table extends React.Component {
+  state = {
+    countyTotals: [],
+    searchText: ''
+  }
 
-  return (
-    <div className="table__container-outer">
+  static contextType = DataContext;
+
+  componentDidMount() {
+    const { data } = this.context;
+    const countyTotals = data.countyTotals;
+
+    // SET DATA
+    this.setState({
+      countyTotals
+    });
+  }
+
+  handleSearch = () => {
+    //pass
+  }
+
+  clearResults = () => {
+    // pass
+  }
+
+
+  render() {
+    const {countyTotals, searchText} = this.state
+    return (
+      <div className="table__container-outer">
       <div>
-        <Search />
+        <Search inputText={searchText} handleSearch={this.handleSearch} clearResults={this.clearResults}/>
       </div>
         <TableInner countyTotals={countyTotals}/>
     </div>
-  );
-};
+    )
+  }
+}
+
 
 
 export default Table;
