@@ -1,0 +1,16 @@
+.table-inner__container {
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.table-inner__table-container {
+  font-size: $size-7;
+  overflow-y: auto;
+  width: 100%;
+  @include desktop-fontsize;
+}
+
