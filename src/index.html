@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,5 +12,19 @@
     <script type="text/javascript" src="https://pym.nprapps.org/pym.v1.min.js"></script>
     <script>window.pymChild = new pym.Child();</script>
     <script src="app.js"></script>
+    <script>
+    if (window.location.host.match(/spotlightpa\.org$/)) {
+      window.ga = window.ga || function() {
+        (ga.q = ga.q || []).push(arguments);
+      };
+      ga.l = +new Date();
+      ga("create", "UA-141126362-3", "auto");
+
+      let script = document.createElement("script");
+      script.src = "//www.google-analytics.com/analytics.js";
+      script.async = true;
+      document.head.append(script);
+    }
+    </script>
 </body>
 </html>
