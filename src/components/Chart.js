@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { DataContext } from "~/context/DataContext";
 import { getRowByName } from "~/utils/parse";
 import { xTickCalc } from "~/utils/chartHelpers";
-import ChartButtons from "./DataDisplayToggles";
-import ChartDisplay from "./ChartDisplay";
+import DataDisplayToggles from "./DataDisplayToggles";
+import DataDisplayDesc from "./DataDisplayDesc";
 import ChartLine from "./ChartLine";
 
 const CHART_TYPES = [
@@ -87,12 +87,12 @@ class Chart extends Component {
         className="chart__container"
       >
         <div className="chart__summary-container">
-          <ChartButtons
+          <DataDisplayToggles
             buttons={CHART_TYPES}
             selected={type}
             handleButtonClick={this.handleButtonClick}
           />
-          <ChartDisplay desc={chartDesc} />
+          <DataDisplayDesc desc={chartDesc} />
 
         </div>
         <div className="chart__chart-container">

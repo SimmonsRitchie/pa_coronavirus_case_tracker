@@ -1,6 +1,6 @@
 import React from 'react';
 
-const LineChartDisplay = ({desc}) => {
+const DataDisplayDesc = ({desc}) => {
   return ( 
     <div className="chart-display__container">
       <div className="chart-display__desc">{desc}</div>
@@ -8,5 +8,5 @@ const LineChartDisplay = ({desc}) => {
    );
 }
  
-export default LineChartDisplay;
+export default DataDisplayDesc;
  
