@@ -1,0 +1,5 @@
+.search__container {
+  @extend .data-display-toggles__container;
+  @extend .data-display-buttons__container-mobile;
+  max-width: 375px;
+}

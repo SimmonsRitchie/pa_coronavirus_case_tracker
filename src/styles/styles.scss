@@ -24,6 +24,7 @@ MODIFIER - changes the style of the block
 // mixins
 @import './mixins/responsive';
 @import './mixins/subtitle';
+@import './mixins/button-containers';
 
 // components
 @import './components/container';
@@ -42,6 +43,8 @@ MODIFIER - changes the style of the block
 @import './components/table';
 @import './components/chart';
 @import './components/chart-display';
-@import './components/chart-buttons';
+@import './components/data-display-toggles';
 @import './components/chart-line';
+@import './components/search';
+@import './components/table-inner';
 

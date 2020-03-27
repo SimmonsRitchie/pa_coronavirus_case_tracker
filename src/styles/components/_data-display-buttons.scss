@@ -6,8 +6,7 @@
 }
 
 .data-display-buttons__container-mobile {
-  width: 100%;
-  max-width: 375px;
+  @include button-containers;
   padding: 0 $s-size;
 }
 

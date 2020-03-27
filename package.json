@@ -1,6 +1,6 @@
 {
   "name": "pa-coronavirus-tracker",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "main": "index.js",
   "author": "Spotlight PA",
   "license": "MIT",
@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "bulma": "^0.7.5",
     "d3-array": "^2.4.0",
     "d3-fetch": "^1.1.2",
@@ -31,6 +34,7 @@
     "react-simple-maps": "^1.0.0-beta.0",
     "react-sizeme": "^2.6.12",
     "react-spinners": "^0.6.1",
+    "react-table": "^7.0.0",
     "react-tooltip": "^4.1.2",
     "react-vis": "^1.11.7",
     "throttle-debounce": "^2.1.0",
