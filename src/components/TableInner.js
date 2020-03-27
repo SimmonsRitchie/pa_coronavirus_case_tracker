@@ -63,13 +63,15 @@ const TableInnerHead = React.forwardRef(({headerGroups}, ref) => (
         // we can add them into the header props
         <th {...column.getHeaderProps(column.getSortByToggleProps())} >
           {column.render("Header")}
+          
           {/* Add a sort direction indicator */}
           <span>
             {column.isSorted
               ? column.isSortedDesc
-                ? <button><FontAwesomeIcon icon={faChevronDown} /></button>
-                : <button><FontAwesomeIcon icon={faChevronUp} /></button>
-              : ""}
+                ? <SortIcon />
+                : <SortIcon asc={false} />
+              : // Include hidden sort icon to take up space
+              <SortIcon hide={true} />}
           </span>
         </th>
       ))}
@@ -78,6 +80,16 @@ const TableInnerHead = React.forwardRef(({headerGroups}, ref) => (
   </thead>
 )
 );
+
+const SortIcon = ({asc=true, hide=false}) => {
+  // Creates sort icon, defaults to asc (eg. chevron pointing down)
+  const faIcon = asc ? faChevronUp : faChevronDown
+  const hideClass = hide ? "table-inner__hide" : ""
+  return ( 
+    <span className={`table-inner__sort-icon ${hideClass}`}><FontAwesomeIcon  icon={faIcon} /></span>
+  );
+}
+
 
 const TableInnerRows = ({rows, prepareRow}) => (
   <React.Fragment>

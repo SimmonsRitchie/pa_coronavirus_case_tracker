@@ -19,8 +19,13 @@
   td {
     text-align: center !important;
     padding: $s-size !important;
-
-
   }
+}
 
+.table-inner__sort-icon {
+  padding-left: $s-size;
+}
+
+.table-inner__hide {
+  visibility: hidden;
 }
