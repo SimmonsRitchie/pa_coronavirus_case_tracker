@@ -41,9 +41,9 @@ class ChartLine extends Component {
       yAxisType,
       xTickTotal,
       yAxisTickTotal,
-      dynamicMargin
     } = this.props;
     const { crosshairValues} = this.state
+    const dynamicMargin = width < 550 ? 50 : width * 0.08;
 
     return (
       <XYPlot

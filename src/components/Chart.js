@@ -70,7 +70,6 @@ class Chart extends Component {
 
   render() {
     // GET PROPS + STATE
-    const { size, heightRatio } = this.props;
     const {
       type,
       chartDesc,
@@ -81,16 +80,11 @@ class Chart extends Component {
 
     // HANDLE SIZING
     const screenWidth = window.innerWidth;
-    const dynamicMargin = size.width < 550 ? 50 : size.width * 0.08;
     const xTickTotal = xTickCalc(screenWidth);
 
     return (
       <div
         className="chart__container"
-        style={{
-          width: "100%",
-          height: size.width * heightRatio
-        }}
       >
         <div className="chart__summary-container">
           <ChartButtons
@@ -107,7 +101,6 @@ class Chart extends Component {
           yAxisType={yAxisType}
           xTickTotal={xTickTotal}
           yAxisTickTotal={yAxisTickTotal}
-          dynamicMargin={dynamicMargin}
         />
         </div>
       </div>
