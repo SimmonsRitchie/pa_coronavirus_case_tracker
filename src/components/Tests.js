@@ -2,6 +2,7 @@ import React from "react";
 import DataDisplayContainer from "./DataDisplayContainer";
 import DataDisplayDesc from "./DataDisplayDesc";
 import DataDisplayTitle from "./DataDisplayTitle";
+import DataDisplaySubContainer from "./DataDisplaySubContainer";
 
 const TESTS_DISPLAY = {
   title: "Testing data",
@@ -13,8 +14,10 @@ class Tests extends React.Component {
   render() {
     return (
       <DataDisplayContainer>
-        <DataDisplayTitle title={TESTS_DISPLAY.title} />
-        <DataDisplayDesc desc={TESTS_DISPLAY.desc} />
+        <DataDisplaySubContainer>
+          <DataDisplayTitle title={TESTS_DISPLAY.title} />
+          <DataDisplayDesc desc={TESTS_DISPLAY.desc} />
+        </DataDisplaySubContainer>
       </DataDisplayContainer>
     );
   }
