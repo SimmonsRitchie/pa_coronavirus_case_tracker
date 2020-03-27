@@ -47,7 +47,7 @@ class Chart extends Component {
     const xYPoints = casesTotalRow.dates.map(item => {
       return {
         x: item.date,
-        y: +item.count
+        y: +item.value
       };
     });
     // SET DATA
