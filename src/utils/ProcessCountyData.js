@@ -1,7 +1,7 @@
 import moment from 'moment'
 import {getRowByName} from "./parse"
 
-class ProcessData {
+class ProcessCountyData {
   constructor(data) {
     /* @params:
     * data (array): Array of objects, each representing a row of a google sheet.
@@ -11,7 +11,14 @@ class ProcessData {
 
   // PUBLIC METHODS
   rearrange() {
-    // Moves data into new object structure.
+    /*
+    * Expects am array of objects and transforms each object into a tidier structure.
+    * Eg. structure like this, with each date as a separate key: 
+    *   
+    *   Array<Object<county: str, 2020-03-06: int, 2020-03-07: int, 2020-03-07: int...>>
+    * 
+    * Will be transformed to : Array<Object<county: str, dates: Array<2020-03-06: int, 2020-03-07: int, ...>, total: int>
+    */
     this.data = this.data.map(item => {
       const {county, total} = item
       const dates = []
@@ -35,7 +42,7 @@ class ProcessData {
   }
 
   nest(keyName) {
-    // Nests data into another layer
+    // Returns current data var as an object and nests current data structure as a key of that object.
     this.data = {
       [keyName]: this.data
     }
@@ -63,4 +70,4 @@ class ProcessData {
 
 }
 
-export default ProcessData
+export default ProcessCountyData
