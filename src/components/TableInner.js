@@ -4,7 +4,7 @@ import withResponsiveContainer from "./hoc/withResponsiveContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-const TableTest = ({ data, height }) => {
+const TableInner = ({ data, height }) => {
   const columns = useMemo(
     () => [
       {
@@ -40,10 +40,10 @@ const TableTest = ({ data, height }) => {
     <div className="table-inner__container">
       <div className="table-inner__table-container" style={{ height: height }}>
         <table {...getTableProps()} className="table is-hoverable is-fullwidth">
-          <TableTestHead headerGroups={headerGroups} />
+          <TableInnerHead headerGroups={headerGroups} />
           <tbody {...getTableBodyProps()}>
             {rows.length > 0 ?
-              <TableTestRows rows={rows} prepareRow={prepareRow}/> :
+              <TableInnerRows rows={rows} prepareRow={prepareRow}/> :
             <NoDataRow colSpan={3} />
             }
           </tbody>
@@ -54,7 +54,7 @@ const TableTest = ({ data, height }) => {
 };
 
 
-const TableTestHead = React.forwardRef(({headerGroups}, ref) => (
+const TableInnerHead = React.forwardRef(({headerGroups}, ref) => (
   <thead >
   {headerGroups.map(headerGroup => (
     <tr {...headerGroup.getHeaderGroupProps()}>
@@ -79,7 +79,7 @@ const TableTestHead = React.forwardRef(({headerGroups}, ref) => (
 )
 );
 
-const TableTestRows = ({rows, prepareRow}) => (
+const TableInnerRows = ({rows, prepareRow}) => (
   <React.Fragment>
   {rows.map((row, i) => {
     prepareRow(row);
@@ -104,6 +104,6 @@ const NoDataRow = ({ colSpan }) => {
   );
 };
 
-const ResponsiveChart = withResponsiveContainer(TableTest);
+const ResponsiveChart = withResponsiveContainer(TableInner);
 
 export default ResponsiveChart;

@@ -3,7 +3,6 @@ import { DataContext } from "~/context/DataContext";
 import Search from "./Search";
 import TableInner from "./TableInner";
 import {applySearchTerm} from "../utils/search"
-import TableTest from "./TableTest"
 
 
 class Table extends React.Component {
@@ -46,10 +45,6 @@ class Table extends React.Component {
     })
   };
 
-  handleSort = (e) => {
-    const sortId = e.target.id
-    console.log(sortId)
-  }
 
   render() {
     const { filteredResults, searchText } = this.state;
@@ -60,7 +55,7 @@ class Table extends React.Component {
           handleTextChange={this.handleSearch}
           clearResults={this.clearResults}
         />
-        <TableTest data={filteredResults}/>
+        <TableInner data={filteredResults}/>
       </div>
     );
   }
