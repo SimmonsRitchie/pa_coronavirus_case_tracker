@@ -60,11 +60,7 @@ class ProcessData {
     return this
   }
 
-  _cleanNumber(str) {
-    // Converts string into a clean number
-    let clean = str.replace(/[\s,]/,'')
-    return + clean
-  }
+
 
   nest(keyName) {
     // Returns current data var as an object and nests current data structure as a key of that object.
@@ -91,6 +87,13 @@ class ProcessData {
 
   getData() {
     return this.data
+  }
+
+  // PRIVATE METHODS
+  _cleanNumber(str) {
+    // Converts string into a clean number
+    let clean = str.replace(/[\s,]/,'')
+    return + clean
   }
 
 }
