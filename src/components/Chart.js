@@ -7,6 +7,7 @@ import DataDisplayDesc from "./DataDisplayDesc";
 import ChartLine from "./ChartLine";
 import DataDisplayContainer from "./DataDisplayContainer";
 import DataDisplaySubContainer from "./DataDisplaySubContainer";
+import DataDisplayVizContainer from "./DataDisplayVizContainer";
 
 const CHART_TYPES = [
   {
@@ -88,14 +89,14 @@ class Chart extends Component {
           />
           <DataDisplayDesc desc={chartDesc} />
         </DataDisplaySubContainer>
-        <div className="chart__chart-container">
+        <DataDisplayVizContainer>
           <ChartLine
-            xYPoints={xYPoints}
-            yAxisType={yAxisType}
-            xTickTotal={xTickTotal}
-            yAxisTickTotal={yAxisTickTotal}
-          />
-        </div>
+          xYPoints={xYPoints}
+          yAxisType={yAxisType}
+          xTickTotal={xTickTotal}
+          yAxisTickTotal={yAxisTickTotal}
+        />
+        </DataDisplayVizContainer>
       </DataDisplayContainer>
     );
   }
