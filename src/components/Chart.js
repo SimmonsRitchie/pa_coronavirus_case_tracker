@@ -30,10 +30,9 @@ const CHART_TYPES = [
 class Chart extends Component {
   constructor(props) {
     super(props);
-    this.chartContainer = React.createRef();
     this.state = {
       ...CHART_TYPES[0],
-      xYPoints: null
+      xYPoints: []
     };
   }
 
