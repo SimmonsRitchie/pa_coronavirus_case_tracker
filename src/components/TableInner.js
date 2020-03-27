@@ -2,7 +2,7 @@ import React, { useMemo} from "react";
 import { useTable, useSortBy } from "react-table";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { faCaretDown, faCaretUp, faSort } from "@fortawesome/free-solid-svg-icons";
 
 const TableInner = ({ data, height }) => {
   const columns = useMemo(
@@ -68,10 +68,10 @@ const TableInnerHead = React.forwardRef(({headerGroups}, ref) => (
           <span>
             {column.isSorted
               ? column.isSortedDesc
-                ? <SortIcon />
-                : <SortIcon asc={false} />
+                ? <SortIcon sort={'asc'}/>
+                : <SortIcon sort={'desc'} />
               : // Include hidden sort icon to take up space
-              <SortIcon hide={true} />}
+              <SortIcon />}
           </span>
         </th>
       ))}
@@ -81,12 +81,16 @@ const TableInnerHead = React.forwardRef(({headerGroups}, ref) => (
 )
 );
 
-const SortIcon = ({asc=true, hide=false}) => {
+const SortIcon = ({sort="default", hide=false}) => {
   // Creates sort icon, defaults to asc (eg. chevron pointing down)
-  const faIcon = asc ? faChevronUp : faChevronDown
+  const faIcon = {
+    "asc": faCaretUp,
+    "desc": faCaretDown,
+    "default": faSort
+  }
   const hideClass = hide ? "table-inner__hide" : ""
   return ( 
-    <span className={`table-inner__sort-icon ${hideClass}`}><FontAwesomeIcon  icon={faIcon} /></span>
+    <span className={`table-inner__sort-icon ${hideClass}`}><FontAwesomeIcon  icon={faIcon[sort]} /></span>
   );
 }
 
