@@ -4,7 +4,7 @@ import DataDisplayButtons from "./DataDisplayButtons"
 import LineChart from "./Chart"
 import { SizeMe } from "react-sizeme";
 import Table from "./Table";
-
+import Tests from "./Tests"
 
 const DISPLAY_BUTTONS = [
   {
@@ -13,7 +13,11 @@ const DISPLAY_BUTTONS = [
   },
   {
     "id": "chart",
-    "text": "Cases per day"
+    "text": "Cases"
+  },
+  {
+    "id": "tests",
+    "text": "Tests"
   },
   {
     "id": "data",
@@ -29,9 +33,10 @@ const DataDisplay = () => {
   const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
     return ({
-    map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
-    chart: <LineChart size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
-    data: <Table size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
+    map: <BubbleMap />,
+    chart: <LineChart />,
+    tests: <Tests />,
+    data: <Table />,
   })};
 
   const changeDisplay = (e) => {
