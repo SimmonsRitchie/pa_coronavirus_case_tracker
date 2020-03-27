@@ -26,7 +26,7 @@ const DataDisplay = () => {
   // Data container height is set to HEIGHT_RATIO * width of container
   const HEIGHT_RATIO = 0.75
   const MARGIN = 0.05
-  const [display, setDisplay] = useState('data')
+  const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
     return ({
     map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
