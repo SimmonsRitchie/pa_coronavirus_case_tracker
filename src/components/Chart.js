@@ -5,6 +5,7 @@ import { xTickCalc } from "~/utils/chartHelpers";
 import DataDisplayToggles from "./DataDisplayToggles";
 import DataDisplayDesc from "./DataDisplayDesc";
 import ChartLine from "./ChartLine";
+import DataDisplayContainer from "./DataDisplayContainer";
 
 const CHART_TYPES = [
   {
@@ -70,22 +71,14 @@ class Chart extends Component {
 
   render() {
     // GET PROPS + STATE
-    const {
-      type,
-      chartDesc,
-      yAxisTickTotal,
-      yAxisType,
-      xYPoints
-    } = this.state;
+    const { type, chartDesc, yAxisTickTotal, yAxisType, xYPoints } = this.state;
 
     // HANDLE SIZING
     const screenWidth = window.innerWidth;
     const xTickTotal = xTickCalc(screenWidth);
 
     return (
-      <div
-        className="chart__container"
-      >
+      <DataDisplayContainer>
         <div className="chart__summary-container">
           <DataDisplayToggles
             buttons={CHART_TYPES}
@@ -93,17 +86,16 @@ class Chart extends Component {
             handleButtonClick={this.handleButtonClick}
           />
           <DataDisplayDesc desc={chartDesc} />
-
         </div>
         <div className="chart__chart-container">
-          <ChartLine 
-          xYPoints={xYPoints}
-          yAxisType={yAxisType}
-          xTickTotal={xTickTotal}
-          yAxisTickTotal={yAxisTickTotal}
-        />
+          <ChartLine
+            xYPoints={xYPoints}
+            yAxisType={yAxisType}
+            xTickTotal={xTickTotal}
+            yAxisTickTotal={yAxisTickTotal}
+          />
         </div>
-      </div>
+      </DataDisplayContainer>
     );
   }
 }

@@ -1,13 +1,12 @@
 import React from "react";
+import DataDisplayContainer from "./DataDisplayContainer";
 
 const Tests = () => {
   return (
-    <div
-      className="tests__container"
-    >
-      Test data
-    </div>
-  );
+    <DataDisplayContainer>
+    <span>Test data</span>
+    </DataDisplayContainer>
+  )
 };
 
 export default Tests;

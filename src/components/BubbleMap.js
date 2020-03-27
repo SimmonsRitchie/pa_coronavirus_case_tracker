@@ -3,6 +3,7 @@ import { DataContext } from "../context/DataContext";
 import ScaleRadius from "../utils/ScaleRadius"
 import DataDisplayToggles from "./DataDisplayToggles";
 import BubbleMapInner from "./BubbleMapInner";
+import DataDisplayContainer from "./DataDisplayContainer";
 
 const MAP_TYPES = [
   {
@@ -26,10 +27,10 @@ const BubbleMap = () => {
   const scale = new ScaleRadius(arrCases)
 
   return (
-    <div className="bubble-map__container">
+    <DataDisplayContainer>
       <DataDisplayToggles buttons={MAP_TYPES} selected={mapType} handleButtonClick={setMapType}/>
       <BubbleMapInner countyMap={countyMap} countyCentroids={countyCentroids} mapType={mapType} scale={scale}/>
-    </div>
+    </DataDisplayContainer>
     )
 }
 
