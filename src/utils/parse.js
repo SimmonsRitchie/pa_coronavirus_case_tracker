@@ -10,6 +10,7 @@ export const determineMostRecentDate = (arrOfDates) => {
 export const getRowByName = (data, colName, rowName) => {
   // Expects an array of objects, representing rows in a Google Sheet, and extracts the object (ie row)
   // that matches the row value in a given column.
+  console.log(data, colName, rowName)
   return data.filter(item => item[colName].toLowerCase() === rowName.toLowerCase())[0];
 }
 
