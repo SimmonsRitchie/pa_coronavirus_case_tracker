@@ -31,9 +31,11 @@ const TableInner = ({ data, height }) => {
   } = useTable(
     {
       columns,
-      data
+      data,
+      initialState: {sortBy: [{id: "casesTotal", desc: true}]}
+
     },
-    useSortBy
+    useSortBy,
   );
 
   return (
