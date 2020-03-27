@@ -6,6 +6,7 @@ import DataDisplayToggles from "./DataDisplayToggles";
 import DataDisplayDesc from "./DataDisplayDesc";
 import ChartLine from "./ChartLine";
 import DataDisplayContainer from "./DataDisplayContainer";
+import DataDisplaySubContainer from "./DataDisplaySubContainer";
 
 const CHART_TYPES = [
   {
@@ -79,14 +80,14 @@ class Chart extends Component {
 
     return (
       <DataDisplayContainer>
-        <div className="chart__summary-container">
+        <DataDisplaySubContainer>
           <DataDisplayToggles
             buttons={CHART_TYPES}
             selected={type}
             handleButtonClick={this.handleButtonClick}
           />
           <DataDisplayDesc desc={chartDesc} />
-        </div>
+        </DataDisplaySubContainer>
         <div className="chart__chart-container">
           <ChartLine
             xYPoints={xYPoints}
