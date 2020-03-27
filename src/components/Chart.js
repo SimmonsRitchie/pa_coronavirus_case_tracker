@@ -8,6 +8,7 @@ import ChartLine from "./ChartLine";
 import DataDisplayContainer from "./DataDisplayContainer";
 import DataDisplaySubContainer from "./DataDisplaySubContainer";
 import DataDisplayVizContainer from "./DataDisplayVizContainer";
+import { createXYPoints } from "../utils/parse";
 
 const CHART_TYPES = [
   {
@@ -46,12 +47,7 @@ class Chart extends Component {
       "county",
       "total"
     );
-    const xYPoints = casesTotalRow.dates.map(item => {
-      return {
-        x: item.date,
-        y: +item.value
-      };
-    });
+    const xYPoints = createXYPoints(casesTotalRow)
     // SET DATA
     this.setState({
       xYPoints
