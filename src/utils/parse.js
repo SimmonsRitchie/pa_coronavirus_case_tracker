@@ -1,5 +1,26 @@
 import moment from 'moment'
 
+export const createXYPoints = (data) => {
+  /* Creates XY points from an object. Expects the following structure:
+    *   
+    *  {
+    *   primaryKey: str,
+    *   total: int
+    *   dates: [
+    *     { data: <Moment Obj>, value: int},
+    *     { data: <Moment Obj>, value: int},
+    *     ...
+    *   ]
+    * }
+  */
+  return data.dates.map(item => {
+    return {
+      x: item.date,
+      y: +item.value
+    };
+  });
+}
+
 
 export const determineMostRecentDate = (arrOfDates) => {
   // Expects an array of moment objects, return the most recent date
