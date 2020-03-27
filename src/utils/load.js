@@ -76,7 +76,6 @@ export const loadData = () => {
     const countyTotals = createMergedCountyData(cleanPaCases[countyDataLabel], cleanPaDeaths[countyDataLabel])
     // Add to data object
 
-    console.log(cleanPaCases)
     const data = {}
     data["paCases"] = cleanPaCases 
     data["paDeaths"] = cleanPaDeaths
