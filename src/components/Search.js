@@ -10,7 +10,7 @@ const Search = ({inputText, clearResults, handleTextChange}) => {
         <p className="control is-expanded" >
           <input 
           className="input is-fullwidth" 
-          placeholder="county" 
+          placeholder="Search by county" 
           type="text" 
           onChange={handleTextChange}
           value={inputText}
