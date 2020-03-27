@@ -65,21 +65,27 @@ class ProcessData {
 
 
 
-  nest(keyName) {
-    // Returns current data var as an object and nests current data structure as a key of that object.
+  nest(dataLabel) {
+    /* Returns current data var as an object and nests current data structure as a key of that object
+    *
+    * @param: dataLabel. Str. Key name for new data structure.
+    */ 
     this.data = {
-      [keyName]: this.data
+      [dataLabel]: this.data
     }
     return this
   }
 
-  addSummary(keyName) {
-    // Adds meta data to this.data based on data in this.data[keyName]
-    const totalRow = getRowByName(this.data[keyName], "county", "total")
+  addCountyMeta({dataLabel, primaryKey}) {
+    /* Adds meta data to this.data based on data in this.data[dataLabel] 
+    * @param: dataLabel. Str. Key name on data object where data is located
+    * @param: primaryKey: Str. Key name of each obj in data that serves as the primary key 
+    * (ie. column title)
+    */
+    const totalRow = getRowByName(this.data[dataLabel], primaryKey, "total")
     const mostRecentDate = moment.max(totalRow.dates.map(item => item.date))
     const oldestDate = moment.min(totalRow.dates.map(item => item.date))
     const meta = {
-      county: "meta",
       total: totalRow.total,
       mostRecentDate,
       oldestDate
@@ -87,6 +93,20 @@ class ProcessData {
     this.data["meta"] = meta
     return this
   }
+
+  addTestsMeta({dataLabel, primaryKey}) {
+    /* Adds meta data to this.data based on data in this.data[dataLabel] */
+    const totalRow = getRowByName(this.data[dataLabel], primaryKey, "total")
+    const mostRecentDate = moment.max(totalRow.dates.map(item => item.date))
+    const oldestDate = moment.min(totalRow.dates.map(item => item.date))
+    const meta = {
+      mostRecentDate,
+      oldestDate
+    }
+    this.data["meta"] = meta
+    return this
+  }
+
 
   getData() {
     return this.data
