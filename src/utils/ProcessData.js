@@ -13,7 +13,8 @@ class ProcessData {
   rearrange(primaryKey) {
     /*
     * Expects am array of objects and transforms each object into a tidier structure.
-    * Eg. Expects object as below, with each date as a separate key: 
+
+    * Eg. Expects each object to be structured as follows: 
     *   
     *   {
     *   primaryKey: str,
@@ -22,8 +23,10 @@ class ProcessData {
     *   ...
     *  }
     * 
-    * Will be transformed, with new 'total' and 'date' key-value pairs. Existing dates will be nested under 'dates'
-    * as a list, each the objects in the list will have each date. Their value represented as Moment instances. Eg.
+    * This be transformed into a new object. 'total' and 'date' key-value pairs are added. Existing dates are nested
+    * as an array under 'dates'. In addition, dates are now represented as Moment instances. 
+    * 
+    * Eg.
     * 
     *   {
     *   primaryKey: str,
@@ -35,7 +38,7 @@ class ProcessData {
     *   ]
     * }
     * 
-    * @params: primaryKey: Str. Name of object key that describes the data the object holds. Eg. 'county'.
+    * @params: primaryKey: Str. Name of object key that describes the data the object holds. Eg. 'county' or 'category'.
     */
     this.data = this.data.map(item => {
       const total = item.total
@@ -52,7 +55,7 @@ class ProcessData {
       })
 
       return {
-        county: primaryVal,
+        [primaryKey]: primaryVal,
         dates,
         total: this._cleanNumber(total) 
       }
