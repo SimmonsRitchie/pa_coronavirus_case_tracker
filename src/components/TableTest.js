@@ -4,7 +4,7 @@ import withResponsiveContainer from "./hoc/withResponsiveContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 
-const TableTest = ({ data, width, height }) => {
+const TableTest = ({ data, height }) => {
   const columns = useMemo(
     () => [
       {
