@@ -2,8 +2,8 @@ import React from 'react';
 
 const DataDisplayDesc = ({desc}) => {
   return ( 
-    <div className="chart-display__container">
-      <div className="chart-display__desc">{desc}</div>
+    <div className="data-display-desc__container">
+      <div className="data-display-desc__desc">{desc}</div>
     </div>
    );
 }
