@@ -2,13 +2,13 @@ import React from "react";
 import { DataContext } from "~/context/DataContext";
 import DataDisplayContainer from "./DataDisplayContainer";
 import DataDisplayDesc from "./DataDisplayDesc";
-import DataDisplayTitle from "./DataDisplayTitle";
 import DataDisplaySubContainer from "./DataDisplaySubContainer";
 import DataDisplayVizContainer from "./DataDisplayVizContainer";
 import { createXYPoints } from "../utils/parse";
 import TestsChart from "./TestsChart";
 import { genTestsDescrip } from "../utils/textFormat";
-
+import { xTickCalc} from "../utils/chartHelpers"
+import DataDisplayToggles from "./DataDisplayToggles";
 
 
 class Tests extends React.Component {
@@ -38,23 +38,27 @@ class Tests extends React.Component {
   render() {
     const { xYPointsArr } = this.state;
     const { data } = this.context;
-    const TESTS_DISPLAY = {
-      title: "Positive tests",
+    const TESTS = [{
+      type: "tests",
+      yAxisTickTotal: 5,
+      buttonText: "Positive tests",
       desc: genTestsDescrip(data)
-    };
+    }];
+    const screenWidth = window.innerWidth;
+    const xTickTotal = xTickCalc(screenWidth);
 
     return (
       <DataDisplayContainer>
         <DataDisplaySubContainer>
-          <DataDisplayTitle title={TESTS_DISPLAY.title} />
-          <DataDisplayDesc desc={TESTS_DISPLAY.desc} />
+          <DataDisplayToggles buttons={TESTS} />
+          <DataDisplayDesc desc={TESTS[0].desc} />
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
           <TestsChart
             data={xYPointsArr}
             yAxisType={"linear"}
-            xTickTotal={5}
-            yAxisTickTotal={5}
+            xTickTotal={xTickTotal}
+            yAxisTickTotal={TESTS[0].yAxisTickTotal}
           />
         </DataDisplayVizContainer>
       </DataDisplayContainer>
