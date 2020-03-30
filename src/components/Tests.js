@@ -7,12 +7,9 @@ import DataDisplaySubContainer from "./DataDisplaySubContainer";
 import DataDisplayVizContainer from "./DataDisplayVizContainer";
 import { createXYPoints } from "../utils/parse";
 import TestsChart from "./TestsChart";
+import { genTestsDescrip } from "../utils/textFormat";
 
-const TESTS_DISPLAY = {
-  title: "Testing data",
-  desc:
-    "This chart represents positive and negative tests in Pennsylvania for the coronavirus"
-};
+
 
 class Tests extends React.Component {
   constructor(props) {
@@ -40,6 +37,12 @@ class Tests extends React.Component {
 
   render() {
     const { xYPointsArr } = this.state;
+    const { data } = this.context;
+    const TESTS_DISPLAY = {
+      title: "Positive tests",
+      desc: genTestsDescrip(data)
+    };
+
     return (
       <DataDisplayContainer>
         <DataDisplaySubContainer>

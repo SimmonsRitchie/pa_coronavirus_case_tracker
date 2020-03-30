@@ -9,6 +9,7 @@ import {
   XYPlot
 } from "react-vis";
 import moment from "moment";
+import { format } from "d3-format"
 
 class TestsChart extends Component {
   state = {
@@ -43,6 +44,9 @@ class TestsChart extends Component {
     } = this.props;
     const { crosshairValues } = this.state;
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
+    const formatK = format("~s")
+    const formatComma = format(",")
+
 
     return (
       <XYPlot
@@ -65,6 +69,9 @@ class TestsChart extends Component {
         <YAxis
           className={"tests-chart__y-axis"}
           tickTotal={yAxisTickTotal}
+          tickFormat={(value) => {
+            return formatK(value)
+          }}
         />
         <AreaSeries className={"tests-chart__area-series-1"} data={data[1]} />
         <AreaSeries
@@ -75,12 +82,11 @@ class TestsChart extends Component {
         {crosshairValues[0] && (
           <Crosshair values={crosshairValues}>
             <div className="tests-chart__crosshair-container">
-            {console.log(crosshairValues)}
               <div className="tests-chart__crosshair-label">
                 {crosshairValues[0].x.format("MMM D")}
               </div>
-              <div>{crosshairValues[0].y} positive</div>
-              <div>{crosshairValues[1].y} negative</div>
+              <div>{formatComma(crosshairValues[0].y)} positive</div>
+              <div>{formatComma(crosshairValues[1].y)} negative</div>
             </div>
             ;
           </Crosshair>
