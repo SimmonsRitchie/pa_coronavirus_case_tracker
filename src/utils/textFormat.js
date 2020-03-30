@@ -7,20 +7,15 @@ export const genTestsDescrip = data => {
   const tests = data.paTests;
   const { mostRecentDate } = tests.meta;
   const formatMostRecentDate = mostRecentDate.format("MMM D");
-  const percentPositive = formatPercent(
-    tests.testData.find(item => item.category === "percent_positive").total
-  );
-  const totalTested = formatComma(
-    tests.testData.find(item => item.category === "total").total
-  );
-  console.log(percentPositive);
-  console.log(totalTested);
-  console.log(tests);
-  console.log(formatMostRecentDate);
+  const positiveTests = tests.testData.find(item => item.category === "positive").total
+  const totalTested = tests.testData.find(item => item.category === "total").total
+  const cleanPercPos = formatPercent(positiveTests / totalTested)
+  const cleanTotalTested = formatComma(totalTested)
+
   const descrip = (
     <span>
-      <B>{percentPositive}</B> of <B>{totalTested}</B> Pennsylvanians have
-      tested positive for the Coronavirus. The chart shows a running total of
+      <B>{cleanPercPos}</B> of <B>{cleanTotalTested}</B> Pennsylvanians have
+      tested positive for the Coronavirus as of <B>{formatMostRecentDate}</B>. The chart shows a running total of
       positive vs negative results.
     </span>
   );
