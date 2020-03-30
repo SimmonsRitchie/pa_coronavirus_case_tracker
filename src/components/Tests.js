@@ -6,6 +6,7 @@ import DataDisplayTitle from "./DataDisplayTitle";
 import DataDisplaySubContainer from "./DataDisplaySubContainer";
 import DataDisplayVizContainer from "./DataDisplayVizContainer";
 import { createXYPoints } from "../utils/parse";
+import TestsChart from "./TestsChart";
 
 const TESTS_DISPLAY = {
   title: "Testing data",
@@ -28,14 +29,10 @@ class Tests extends React.Component {
     const { data } = this.context;
     // GET TESTS
     const tests = data.paTests.testData;
-    console.log(tests);
     const posTests = tests.filter(item => item.category === "positive")[0];
     const negTests = tests.filter(item => item.category === "negative")[0];
-    console.log(posTests);
     const posPoints = createXYPoints(posTests);
     const negPoints = createXYPoints(negTests);
-    console.log(posPoints);
-    console.log(negPoints);
     this.setState({
       posPoints,
       negPoints
@@ -43,6 +40,7 @@ class Tests extends React.Component {
   }
 
   render() {
+    const {posPoints} = this.state
     return (
       <DataDisplayContainer>
         <DataDisplaySubContainer>
@@ -50,7 +48,12 @@ class Tests extends React.Component {
           <DataDisplayDesc desc={TESTS_DISPLAY.desc} />
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
-          {/* Insert chart here */}
+          <TestsChart 
+          xYPoints={posPoints}
+          yAxisType={"linear"}
+          xTickTotal={5}
+          yAxisTickTotal={5}
+          />
         </DataDisplayVizContainer>
       </DataDisplayContainer>
     );
