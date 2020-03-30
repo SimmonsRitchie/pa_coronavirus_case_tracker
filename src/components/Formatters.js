@@ -10,4 +10,7 @@ export const B = (props) => {
   return ( <span className="formatters__bold">{props.children}</span> );
 }
  
-
+export const Color = (props) => {
+  // Wraps text in color style that matches legend
+  return (<span className={`tests-chart__legend-text-${props.series}`}>{props.children}</span>)
+}

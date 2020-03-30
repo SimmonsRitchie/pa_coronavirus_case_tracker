@@ -23,3 +23,11 @@
   fill: $area-series-2-color !important;
   stroke: $area-series-2-color !important;
 }
+
+.tests-chart__legend-text-1 {
+  color: darken($area-series-1-color, 30%);
+}
+
+.tests-chart__legend-text-2 {
+  color: darken($area-series-2-color, 30%);
+}
