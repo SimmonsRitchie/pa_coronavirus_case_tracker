@@ -6,13 +6,7 @@
   @include y-axis;
 }
 
-.tests-chart__crosshair-container {
-  @include crosshair-container
-}
 
-.tests-chart__crosshair-label {
-  @extend .tooltip__label;
-}
 
 .tests-chart__area-series-1 {
   fill: $area-series-1-color !important;

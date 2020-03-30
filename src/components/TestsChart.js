@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
-import CrosshairData from "./CrosshairData"
+import CrosshairData from "./TestsChartCrosshair"
 import {
   AreaSeries,
   HorizontalGridLines,
