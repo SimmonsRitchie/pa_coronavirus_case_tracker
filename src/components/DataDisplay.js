@@ -28,8 +28,13 @@ const DISPLAY_BUTTONS = [
 
 const DataDisplay = () => {
   // Data container height is set to HEIGHT_RATIO * width of container
-  const HEIGHT_RATIO = 0.75
-  const MARGIN = 0.05
+  const viewportWidth = window.innerWidth
+  let HEIGHT_RATIO
+  if (viewportWidth < 550) {
+    HEIGHT_RATIO = 1.0
+  } else {
+    HEIGHT_RATIO = 0.7
+  }
   const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
     return ({
