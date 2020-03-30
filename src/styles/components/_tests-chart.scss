@@ -14,6 +14,12 @@
   @extend .tooltip__label;
 }
 
-.tests-chart__line-series-1 {
-  stroke: $line-series-1-color !important;
+.tests-chart__area-series-1 {
+  fill: $area-series-1-color !important;
+  stroke: $area-series-1-color !important;
+}
+
+.tests-chart__area-series-2 {
+  fill: $area-series-2-color !important;
+  stroke: $area-series-2-color !important;
 }

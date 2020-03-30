@@ -65,14 +65,10 @@ class TestsChart extends Component {
         <YAxis
           className={"tests-chart__y-axis"}
           tickTotal={yAxisTickTotal}
-          tickFormat={value => {
-            // To stop log scale from changing format into scientific notation
-            return +value;
-          }}
         />
         <AreaSeries className={"tests-chart__area-series-1"} data={data[1]} />
         <AreaSeries
-          className={"tests-chart__area-series-1"}
+          className={"tests-chart__area-series-2"}
           data={data[0]}
           onNearestX={this.onNearestX}
         />
