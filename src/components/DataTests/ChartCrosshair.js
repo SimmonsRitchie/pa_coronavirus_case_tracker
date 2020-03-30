@@ -1,6 +1,7 @@
 import React from 'react';
 import { format } from 'd3-format'
-const CrosshairData = ({values}) => {
+
+const ChartCrosshair = ({values}) => {
   const formatComma = format(",")
   const positiveTests = values[0].y
   const negativeTests = values[1].y
@@ -19,4 +20,4 @@ const CrosshairData = ({values}) => {
   )
 }
 
-export default CrosshairData;
+export default ChartCrosshair;

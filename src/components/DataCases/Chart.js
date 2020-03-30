@@ -1,8 +1,6 @@
-import React, { Component } from "react";
-import withResponsiveContainer from "./hoc/withResponsiveContainer";
-import CrosshairData from "./TestsChartCrosshair"
+import React, {Component} from "react";
 import {
-  AreaSeries,
+  LineSeries,
   HorizontalGridLines,
   XAxis,
   YAxis,
@@ -10,16 +8,17 @@ import {
   XYPlot
 } from "react-vis";
 import moment from "moment";
-import { format } from "d3-format"
+import withResponsiveContainer from "../../hoc/withResponsiveContainer";
+import {format} from 'd3-format'
 
-class TestsChart extends Component {
+class Chart extends Component {
   state = {
-    crosshairValues: []
+    crosshairValues: null
   };
 
   onMouseLeave = () => {
     this.setState({
-      crosshairValues: []
+      crosshairValues: null
     });
   };
 
@@ -29,24 +28,24 @@ class TestsChart extends Component {
      * @param {Object} value Selected value.
      * @param {index} index Index of the value in the data array.
      */
-    const data = this.props.data;
-    const crosshairValues = data.map(d => d[index]);
-    this.setState({ crosshairValues });
+    const val = [this.props.xYPoints[index]];
+    this.setState({
+      crosshairValues: val
+    });
   };
 
   render() {
     const {
       height,
       width,
-      data,
+      xYPoints,
       yAxisType,
       xTickTotal,
-      yAxisTickTotal
+      yAxisTickTotal,
     } = this.props;
-    const { crosshairValues } = this.state;
+    const { crosshairValues} = this.state
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
-    const formatK = format("~s")
-
+    const formatComma = format(',')
     return (
       <XYPlot
         height={height}
@@ -58,7 +57,7 @@ class TestsChart extends Component {
       >
         <HorizontalGridLines />
         <XAxis
-          className={"tests-chart__x-axis"}
+          className={"chart-line__x-axis"}
           tickTotal={xTickTotal}
           tickFormat={val => {
             val = moment(val);
@@ -66,21 +65,26 @@ class TestsChart extends Component {
           }}
         />
         <YAxis
-          className={"tests-chart__y-axis"}
+          className={"chart-line__y-axis"}
           tickTotal={yAxisTickTotal}
-          tickFormat={(value) => {
-            return formatK(value)
+          tickFormat={value => {
+            // To stop log scale from changing format into scientific notation
+            return +value;
           }}
         />
-        <AreaSeries className={"tests-chart__area-series-1"} data={data[1]} />
-        <AreaSeries
-          className={"tests-chart__area-series-2"}
-          data={data[0]}
+        <LineSeries
+          className={"chart-line__line-series-1"}
+          data={xYPoints}
           onNearestX={this.onNearestX}
         />
-        {crosshairValues[0] && (
+        {crosshairValues && (
           <Crosshair values={crosshairValues}>
-            <CrosshairData values={crosshairValues}/>
+            <div className="chart-line__crosshair-container">
+              <div className="chart-line__crosshair-label">
+                {crosshairValues[0].x.format("MMM D")}
+              </div>
+              <div>{formatComma(crosshairValues[0].y)} cases</div>
+            </div>
           </Crosshair>
         )}
       </XYPlot>
@@ -88,9 +92,6 @@ class TestsChart extends Component {
   }
 }
 
+const ResponsiveChartLine = withResponsiveContainer(Chart);
 
-
-
-const ResponsiveChart = withResponsiveContainer(TestsChart);
-
-export default ResponsiveChart;
+export default ResponsiveChartLine;

@@ -1,17 +1,17 @@
 import React from "react";
-import { DataContext } from "~/context/DataContext";
-import DataDisplayContainer from "./DataDisplayContainer";
-import DataDisplayDesc from "./DataDisplayDesc";
-import DataDisplaySubContainer from "./DataDisplaySubContainer";
-import DataDisplayVizContainer from "./DataDisplayVizContainer";
-import { createXYPoints } from "../utils/parse";
-import TestsChart from "./TestsChart";
-import { genTestsDescrip } from "../utils/textFormat";
-import { xTickCalc} from "../utils/chartHelpers"
-import DataDisplayToggles from "./DataDisplayToggles";
+import { DataContext } from "../../context/DataContext"
+import DataDisplayContainer from "../DataDisplayContainer";
+import DataDisplayDesc from "../DataDisplayDesc";
+import DataDisplaySubContainer from "../DataDisplaySubContainer";
+import DataDisplayVizContainer from "../DataDisplayVizContainer";
+import { createXYPoints } from "../../utils/parse";
+import TestsChart from "./Chart";
+import { genTestsDescrip } from "../../utils/textFormat";
+import { xTickCalc} from "../../utils/chartHelpers"
+import DataDisplayToggles from "../DataDisplayToggles";
 
 
-class Tests extends React.Component {
+class DataTests extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -66,4 +66,4 @@ class Tests extends React.Component {
   }
 }
 
-export default Tests;
+export default DataTests;

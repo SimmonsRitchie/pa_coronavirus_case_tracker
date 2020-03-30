@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import BubbleMap from "./BubbleMap"
+import BubbleMap from "./DataMap"
 import DataDisplayButtons from "./DataDisplayButtons"
-import LineChart from "./Chart"
+import Cases from "./DataCases"
 import { SizeMe } from "react-sizeme";
-import Table from "./Table";
-import Tests from "./Tests"
+import Table from "./DataTable";
+import TestData from "./DataTests"
 
 const DISPLAY_BUTTONS = [
   {
@@ -12,7 +12,7 @@ const DISPLAY_BUTTONS = [
     "text": "County map"
   },
   {
-    "id": "chart",
+    "id": "cases",
     "text": "Cases"
   },
   {
@@ -39,8 +39,8 @@ const DataDisplay = () => {
   const getDisplay = (size) => {
     return ({
     map: <BubbleMap />,
-    chart: <LineChart />,
-    tests: <Tests />,
+    cases: <Cases />,
+    tests: <TestData />,
     data: <Table />,
   })};
 

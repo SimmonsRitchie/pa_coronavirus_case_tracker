@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { DataContext } from "~/context/DataContext";
 import { getRowByName } from "~/utils/parse";
 import { xTickCalc } from "~/utils/chartHelpers";
-import DataDisplayToggles from "./DataDisplayToggles";
-import DataDisplayDesc from "./DataDisplayDesc";
-import ChartLine from "./ChartLine";
-import DataDisplayContainer from "./DataDisplayContainer";
-import DataDisplaySubContainer from "./DataDisplaySubContainer";
-import DataDisplayVizContainer from "./DataDisplayVizContainer";
-import { createXYPoints } from "../utils/parse";
+import DataDisplayToggles from "../DataDisplayToggles";
+import DataDisplayDesc from "../DataDisplayDesc";
+import ChartLine from "./Chart";
+import DataDisplayContainer from "../DataDisplayContainer";
+import DataDisplaySubContainer from "../DataDisplaySubContainer";
+import DataDisplayVizContainer from "../DataDisplayVizContainer";
+import { createXYPoints } from "../../utils/parse";
 
 const CHART_TYPES = [
   {
@@ -28,7 +28,7 @@ const CHART_TYPES = [
   }
 ];
 
-class Chart extends Component {
+class Cases extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,4 +97,4 @@ class Chart extends Component {
   }
 }
 
-export default Chart;
+export default Cases;

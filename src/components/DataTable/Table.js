@@ -1,10 +1,10 @@
 import React, { useMemo} from "react";
 import { useTable, useSortBy } from "react-table";
-import withResponsiveContainer from "./hoc/withResponsiveContainer";
+import withResponsiveContainer from "../../hoc/withResponsiveContainer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faCaretUp, faSort } from "@fortawesome/free-solid-svg-icons";
 
-const TableInner = ({ data, height }) => {
+const Table = ({ data, height }) => {
   const columns = useMemo(
     () => [
       {
@@ -122,6 +122,6 @@ const NoDataRow = ({ colSpan }) => {
   );
 };
 
-const ResponsiveChart = withResponsiveContainer(TableInner);
+const ResponsiveChart = withResponsiveContainer(Table);
 
 export default ResponsiveChart;

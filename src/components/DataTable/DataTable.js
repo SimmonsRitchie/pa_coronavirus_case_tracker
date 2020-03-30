@@ -1,9 +1,9 @@
 import React from "react";
-import { DataContext } from "~/context/DataContext";
+import { DataContext } from "../../context/DataContext"
 import Search from "./Search";
-import TableInner from "./TableInner";
-import { applySearchTerm } from "../utils/search";
-import DataDisplayContainer from "./DataDisplayContainer";
+import TableInner from "./Table";
+import { applySearchTerm } from "../../utils/search";
+import DataDisplayContainer from "../DataDisplayContainer";
 
 class Table extends React.Component {
   state = {
