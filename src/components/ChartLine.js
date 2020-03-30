@@ -9,6 +9,7 @@ import {
 } from "react-vis";
 import moment from "moment";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
+import {format} from 'd3-format'
 
 class ChartLine extends Component {
   state = {
@@ -44,7 +45,7 @@ class ChartLine extends Component {
     } = this.props;
     const { crosshairValues} = this.state
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
-
+    const formatComma = format(',')
     return (
       <XYPlot
         height={height}
@@ -82,7 +83,7 @@ class ChartLine extends Component {
               <div className="chart-line__crosshair-label">
                 {crosshairValues[0].x.format("MMM D")}
               </div>
-              <div>{crosshairValues[0].y} cases</div>
+              <div>{formatComma(crosshairValues[0].y)} cases</div>
             </div>
           </Crosshair>
         )}
