@@ -8,4 +8,3 @@ export const B = (props) => {
   return ( <span className="formatters__bold">{props.children}</span> );
 }
  
-export default Dot;

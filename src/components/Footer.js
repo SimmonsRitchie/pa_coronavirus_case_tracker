@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Dot from "./Formatters";
+import {Dot} from "./Formatters";
 import { DataContext } from "../context/DataContext";
 import { determineMostRecentDate } from "../utils/parse";
 
