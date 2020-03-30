@@ -21,7 +21,7 @@ export const genTestsDescrip = data => {
     <span>
       <B>{percentPositive}</B> of <B>{totalTested}</B> Pennsylvanians have
       tested positive for the Coronavirus. The chart shows a running total of
-      positive and negative results.
+      positive vs negative results.
     </span>
   );
   return descrip;
