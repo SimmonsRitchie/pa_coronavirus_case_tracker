@@ -36,8 +36,7 @@ const Footer = () => {
           <div className="footer__notes is-size-7">
             <i>{/* Insert footnote if needed */}</i>
           </div>
-          <div className="footer__credit-container">
-            <span className="is-size-7 has-text-grey">
+          <div className="is-size-7 has-text-grey">
               {CREDITS.map((item, idx) => {
                 const { creditType, name } = item;
                 const includeDot = idx + 1 < CREDITS.length;
@@ -50,7 +49,6 @@ const Footer = () => {
                   />
                 );
               })}
-            </span>
           </div>
         </div>
       </div>
