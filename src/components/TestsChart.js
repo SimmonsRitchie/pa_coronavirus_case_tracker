@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import withResponsiveContainer from "./hoc/withResponsiveContainer";
+import CrosshairData from "./CrosshairData"
 import {
   AreaSeries,
   HorizontalGridLines,
@@ -45,8 +46,6 @@ class TestsChart extends Component {
     const { crosshairValues } = this.state;
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
     const formatK = format("~s")
-    const formatComma = format(",")
-
 
     return (
       <XYPlot
@@ -81,20 +80,16 @@ class TestsChart extends Component {
         />
         {crosshairValues[0] && (
           <Crosshair values={crosshairValues}>
-            <div className="tests-chart__crosshair-container">
-              <div className="tests-chart__crosshair-label">
-                {crosshairValues[0].x.format("MMM D")}
-              </div>
-              <div>{formatComma(crosshairValues[0].y)} positive</div>
-              <div>{formatComma(crosshairValues[1].y)} negative</div>
-            </div>
-            ;
+            <CrosshairData values={crosshairValues}/>
           </Crosshair>
         )}
       </XYPlot>
     );
   }
 }
+
+
+
 
 const ResponsiveChart = withResponsiveContainer(TestsChart);
 
