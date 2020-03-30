@@ -1,0 +1,19 @@
+.tests-chart__x-axis {
+  @include x-axis;
+}
+
+.tests-chart__y-axis {
+  @include y-axis;
+}
+
+.tests-chart__crosshair-container {
+  @include crosshair-container
+}
+
+.tests-chart__crosshair-label {
+  @extend .tooltip__label;
+}
+
+.tests-chart__line-series-1 {
+  stroke: $line-series-1-color !important;
+}
