@@ -29,7 +29,6 @@ class TestsChart extends Component {
      */
     const data = this.props.data;
     const crosshairValues = data.map(d => d[index]);
-    console.log(crosshairValues);
     this.setState({ crosshairValues });
   };
 

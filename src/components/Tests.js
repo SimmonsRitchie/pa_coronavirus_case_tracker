@@ -33,7 +33,6 @@ class Tests extends React.Component {
     const posPoints = createXYPoints(posTests);
     const negPoints = createXYPoints(negTests);
     const xYPointsArr = [posPoints, negPoints];
-    console.log("DATA:", xYPointsArr);
     this.setState({
       xYPointsArr
     });
