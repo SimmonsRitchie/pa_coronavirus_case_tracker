@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import withResponsiveContainer from "./hoc/withResponsiveContainer"
+import React, { Component } from "react";
+import withResponsiveContainer from "./hoc/withResponsiveContainer";
 import {
   AreaSeries,
   HorizontalGridLines,
@@ -12,12 +12,12 @@ import moment from "moment";
 
 class TestsChart extends Component {
   state = {
-    crosshairValues: null
+    crosshairValues: []
   };
 
   onMouseLeave = () => {
     this.setState({
-      crosshairValues: null
+      crosshairValues: []
     });
   };
 
@@ -27,22 +27,22 @@ class TestsChart extends Component {
      * @param {Object} value Selected value.
      * @param {index} index Index of the value in the data array.
      */
-    const val = [this.props.xYPoints[index]];
-    this.setState({
-      crosshairValues: val
-    });
+    const data = this.props.data;
+    const crosshairValues = data.map(d => d[index]);
+    console.log(crosshairValues);
+    this.setState({ crosshairValues });
   };
 
   render() {
     const {
       height,
       width,
-      xYPoints,
+      data,
       yAxisType,
       xTickTotal,
-      yAxisTickTotal,
+      yAxisTickTotal
     } = this.props;
-    const { crosshairValues} = this.state
+    const { crosshairValues } = this.state;
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
 
     return (
@@ -71,19 +71,23 @@ class TestsChart extends Component {
             return +value;
           }}
         />
+        <AreaSeries className={"tests-chart__area-series-1"} data={data[1]} />
         <AreaSeries
           className={"tests-chart__area-series-1"}
-          data={xYPoints}
+          data={data[0]}
           onNearestX={this.onNearestX}
         />
-        {crosshairValues && (
+        {crosshairValues[0] && (
           <Crosshair values={crosshairValues}>
             <div className="tests-chart__crosshair-container">
+            {console.log(crosshairValues)}
               <div className="tests-chart__crosshair-label">
                 {crosshairValues[0].x.format("MMM D")}
               </div>
               <div>{crosshairValues[0].y} positive</div>
+              <div>{crosshairValues[1].y} negative</div>
             </div>
+            ;
           </Crosshair>
         )}
       </XYPlot>
@@ -91,7 +95,6 @@ class TestsChart extends Component {
   }
 }
 
+const ResponsiveChart = withResponsiveContainer(TestsChart);
 
-const ResponsiveChart = withResponsiveContainer(TestsChart)
- 
 export default ResponsiveChart;

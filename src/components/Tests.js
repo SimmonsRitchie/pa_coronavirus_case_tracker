@@ -18,8 +18,7 @@ class Tests extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      posPoints: [],
-      negPoints: []
+      xYPointsArr: []
     };
   }
 
@@ -33,14 +32,15 @@ class Tests extends React.Component {
     const negTests = tests.filter(item => item.category === "negative")[0];
     const posPoints = createXYPoints(posTests);
     const negPoints = createXYPoints(negTests);
+    const xYPointsArr = [posPoints, negPoints];
+    console.log("DATA:", xYPointsArr);
     this.setState({
-      posPoints,
-      negPoints
+      xYPointsArr
     });
   }
 
   render() {
-    const {posPoints} = this.state
+    const { xYPointsArr } = this.state;
     return (
       <DataDisplayContainer>
         <DataDisplaySubContainer>
@@ -48,11 +48,11 @@ class Tests extends React.Component {
           <DataDisplayDesc desc={TESTS_DISPLAY.desc} />
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
-          <TestsChart 
-          xYPoints={posPoints}
-          yAxisType={"linear"}
-          xTickTotal={5}
-          yAxisTickTotal={5}
+          <TestsChart
+            data={xYPointsArr}
+            yAxisType={"linear"}
+            xTickTotal={5}
+            yAxisTickTotal={5}
           />
         </DataDisplayVizContainer>
       </DataDisplayContainer>
