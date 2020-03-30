@@ -1,0 +1,7 @@
+.tests-chart-crosshair__container {
+  @include crosshair-container
+}
+
+.tests-chart-crosshair__label {
+  @extend .tooltip__label;
+}
