@@ -1,6 +1,6 @@
 import { format } from "d3-format";
 import React from "react";
-import { B, Color } from "../components/Formatters";
+import { B, LegText } from "../components/Formatters";
 export const genTestsDescrip = data => {
   const formatPercent = format(".1%");
   const formatComma = format(",");
@@ -16,7 +16,7 @@ export const genTestsDescrip = data => {
     <span>
       <B>{cleanPercPos}</B> of <B>{cleanTotalTested}</B> Pennsylvanians have
       tested positive for the Coronavirus as of <B>{formatMostRecentDate}</B>. The chart shows a running total
-       of <Color series={1}>positive</Color> vs <Color series={2}>negative</Color> results.
+       of <LegText series={1}>positive</LegText> vs <LegText series={2}>negative</LegText> results.
     </span>
   );
   return descrip;
