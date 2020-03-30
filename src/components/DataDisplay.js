@@ -31,7 +31,7 @@ const DataDisplay = () => {
   const viewportWidth = window.innerWidth
   let HEIGHT_RATIO
   if (viewportWidth < 550) {
-    HEIGHT_RATIO = 1.0
+    HEIGHT_RATIO = 0.9
   } else {
     HEIGHT_RATIO = 0.7
   }
