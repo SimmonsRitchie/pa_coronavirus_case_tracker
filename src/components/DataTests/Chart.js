@@ -58,7 +58,7 @@ class Chart extends Component {
       >
         <HorizontalGridLines />
         <XAxis
-          className={"tests-chart__x-axis"}
+          className={"data-tests-chart__x-axis"}
           tickTotal={xTickTotal}
           tickFormat={val => {
             val = moment(val);
@@ -66,15 +66,15 @@ class Chart extends Component {
           }}
         />
         <YAxis
-          className={"tests-chart__y-axis"}
+          className={"data-tests-chart__y-axis"}
           tickTotal={yAxisTickTotal}
           tickFormat={(value) => {
             return formatK(value)
           }}
         />
-        <AreaSeries className={"tests-chart__area-series-1"} data={data[1]} />
+        <AreaSeries className={"data-tests-chart__area-series-1"} data={data[1]} />
         <AreaSeries
-          className={"tests-chart__area-series-2"}
+          className={"data-tests-chart__area-series-2"}
           data={data[0]}
           onNearestX={this.onNearestX}
         />

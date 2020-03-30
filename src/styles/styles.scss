@@ -45,13 +45,11 @@ MODIFIER - changes the style of the block
 @import './components/data-display-sub-container';
 @import './components/data-display-viz-container';
 @import './components/data-display-title';
-@import './components/bubble-map';
-@import './components/bubble-map-inner';
+@import './components/data-map/data-map-bubble-map';
+@import './components/data-cases/data-cases-chart';
+@import './components/data-table/data-table-table';
+@import './components/data-tests/data-tests-chart';
+@import './components/data-tests/data-tests-crosshair';
+@import './components/data-tests/data-tests-search';
 @import './components/stats';
-@import './components/chart-line';
-@import './components/search';
-@import './components/table-inner';
-@import './components/tests';
-@import './components/tests-chart';
-@import './components/tests-chart-crosshair';
 

@@ -1,10 +1,4 @@
-.bubble-map__summary-container {
-  height: 100%;
-  width: 100%;
-}
-
-
-.bubble-map__bubble {
+.data-map-bubble-map__bubble {
   stroke: $bubble-stroke;
   fill: $bubble-fill;
   fill-opacity: $bubble-fill-opacity;
@@ -13,7 +7,6 @@
     stroke: $bubble-hover-stroke;
   }
 }
-
 
 
 // React simple map - overrides

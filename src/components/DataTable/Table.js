@@ -39,8 +39,8 @@ const Table = ({ data, height }) => {
   );
 
   return (
-    <div className="table-inner__container">
-      <div className="table-inner__table-container" style={{ height: height }}>
+    <div className="data-table-table__container">
+      <div className="data-table-table__table-container" style={{ height: height }}>
         <table {...getTableProps()} className="table is-hoverable is-fullwidth">
           <TableInnerHead headerGroups={headerGroups} />
           <tbody {...getTableBodyProps()}>
@@ -90,9 +90,9 @@ const SortIcon = ({sort="default", hide=false}) => {
     "desc": faCaretDown,
     "default": faSort
   }
-  const hideClass = hide ? "table-inner__hide" : ""
+  const hideClass = hide ? "data-table-table__hide" : ""
   return ( 
-    <span className={`table-inner__sort-icon ${hideClass}`}><FontAwesomeIcon  icon={faIcon[sort]} /></span>
+    <span className={`data-table-table__sort-icon ${hideClass}`}><FontAwesomeIcon  icon={faIcon[sort]} /></span>
   );
 }
 
@@ -116,7 +116,7 @@ const TableInnerRows = ({rows, prepareRow}) => (
 
 const NoDataRow = ({ colSpan }) => {
   return (
-    <tr className="table-inner__no-data-row">
+    <tr className="data-table-table__no-data-row">
       <td colSpan={colSpan}>No search results</td>
     </tr>
   );

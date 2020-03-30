@@ -1,0 +1,7 @@
+.data-tests-crosshair__container {
+  @include crosshair-container
+}
+
+.data-tests-crosshair__label {
+  @extend .tooltip__label;
+}

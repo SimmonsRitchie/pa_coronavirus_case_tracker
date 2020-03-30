@@ -12,7 +12,7 @@ export const B = (props) => {
  
 export const LegText = (props) => {
   // Wraps blurb text in color style that matches legend
-  return (<span className={`tests-chart__legend-text-${props.series}`}>{props.children}</span>)
+  return (<span className={`data-tests-chart__legend-text-${props.series}`}>{props.children}</span>)
 }
 
 

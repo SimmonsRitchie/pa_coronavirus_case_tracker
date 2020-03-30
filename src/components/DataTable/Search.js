@@ -4,7 +4,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Search = ({inputText, clearResults, handleTextChange}) => {
   return (
-    <div className="search__container">
+    <div className="data-tests-search__container">
       <div className="field has-addons">
 
         <p className="control is-expanded" >

@@ -1,27 +1,25 @@
-.tests-chart__x-axis {
+.data-tests-chart__x-axis {
   @include x-axis;
 }
 
-.tests-chart__y-axis {
+.data-tests-chart__y-axis {
   @include y-axis;
 }
 
-
-
-.tests-chart__area-series-1 {
+.data-tests-chart__area-series-1 {
   fill: $area-series-1-color !important;
   stroke: $area-series-1-color !important;
 }
 
-.tests-chart__area-series-2 {
+.data-tests-chart__area-series-2 {
   fill: $area-series-2-color !important;
   stroke: $area-series-2-color !important;
 }
 
-.tests-chart__legend-text-1 {
+.data-tests-chart__legend-text-1 {
   color: darken($area-series-1-color, 30%);
 }
 
-.tests-chart__legend-text-2 {
+.data-tests-chart__legend-text-2 {
   color: darken($area-series-2-color, 30%);
 }

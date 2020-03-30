@@ -74,7 +74,7 @@ const BubbleMap = ({countyMap, countyCentroids, mapType, scale, width, height}) 
               data-place={tooltipPlace}
               key={idx}
               r={scale.radius(radiusData)} 
-              className="bubble-map__bubble" 
+              className="data-map-bubble-map__bubble" 
               onMouseEnter={(e) => {
                 handleTooltipPlace(e)
                 const { 
