@@ -8,7 +8,7 @@ export const genTestsDescrip = data => {
   console.log(tests);
   const { mostRecentDate, oldestDate } = tests.meta;
   const formatMostRecentDate = mostRecentDate.format("MMM D");
-  const formatOldestDate = oldestDate.format("MMM D");
+  const formatOldestDate = oldestDate.format("MMMM D");
   const positiveTests = tests.testData.find(
     item => item.category === "positive"
   ).total;
