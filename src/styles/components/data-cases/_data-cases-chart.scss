@@ -1,0 +1,20 @@
+.data-cases-chart__x-axis {
+  @include x-axis;
+}
+
+.data-cases-chart__y-axis {
+  @include y-axis;
+}
+
+.data-cases-chart__crosshair-container {
+  @include crosshair-container
+}
+
+.data-cases-chart__crosshair-label {
+  @extend .tooltip__label;
+}
+
+.data-cases-chart__line-series-1 {
+  stroke: $line-series-1-color !important;
+}
+

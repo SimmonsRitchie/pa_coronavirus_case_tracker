@@ -1,9 +1,9 @@
 import React from "react";
-import { DataContext } from "~/context/DataContext";
+import { DataContext } from "../../context/DataContext"
 import Search from "./Search";
-import TableInner from "./TableInner";
-import {applySearchTerm} from "../utils/search"
-
+import TableInner from "./Table";
+import { applySearchTerm } from "../../utils/search";
+import DataDisplayContainer from "../DataDisplayContainer";
 
 class Table extends React.Component {
   state = {
@@ -25,38 +25,37 @@ class Table extends React.Component {
     });
   }
 
-  handleSearch = (e) => {
-    const searchText = e.target.value
+  handleSearch = e => {
+    const searchText = e.target.value;
     const filteredResults = applySearchTerm({
-      searchText, 
-      searchData:this.state.countyTotals, 
+      searchText,
+      searchData: this.state.countyTotals,
       searchDataKey: "county"
-    })
+    });
     this.setState({
       searchText,
       filteredResults
-    })
+    });
   };
 
   clearResults = () => {
     this.setState({
-      searchText: '',
+      searchText: "",
       filteredResults: this.state.countyTotals
-    })
+    });
   };
-
 
   render() {
     const { filteredResults, searchText } = this.state;
     return (
-      <div className="table__container-outer">
+      <DataDisplayContainer>
         <Search
           inputText={searchText}
           handleTextChange={this.handleSearch}
           clearResults={this.clearResults}
         />
-        <TableInner data={filteredResults}/>
-      </div>
+        <TableInner data={filteredResults} />
+      </DataDisplayContainer>
     );
   }
 }

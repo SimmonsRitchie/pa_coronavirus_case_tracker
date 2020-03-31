@@ -1,4 +1,4 @@
-.chart-display__container {
+.data-display-desc__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,17 +6,16 @@
   flex-direction: column;
 }
 
-.chart-display__title {
+.data-display-desc__title {
   @include subtitle
 
 }
 
-.chart-display__desc {
+.data-display-desc__desc {
   width: 70%;
   font-size: $size-7;
   padding-bottom: $s-size;
   @media (min-width: $mid-breakpoint) {
     font-size: $size-6;
-
   }
 }

@@ -25,6 +25,8 @@ MODIFIER - changes the style of the block
 @import './mixins/responsive';
 @import './mixins/subtitle';
 @import './mixins/button-containers';
+@import './mixins/chart';
+
 
 // components
 @import './components/container';
@@ -37,14 +39,17 @@ MODIFIER - changes the style of the block
 @import './components/tooltip';
 @import './components/data-display';
 @import './components/data-display-buttons';
-@import './components/bubble-map';
-@import './components/bubble-map-inner';
-@import './components/stats';
-@import './components/table';
-@import './components/chart';
-@import './components/chart-display';
 @import './components/data-display-toggles';
-@import './components/chart-line';
-@import './components/search';
-@import './components/table-inner';
+@import './components/data-display-container';
+@import './components/data-display-desc';
+@import './components/data-display-sub-container';
+@import './components/data-display-viz-container';
+@import './components/data-display-title';
+@import './components/data-map/data-map-bubble-map';
+@import './components/data-cases/data-cases-chart';
+@import './components/data-table/data-table-table';
+@import './components/data-tests/data-tests-chart';
+@import './components/data-tests/data-tests-crosshair';
+@import './components/data-tests/data-tests-search';
+@import './components/stats';
 

@@ -8,9 +8,10 @@ import {
   XYPlot
 } from "react-vis";
 import moment from "moment";
-import withResponsiveContainer from "./hoc/withResponsiveContainer";
+import withResponsiveContainer from "../../hoc/withResponsiveContainer";
+import {format} from 'd3-format'
 
-class ChartLine extends Component {
+class Chart extends Component {
   state = {
     crosshairValues: null
   };
@@ -41,10 +42,10 @@ class ChartLine extends Component {
       yAxisType,
       xTickTotal,
       yAxisTickTotal,
-      dynamicMargin
     } = this.props;
     const { crosshairValues} = this.state
-
+    const dynamicMargin = width < 550 ? 50 : width * 0.08;
+    const formatComma = format(',')
     return (
       <XYPlot
         height={height}
@@ -56,7 +57,7 @@ class ChartLine extends Component {
       >
         <HorizontalGridLines />
         <XAxis
-          className={"chart-line__x-axis"}
+          className={"data-cases-chart__x-axis"}
           tickTotal={xTickTotal}
           tickFormat={val => {
             val = moment(val);
@@ -64,7 +65,7 @@ class ChartLine extends Component {
           }}
         />
         <YAxis
-          className={"chart-line__y-axis"}
+          className={"data-cases-chart__y-axis"}
           tickTotal={yAxisTickTotal}
           tickFormat={value => {
             // To stop log scale from changing format into scientific notation
@@ -72,17 +73,17 @@ class ChartLine extends Component {
           }}
         />
         <LineSeries
-          className={"chart-line__line-series-1"}
+          className={"data-cases-chart__line-series-1"}
           data={xYPoints}
           onNearestX={this.onNearestX}
         />
         {crosshairValues && (
           <Crosshair values={crosshairValues}>
-            <div className="chart-line__crosshair-container">
-              <div className="chart-line__crosshair-label">
+            <div className="data-cases-chart__crosshair-container">
+              <div className="data-cases-chart__crosshair-label">
                 {crosshairValues[0].x.format("MMM D")}
               </div>
-              <div>{crosshairValues[0].y} cases</div>
+              <div>{formatComma(crosshairValues[0].y)} cases</div>
             </div>
           </Crosshair>
         )}
@@ -91,6 +92,6 @@ class ChartLine extends Component {
   }
 }
 
-const ResponsiveChartLine = withResponsiveContainer(ChartLine);
+const ResponsiveChartLine = withResponsiveContainer(Chart);
 
 export default ResponsiveChartLine;

@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import { DataContext } from "~/context/DataContext";
 import { getRowByName } from "~/utils/parse";
 import { xTickCalc } from "~/utils/chartHelpers";
-import ChartButtons from "./DataDisplayToggles";
-import ChartDisplay from "./ChartDisplay";
-import ChartLine from "./ChartLine";
+import DataDisplayToggles from "../DataDisplayToggles";
+import DataDisplayDesc from "../DataDisplayDesc";
+import ChartLine from "./Chart";
+import DataDisplayContainer from "../DataDisplayContainer";
+import DataDisplaySubContainer from "../DataDisplaySubContainer";
+import DataDisplayVizContainer from "../DataDisplayVizContainer";
+import { createXYPoints } from "../../utils/parse";
 
 const CHART_TYPES = [
   {
@@ -24,13 +28,12 @@ const CHART_TYPES = [
   }
 ];
 
-class Chart extends Component {
+class Cases extends Component {
   constructor(props) {
     super(props);
-    this.chartContainer = React.createRef();
     this.state = {
       ...CHART_TYPES[0],
-      xYPoints: null
+      xYPoints: []
     };
   }
 
@@ -44,12 +47,7 @@ class Chart extends Component {
       "county",
       "total"
     );
-    const xYPoints = casesTotalRow.dates.map(item => {
-      return {
-        x: item.date,
-        y: +item.count
-      };
-    });
+    const xYPoints = createXYPoints(casesTotalRow)
     // SET DATA
     this.setState({
       xYPoints
@@ -70,49 +68,33 @@ class Chart extends Component {
 
   render() {
     // GET PROPS + STATE
-    const { size, heightRatio } = this.props;
-    const {
-      type,
-      chartDesc,
-      yAxisTickTotal,
-      yAxisType,
-      xYPoints
-    } = this.state;
+    const { type, chartDesc, yAxisTickTotal, yAxisType, xYPoints } = this.state;
 
     // HANDLE SIZING
     const screenWidth = window.innerWidth;
-    const dynamicMargin = size.width < 550 ? 50 : size.width * 0.08;
     const xTickTotal = xTickCalc(screenWidth);
 
     return (
-      <div
-        className="chart__container"
-        style={{
-          width: "100%",
-          height: size.width * heightRatio
-        }}
-      >
-        <div className="chart__summary-container">
-          <ChartButtons
+      <DataDisplayContainer>
+        <DataDisplaySubContainer>
+          <DataDisplayToggles
             buttons={CHART_TYPES}
             selected={type}
             handleButtonClick={this.handleButtonClick}
           />
-          <ChartDisplay desc={chartDesc} />
-
-        </div>
-        <div className="chart__chart-container">
-          <ChartLine 
+          <DataDisplayDesc desc={chartDesc} />
+        </DataDisplaySubContainer>
+        <DataDisplayVizContainer>
+          <ChartLine
           xYPoints={xYPoints}
           yAxisType={yAxisType}
           xTickTotal={xTickTotal}
           yAxisTickTotal={yAxisTickTotal}
-          dynamicMargin={dynamicMargin}
         />
-        </div>
-      </div>
+        </DataDisplayVizContainer>
+      </DataDisplayContainer>
     );
   }
 }
 
-export default Chart;
+export default Cases;

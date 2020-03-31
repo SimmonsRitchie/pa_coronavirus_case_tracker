@@ -4,5 +4,8 @@
   align-items: center;
   font-size: $size-7;
   padding-bottom: $m-size;
+}
 
+.data-display-toggles__disabled {
+  pointer-events: none;
 }

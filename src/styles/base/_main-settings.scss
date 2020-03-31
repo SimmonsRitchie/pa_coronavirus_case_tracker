@@ -15,6 +15,9 @@ $prince-blue: #558abf;
 $burnt-red: #af3f0c;
 $slate-blue: #607d9a;
 $remorse-red: #b11a0e;
+$rosy-red: #f1bdb9;
+$light-blue: rgb(220, 235, 255);
+$light-red: rgb(249, 230, 230);
 $almost-black: #0c0c0c;
 // $faint-grey: 
 
@@ -53,6 +56,11 @@ $bubble-hover-stroke: black;
 
 // LINE CHART
 $line-series-1-color: $main;
+
+// AREA CHART
+$area-series-1-color: $light-blue;
+$area-series-2-color: $rosy-red;
+
 
 
 // Sunlight Foundation - 'thing' colors

@@ -1,0 +1,10 @@
+.data-display-title__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: $m-size;
+}
+
+.data-display-title__title {
+  @include subtitle
+}

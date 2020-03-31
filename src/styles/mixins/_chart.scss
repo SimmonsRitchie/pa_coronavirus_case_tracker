@@ -1,18 +1,18 @@
-.chart-line__x-axis {
+@mixin x-axis {
   text {
     font-size: $size-7;
     @include desktop-fontsize;
   }
 }
 
-.chart-line__y-axis {
+@mixin y-axis {
   text {
     font-size: $size-7;
     @include desktop-fontsize;
   }
 }
 
-.chart-line__crosshair-container {
+@mixin crosshair-container {
   background-color: black;
   opacity: 0.9;
   color: $tooltip-font-color;
@@ -27,17 +27,4 @@
   pointer-events: none;
   transition: opacity 0.3s ease-out;
   z-index: 999;
-}
-
-.chart-line__crosshair-label {
-  @extend .tooltip__label;
-}
-
-.chart-line__line-series-1 {
-  stroke: $line-series-1-color !important;
-}
-
-.chart-line__chart-outer-container {
-  width: 100%;
-  height: 100%;
 }

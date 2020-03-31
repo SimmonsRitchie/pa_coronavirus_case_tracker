@@ -1,4 +1,4 @@
-.table-inner__container {
+.data-table-table__container {
   width: 80%;
   max-width: 500px;
   display: flex;
@@ -7,14 +7,14 @@
 
 }
 
-.table-inner__table-container {
+.data-table-table__table-container {
   font-size: $size-7;
   overflow-y: auto;
   width: 100%;
   @include desktop-fontsize;
 }
 
-.table-inner__no-data-row {
+.data-table-table__no-data-row {
 
   td {
     text-align: center !important;
@@ -22,10 +22,10 @@
   }
 }
 
-.table-inner__sort-icon {
-  padding-left: $s-size;
+.data-table-table__sort-icon {
+  padding-left: $xs-size;
 }
 
-.table-inner__hide {
+.data-table-table__hide {
   visibility: hidden;
 }

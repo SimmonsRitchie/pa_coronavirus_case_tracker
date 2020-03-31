@@ -1,0 +1,25 @@
+.data-tests-chart__x-axis {
+  @include x-axis;
+}
+
+.data-tests-chart__y-axis {
+  @include y-axis;
+}
+
+.data-tests-chart__area-series-1 {
+  fill: $area-series-1-color !important;
+  stroke: $area-series-1-color !important;
+}
+
+.data-tests-chart__area-series-2 {
+  fill: $area-series-2-color !important;
+  stroke: $area-series-2-color !important;
+}
+
+.data-tests-chart__legend-text-1 {
+  color: darken($area-series-1-color, 30%);
+}
+
+.data-tests-chart__legend-text-2 {
+  color: darken($area-series-2-color, 30%);
+}

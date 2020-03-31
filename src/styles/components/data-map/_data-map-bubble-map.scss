@@ -1,20 +1,4 @@
-
-.bubble-map__container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  align-items: center;
-}
-
-.bubble-map__summary-container {
-  height: 100%;
-  width: 100%;
-}
-
-
-.bubble-map__bubble {
+.data-map-bubble-map__bubble {
   stroke: $bubble-stroke;
   fill: $bubble-fill;
   fill-opacity: $bubble-fill-opacity;
@@ -23,7 +7,6 @@
     stroke: $bubble-hover-stroke;
   }
 }
-
 
 
 // React simple map - overrides

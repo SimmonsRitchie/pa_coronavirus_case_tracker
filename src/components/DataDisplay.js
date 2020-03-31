@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import BubbleMap from "./BubbleMap"
+import BubbleMap from "./DataMap"
 import DataDisplayButtons from "./DataDisplayButtons"
-import LineChart from "./Chart"
+import Cases from "./DataCases"
 import { SizeMe } from "react-sizeme";
-import Table from "./Table";
-
+import Table from "./DataTable";
+import TestData from "./DataTests"
 
 const DISPLAY_BUTTONS = [
   {
@@ -12,8 +12,12 @@ const DISPLAY_BUTTONS = [
     "text": "County map"
   },
   {
-    "id": "chart",
-    "text": "Cases per day"
+    "id": "cases",
+    "text": "Cases"
+  },
+  {
+    "id": "tests",
+    "text": "Tests"
   },
   {
     "id": "data",
@@ -24,14 +28,20 @@ const DISPLAY_BUTTONS = [
 
 const DataDisplay = () => {
   // Data container height is set to HEIGHT_RATIO * width of container
-  const HEIGHT_RATIO = 0.75
-  const MARGIN = 0.05
+  const viewportWidth = window.innerWidth
+  let HEIGHT_RATIO
+  if (viewportWidth < 550) {
+    HEIGHT_RATIO = 0.9
+  } else {
+    HEIGHT_RATIO = 0.7
+  }
   const [display, setDisplay] = useState('map')
   const getDisplay = (size) => {
     return ({
-    map: <BubbleMap size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
-    chart: <LineChart size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
-    data: <Table size={size} heightRatio={HEIGHT_RATIO} margin={MARGIN}/>,
+    map: <BubbleMap />,
+    cases: <Cases />,
+    tests: <TestData />,
+    data: <Table />,
   })};
 
   const changeDisplay = (e) => {
