@@ -41,7 +41,7 @@ class DataTests extends React.Component {
     const TESTS = [{
       type: "tests",
       yAxisTickTotal: 5,
-      buttonText: "Positive tests",
+      buttonText: "Tests",
       desc: genTestsDescrip(data)
     }];
     const screenWidth = window.innerWidth;
@@ -50,7 +50,6 @@ class DataTests extends React.Component {
     return (
       <DataDisplayContainer>
         <DataDisplaySubContainer>
-          <DataDisplayToggles buttons={TESTS} />
           <DataDisplayDesc desc={TESTS[0].desc} />
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
@@ -67,3 +66,5 @@ class DataTests extends React.Component {
 }
 
 export default DataTests;
+
+// <DataDisplayToggles buttons={TESTS} />
