@@ -14,8 +14,8 @@ const ChartCrosshair = ({values}) => {
     <div className="data-tests-crosshair__label">
       {values[0].x.format("MMM D")}
     </div>
-    <div>Positive: {formatPercent(percentPos)}</div>
-    <div>Total: {formatComma(totalTests)}</div>
+    <div>Positive tests: {formatPercent(percentPos)}</div>
+    <div>Total tests: {formatComma(totalTests)}</div>
   </div>
   )
 }
