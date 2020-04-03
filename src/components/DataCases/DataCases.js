@@ -15,17 +15,17 @@ const CHART_TYPES = [
     type: "semi-log",
     yAxisType: "log",
     buttonText: "Adjusted",
-    yAxisTickTotal: 2,
+    yAxisTickTotal: 3,
     chartDesc:
-      "This chart shows cases per day adjusted for exponential growth to make it easier to see the overall trend. A flatter curve means the rate of new cases is slowing."
+      "This chart shows cases per day adjusted for exponential growth to make it easier to see the overall trend. A flatter curve means the rate of new cases is slowing.",
   },
   {
     type: "linear",
     buttonText: "Total",
     yAxisType: "linear",
     yAxisTickTotal: 5,
-    chartDesc: "This chart shows a running total of cases per day."
-  }
+    chartDesc: "This chart shows a running total of cases per day.",
+  },
 ];
 
 class Cases extends Component {
@@ -33,7 +33,7 @@ class Cases extends Component {
     super(props);
     this.state = {
       ...CHART_TYPES[0],
-      xYPoints: []
+      xYPoints: [],
     };
   }
 
@@ -47,21 +47,21 @@ class Cases extends Component {
       "county",
       "total"
     );
-    const xYPoints = createXYPoints(casesTotalRow)
+    const xYPoints = createXYPoints(casesTotalRow);
     // SET DATA
     this.setState({
-      xYPoints
+      xYPoints,
     });
   }
 
-  handleButtonClick = value => {
+  handleButtonClick = (value) => {
     if (value === "semi-log") {
       this.setState({
-        ...CHART_TYPES[0]
+        ...CHART_TYPES[0],
       });
     } else {
       this.setState({
-        ...CHART_TYPES[1]
+        ...CHART_TYPES[1],
       });
     }
   };
@@ -86,11 +86,11 @@ class Cases extends Component {
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
           <ChartLine
-          xYPoints={xYPoints}
-          yAxisType={yAxisType}
-          xTickTotal={xTickTotal}
-          yAxisTickTotal={yAxisTickTotal}
-        />
+            xYPoints={xYPoints}
+            yAxisType={yAxisType}
+            xTickTotal={xTickTotal}
+            yAxisTickTotal={yAxisTickTotal}
+          />
         </DataDisplayVizContainer>
       </DataDisplayContainer>
     );
