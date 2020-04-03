@@ -5,8 +5,7 @@ export const genTestsDescrip = data => {
   const formatPercent = format(".1%");
   const formatComma = format(",");
   const tests = data.paTests;
-  const { mostRecentDate, oldestDate } = tests.meta;
-  const formatMostRecentDate = mostRecentDate.format("MMM D");
+  const { oldestDate } = tests.meta;
   const formatOldestDate = oldestDate.format("MMMM D");
   const positiveTests = tests.testData.find(
     item => item.category === "positive"
