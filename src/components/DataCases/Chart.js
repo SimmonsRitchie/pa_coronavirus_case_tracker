@@ -1,24 +1,25 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import {
   LineSeries,
   HorizontalGridLines,
   XAxis,
   YAxis,
   Crosshair,
-  XYPlot
+  XYPlot,
 } from "react-vis";
+import PropTypes from "prop-types";
 import moment from "moment";
 import withResponsiveContainer from "../../hoc/withResponsiveContainer";
-import {format} from 'd3-format'
+import { formatK, formatComma } from "../../utils/chartHelpers";
 
 class Chart extends Component {
   state = {
-    crosshairValues: null
+    crosshairValues: null,
   };
 
   onMouseLeave = () => {
     this.setState({
-      crosshairValues: null
+      crosshairValues: null,
     });
   };
 
@@ -30,7 +31,7 @@ class Chart extends Component {
      */
     const val = [this.props.xYPoints[index]];
     this.setState({
-      crosshairValues: val
+      crosshairValues: val,
     });
   };
 
@@ -43,9 +44,8 @@ class Chart extends Component {
       xTickTotal,
       yAxisTickTotal,
     } = this.props;
-    const { crosshairValues} = this.state
+    const { crosshairValues } = this.state;
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
-    const formatComma = format(',')
     return (
       <XYPlot
         height={height}
@@ -59,7 +59,7 @@ class Chart extends Component {
         <XAxis
           className={"data-cases-chart__x-axis"}
           tickTotal={xTickTotal}
-          tickFormat={val => {
+          tickFormat={(val) => {
             val = moment(val);
             return val.format("MMM D");
           }}
@@ -67,9 +67,9 @@ class Chart extends Component {
         <YAxis
           className={"data-cases-chart__y-axis"}
           tickTotal={yAxisTickTotal}
-          tickFormat={value => {
+          tickFormat={(value) => {
             // To stop log scale from changing format into scientific notation
-            return +value;
+            return formatK(value);
           }}
         />
         <LineSeries
@@ -91,6 +91,15 @@ class Chart extends Component {
     );
   }
 }
+
+Chart.propTypes = {
+  height: PropTypes.number,
+  width: PropTypes.number,
+  xYPoints: PropTypes.array,
+  yAxisType: PropTypes.string,
+  xTickTotal: PropTypes.number,
+  yAxisTickTotal: PropTypes.number,
+};
 
 const ResponsiveChartLine = withResponsiveContainer(Chart);
 
