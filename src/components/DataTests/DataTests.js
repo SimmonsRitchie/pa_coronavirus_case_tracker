@@ -66,5 +66,3 @@ class DataTests extends React.Component {
 }
 
 export default DataTests;
-
-// <DataDisplayToggles buttons={TESTS} />
