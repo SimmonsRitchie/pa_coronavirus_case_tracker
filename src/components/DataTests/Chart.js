@@ -11,7 +11,7 @@ import {
   XYPlot,
 } from "react-vis";
 import moment from "moment";
-import { format } from "d3-format";
+import { formatK } from "../../utils/chartHelpers";
 
 class Chart extends Component {
   state = {
@@ -46,7 +46,6 @@ class Chart extends Component {
     } = this.props;
     const { crosshairValues } = this.state;
     const dynamicMargin = width < 550 ? 50 : width * 0.08;
-    const formatK = format("~s");
 
     return (
       <XYPlot
