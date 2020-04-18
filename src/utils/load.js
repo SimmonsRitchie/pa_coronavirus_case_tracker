@@ -17,9 +17,9 @@ export const loadData = () => {
     testsPath = TESTS;
   } else {
     const domain = process.env.FETCH_DOMAIN;
-    casesPath = domain + "cases.csv";
-    deathsPath = domain + "deaths.csv";
-    testsPath = domain + "tests.csv";
+    casesPath = domain + "pa-cases.csv";
+    deathsPath = domain + "pa-deaths.csv";
+    testsPath = domain + "pa-tests.csv";
   }
   return Promise.all([
     csv(casesPath),
@@ -27,7 +27,6 @@ export const loadData = () => {
     csv(testsPath),
     import("~/data/pa_county.json") // topojson file
   ]).then(([paCases, paDeaths, paTests, countyMap]) => {
-
 
     // process cases
     const countyDataLabel = "countyData";
