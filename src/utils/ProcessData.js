@@ -141,8 +141,12 @@ class ProcessData {
   // PRIVATE METHODS
   _cleanNumber(str) {
     // Converts string into a clean number
-    let clean = str.replace(/[\s,]/,'')
-    return + clean
+    if (typeof str === 'string') {
+      let clean = str.replace(/[\s,]/,'')
+      return +clean
+    } else {
+      return str
+    }
   }
 
 }
