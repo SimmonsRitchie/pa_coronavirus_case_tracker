@@ -3,21 +3,18 @@ import ProcessTopo from "./ProcessTopo";
 import ProcessData from "./ProcessData";
 import CASES from "~/data/pa-cases.csv";
 import DEATHS from "~/data/pa-deaths.csv";
-import TESTS from "~/data/tests.csv";
-import INQ_CASES from "~/data/pa-cases.csv";
-import INQ_DEATHS from "~/data/pa-deaths.csv";
-import INQ_TESTS from "~/data/pa-tests.csv";
+import TESTS from "~/data/pa-tests.csv";
 import { createMergedCountyData } from "./parse";
+import convertInqTestingData from './convertInqData'
 
 export const loadData = () => {
   /* Fetch and parse files.*/
-  let casesPath, deathsPath, testsPath, inqTestsPath;
+  let casesPath, deathsPath, testsPath;
   if (process.env.NODE_ENV === "development") {
     console.log("dev mode: using dummy data");
     casesPath = CASES;
     deathsPath = DEATHS;
     testsPath = TESTS;
-    inqTestsPath = INQ_TESTS;
   } else {
     const domain = process.env.FETCH_DOMAIN;
     casesPath = domain + "cases.csv";
@@ -28,11 +25,9 @@ export const loadData = () => {
     csv(casesPath),
     csv(deathsPath),
     csv(testsPath),
-    csv(inqTestsPath),
     import("~/data/pa_county.json") // topojson file
-  ]).then(([paCases, paDeaths, paTests, inqTests, countyMap]) => {
-    console.log('old data',paTests)
-    console.log('new data',inqTests)
+  ]).then(([paCases, paDeaths, paTests, countyMap]) => {
+
 
     // process cases
     const countyDataLabel = "countyData";
@@ -53,9 +48,11 @@ export const loadData = () => {
       .addCountyMeta({ dataLabel: countyDataLabel, primaryKey: "county" })
       .getData();
 
+
     // process tests
     const testDataLabel = "testData";
-    const processTests = new ProcessData(paTests);
+    const convertedInqData = convertInqTestingData(paTests, paCases)
+    const processTests = new ProcessData(convertedInqData);
     const cleanPaTests = processTests
       .rearrange("category")
       .nest(testDataLabel)
