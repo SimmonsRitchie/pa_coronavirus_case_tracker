@@ -10,7 +10,7 @@ class ProcessData {
   }
 
   // PUBLIC METHODS
-  transpose() {
+  transposeInqData() {
     let transposedData = []
     // get county list from first row
     const { Date, ...countyData } = this.data[0]
