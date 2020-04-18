@@ -1,10 +1,11 @@
 import { csv } from "d3-fetch";
 import ProcessTopo from "./ProcessTopo";
 import ProcessData from "./ProcessData";
-import CASES from "~/data/cases.csv";
-import DEATHS from "~/data/deaths.csv";
-import TESTS from "~/data/tests.csv";
+import CASES from "~/data/pa-cases.csv";
+import DEATHS from "~/data/pa-deaths.csv";
+import TESTS from "~/data/pa-tests.csv";
 import { createMergedCountyData } from "./parse";
+import convertInqTestingData from './convertInqData'
 
 export const loadData = () => {
   /* Fetch and parse files.*/
@@ -16,9 +17,9 @@ export const loadData = () => {
     testsPath = TESTS;
   } else {
     const domain = process.env.FETCH_DOMAIN;
-    casesPath = domain + "cases.csv";
-    deathsPath = domain + "deaths.csv";
-    testsPath = domain + "tests.csv";
+    casesPath = domain + "pa-cases.csv";
+    deathsPath = domain + "pa-deaths.csv";
+    testsPath = domain + "pa-tests.csv";
   }
   return Promise.all([
     csv(casesPath),
@@ -26,19 +27,12 @@ export const loadData = () => {
     csv(testsPath),
     import("~/data/pa_county.json") // topojson file
   ]).then(([paCases, paDeaths, paTests, countyMap]) => {
-    // process tests
-    const testDataLabel = "testData";
-    const processTests = new ProcessData(paTests);
-    const cleanPaTests = processTests
-      .rearrange("category")
-      .nest(testDataLabel)
-      .addTestsMeta({ dataLabel: testDataLabel, primaryKey: "category" })
-      .getData();
 
     // process cases
     const countyDataLabel = "countyData";
     const processCases = new ProcessData(paCases);
     const cleanPaCases = processCases
+      .transposeInqData()
       .rearrange("county")
       .nest(countyDataLabel)
       .addCountyMeta({ dataLabel: countyDataLabel, primaryKey: "county" })
@@ -47,9 +41,21 @@ export const loadData = () => {
     // process deaths
     const processDeaths = new ProcessData(paDeaths);
     const cleanPaDeaths = processDeaths
+      .transposeInqData()
       .rearrange("county")
       .nest(countyDataLabel)
       .addCountyMeta({ dataLabel: countyDataLabel, primaryKey: "county" })
+      .getData();
+
+
+    // process tests
+    const testDataLabel = "testData";
+    const convertedInqData = convertInqTestingData(paTests, paCases)
+    const processTests = new ProcessData(convertedInqData);
+    const cleanPaTests = processTests
+      .rearrange("category")
+      .nest(testDataLabel)
+      .addTestsMeta({ dataLabel: testDataLabel, primaryKey: "category" })
       .getData();
 
     // process map data

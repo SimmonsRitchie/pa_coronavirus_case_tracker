@@ -10,6 +10,32 @@ class ProcessData {
   }
 
   // PUBLIC METHODS
+  transposeInqData() {
+    let transposedData = []
+    // get county list from first row
+    const { Date, ...countyData } = this.data[0]
+    const countyNames = Object.keys(countyData)
+    countyNames.forEach(countyName => {
+      const newRow = {}
+      if (countyName.toLowerCase() === 'total') {
+        newRow["county"] = 'total'
+      } else {
+        newRow["county"] = countyName
+      }
+      this.data.forEach((row, idx) => {
+        const { Date } = row
+        newRow[Date] = row[countyName]
+        if (idx === (this.data.length - 1)) {
+          newRow["total"] = row[countyName]
+        }
+      })
+      transposedData.push(newRow)
+    })
+    this.data = transposedData
+    return this
+  }
+
+
   rearrange(primaryKey) {
     /*
     * Expects am array of objects and transforms each object into a tidier structure.
@@ -18,8 +44,8 @@ class ProcessData {
     *   
     *   {
     *   primaryKey: str,
-    *   2020-03-06: int
-    *   2020-03-07: int
+    *   2020-03-06: str
+    *   2020-03-07: str
     *   ...
     *  }
     * 
@@ -115,8 +141,12 @@ class ProcessData {
   // PRIVATE METHODS
   _cleanNumber(str) {
     // Converts string into a clean number
-    let clean = str.replace(/[\s,]/,'')
-    return + clean
+    if (typeof str === 'string') {
+      let clean = str.replace(/[\s,]/,'')
+      return +clean
+    } else {
+      return str
+    }
   }
 
 }
