@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+
 const Search = ({inputText, clearResults, handleTextChange}) => {
   return (
     <div className="data-tests-search__container">
