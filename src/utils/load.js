@@ -1,21 +1,23 @@
 import { csv } from "d3-fetch";
 import ProcessTopo from "./ProcessTopo";
 import ProcessData from "./ProcessData";
-import CASES from "~/data/cases.csv";
-import DEATHS from "~/data/deaths.csv";
+import CASES from "~/data/pa-cases.csv";
+import DEATHS from "~/data/pa-deaths.csv";
 import TESTS from "~/data/tests.csv";
 import INQ_CASES from "~/data/pa-cases.csv";
+import INQ_DEATHS from "~/data/pa-deaths.csv";
+import INQ_TESTS from "~/data/pa-tests.csv";
 import { createMergedCountyData } from "./parse";
 
 export const loadData = () => {
   /* Fetch and parse files.*/
-  let casesPath, deathsPath, testsPath, inqCasesPath;
+  let casesPath, deathsPath, testsPath, inqTestsPath;
   if (process.env.NODE_ENV === "development") {
     console.log("dev mode: using dummy data");
     casesPath = CASES;
     deathsPath = DEATHS;
     testsPath = TESTS;
-    inqCasesPath = INQ_CASES;
+    inqTestsPath = INQ_TESTS;
   } else {
     const domain = process.env.FETCH_DOMAIN;
     casesPath = domain + "cases.csv";
@@ -26,42 +28,17 @@ export const loadData = () => {
     csv(casesPath),
     csv(deathsPath),
     csv(testsPath),
-    csv(inqCasesPath),
+    csv(inqTestsPath),
     import("~/data/pa_county.json") // topojson file
-  ]).then(([paCases, paDeaths, paTests, inqCases, countyMap]) => {
-    console.log('old data',paCases)
-    // console.log('new data',inqCases)
-    const transposeInq = new ProcessData(inqCases)
-    const transposedInq = transposeInq.transpose().getData()
-    console.log('transposed new data',transposedInq)
-
-
-    const rearrangePa = new ProcessData(paCases)
-    const rearrangedPa = rearrangePa.rearrange("county").getData()
-    const rearrangeInq = new ProcessData(inqCases)
-
-    const rearrangedInq = rearrangeInq
-      .transpose()
-      .rearrange("county")
-      .nest("countyData")
-      .getData()
-    // console.log('rearranged old data',rearrangedPa)
-    console.log('rearranged old data',rearrangedPa)
-    console.log('rearranged new data',rearrangedInq)
-
-    // process tests
-    const testDataLabel = "testData";
-    const processTests = new ProcessData(paTests);
-    const cleanPaTests = processTests
-      .rearrange("category")
-      .nest(testDataLabel)
-      .addTestsMeta({ dataLabel: testDataLabel, primaryKey: "category" })
-      .getData();
+  ]).then(([paCases, paDeaths, paTests, inqTests, countyMap]) => {
+    console.log('old data',paTests)
+    console.log('new data',inqTests)
 
     // process cases
     const countyDataLabel = "countyData";
     const processCases = new ProcessData(paCases);
     const cleanPaCases = processCases
+      .transposeInqData()
       .rearrange("county")
       .nest(countyDataLabel)
       .addCountyMeta({ dataLabel: countyDataLabel, primaryKey: "county" })
@@ -70,9 +47,19 @@ export const loadData = () => {
     // process deaths
     const processDeaths = new ProcessData(paDeaths);
     const cleanPaDeaths = processDeaths
+      .transposeInqData()
       .rearrange("county")
       .nest(countyDataLabel)
       .addCountyMeta({ dataLabel: countyDataLabel, primaryKey: "county" })
+      .getData();
+
+    // process tests
+    const testDataLabel = "testData";
+    const processTests = new ProcessData(paTests);
+    const cleanPaTests = processTests
+      .rearrange("category")
+      .nest(testDataLabel)
+      .addTestsMeta({ dataLabel: testDataLabel, primaryKey: "category" })
       .getData();
 
     // process map data
