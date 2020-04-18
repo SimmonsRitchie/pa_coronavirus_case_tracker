@@ -4,16 +4,18 @@ import ProcessData from "./ProcessData";
 import CASES from "~/data/cases.csv";
 import DEATHS from "~/data/deaths.csv";
 import TESTS from "~/data/tests.csv";
+import INQ_CASES from "~/data/pa-cases.csv";
 import { createMergedCountyData } from "./parse";
 
 export const loadData = () => {
   /* Fetch and parse files.*/
-  let casesPath, deathsPath, testsPath;
+  let casesPath, deathsPath, testsPath, inqCasesPath;
   if (process.env.NODE_ENV === "development") {
     console.log("dev mode: using dummy data");
     casesPath = CASES;
     deathsPath = DEATHS;
     testsPath = TESTS;
+    inqCasesPath = INQ_CASES;
   } else {
     const domain = process.env.FETCH_DOMAIN;
     casesPath = domain + "cases.csv";
@@ -24,8 +26,29 @@ export const loadData = () => {
     csv(casesPath),
     csv(deathsPath),
     csv(testsPath),
+    csv(inqCasesPath),
     import("~/data/pa_county.json") // topojson file
-  ]).then(([paCases, paDeaths, paTests, countyMap]) => {
+  ]).then(([paCases, paDeaths, paTests, inqCases, countyMap]) => {
+    console.log('old data',paCases)
+    // console.log('new data',inqCases)
+    const transposeInq = new ProcessData(inqCases)
+    const transposedInq = transposeInq.transpose().getData()
+    console.log('transposed new data',transposedInq)
+
+
+    const rearrangePa = new ProcessData(paCases)
+    const rearrangedPa = rearrangePa.rearrange("county").getData()
+    const rearrangeInq = new ProcessData(inqCases)
+
+    const rearrangedInq = rearrangeInq
+      .transpose()
+      .rearrange("county")
+      .nest("countyData")
+      .getData()
+    // console.log('rearranged old data',rearrangedPa)
+    console.log('rearranged old data',rearrangedPa)
+    console.log('rearranged new data',rearrangedInq)
+
     // process tests
     const testDataLabel = "testData";
     const processTests = new ProcessData(paTests);
