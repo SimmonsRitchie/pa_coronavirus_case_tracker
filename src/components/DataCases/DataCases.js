@@ -32,7 +32,7 @@ class Cases extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ...CHART_TYPES[0],
+      ...CHART_TYPES[1],
       xYPoints: [],
     };
   }
@@ -77,11 +77,6 @@ class Cases extends Component {
     return (
       <DataDisplayContainer>
         <DataDisplaySubContainer>
-          <DataDisplayToggles
-            buttons={CHART_TYPES}
-            selected={type}
-            handleButtonClick={this.handleButtonClick}
-          />
           <DataDisplayDesc desc={chartDesc} />
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
