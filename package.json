@@ -16,17 +16,17 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
-    "@fortawesome/fontawesome-svg-core": "^1.2.28",
-    "@fortawesome/free-solid-svg-icons": "^5.13.0",
-    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-solid-svg-icons": "^5.14.0",
+    "@fortawesome/react-fontawesome": "^0.1.11",
     "bulma": "^0.7.5",
-    "d3-array": "^2.4.0",
-    "d3-fetch": "^1.1.2",
+    "d3-array": "^2.5.0",
+    "d3-fetch": "^1.2.0",
     "d3-format": "^1.4.3",
-    "d3-geo": "^1.11.9",
+    "d3-geo": "^1.12.1",
     "d3-scale": "^3.2.1",
     "minimist": "^1.2.5",
-    "moment": "^2.24.0",
+    "moment": "^2.27.0",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "raf": "3.3.2",
@@ -35,10 +35,10 @@
     "react-simple-maps": "^1.0.0-beta.0",
     "react-sizeme": "^2.6.12",
     "react-spinners": "^0.6.1",
-    "react-table": "^7.0.0",
-    "react-tooltip": "^4.1.2",
+    "react-table": "^7.5.0",
+    "react-tooltip": "^4.2.7",
     "react-vis": "^1.11.7",
-    "throttle-debounce": "^2.1.0",
+    "throttle-debounce": "^2.2.1",
     "topojson-client": "^3.1.0"
   },
   "devDependencies": {
@@ -50,7 +50,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.19.0",
-    "sass": "^1.26.3"
+    "eslint-plugin-react": "^7.20.5",
+    "sass": "^1.26.10"
   }
 }
