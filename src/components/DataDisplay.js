@@ -60,7 +60,7 @@ const DataDisplay = () => {
             refreshMode={"debounce"}
             render={({ size }) => {
               return (
-                <div className="data-display__data-container" style={{height: size.width * HEIGHT_RATIO}}>
+                <div className="data-display__data-container" >
                 {getDisplay(size)[display]}
                 </div>
                 )

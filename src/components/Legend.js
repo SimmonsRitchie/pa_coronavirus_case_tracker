@@ -1,35 +1,28 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
 
-const CustomLegend = ({ payload }) => {
+const CustomLegend = (props) => {
+  const { payload, label1, label2 } = props;
   return (
-    <div className="chart-legend__container">
-      {payload.map((entry) => {
-        const { legendType, dataKey, value, color } = entry;
-        return (
-          <li key={dataKey} className="chart-legend__item">
-            <div
-              className={`chart-legend__item-color ${
-                legendType === "line" ? "line-color" : ""
-              }`}
-              style={{
-                backgroundColor: color,
-              }}
-            />
-            {value}
-          </li>
-        );
-      })}
-    </div>
+    <ul className="recharts-legend">
+      {payload.map((entry, i) => (
+        <li key={entry.dataKey} className="recharts-legend-item">
+          <span
+            className={`legend-item-color ${
+              entry.payload.legendType === 'line' ? 'line-color' : ''
+            }`}
+            style={{
+              backgroundColor: `${
+                entry.payload.legendType === 'line'
+                  ? entry.payload.stroke
+                  : entry.payload.fill
+              }`,
+            }}
+          />
+          {i === 0 ? label1 : label2}
+        </li>
+      ))}
+    </ul>
   );
-};
-
-CustomLegend.defaultProps = {
-  payload: null,
-};
-
-CustomLegend.propTypes = {
-  payload: PropTypes.arrayOf(PropTypes.any),
 };
 
 export default CustomLegend;
