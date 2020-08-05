@@ -6,13 +6,6 @@
   padding-bottom: $m-size;
 }
 
-.header__container-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-  max-width: 500px;
-}
 
 .header__title {
   color: $header-title-color
