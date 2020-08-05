@@ -60,16 +60,15 @@ class DataTests extends React.Component {
 
     return (
       <DataDisplayContainer>
-        <DataDisplaySubContainer>
-          <DataDisplayDesc desc={TESTS[0].desc} />
-        </DataDisplaySubContainer>
         <DataDisplayVizContainer>
           <ChartCumulative 
+            title={"Cumulative total tests"}
+            description={TESTS[0].desc}
             data={chartData} 
             customLegend={cumulativeLegend} 
             posTotalKey="posRunningTotal" 
             testsTotalKey="testsRunningTotal"
-            />
+          />
         </DataDisplayVizContainer>
       </DataDisplayContainer>
     );

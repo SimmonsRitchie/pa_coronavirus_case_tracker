@@ -1,0 +1,18 @@
+.chart-header__container {
+  flex: 0 1 auto;
+  margin-bottom: $m-size;
+}
+
+.chart-header__title {
+  @include mobile {
+    font-size: 16px !important;
+  }
+  @extend %label;
+  margin-bottom: $xs-size;
+}
+
+.chart-header__description {
+  font-size: 16px;
+  line-height: 1.4;
+  color: #555;
+}
