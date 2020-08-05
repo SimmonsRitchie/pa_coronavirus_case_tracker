@@ -19,9 +19,7 @@ export const genTestsDescrip = data => {
     <span>
       Since <B>{formatOldestDate}</B>, a total of <B>{cleanTotalTested}</B>{" "}
       Pennsylvanians have been tested for the coronavirus, and{" "}
-      <B>{cleanPercPos}</B> were positive. The chart shows a running total of{" "}
-      <LegText series={2}>positive</LegText> and{" "}
-      <LegText series={1}>negative</LegText> results.
+      <B>{cleanPercPos}</B> were positive. The chart shows a running total of positive and total test results.
     </span>
   );
   return descrip;
