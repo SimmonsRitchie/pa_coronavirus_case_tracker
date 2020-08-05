@@ -2,6 +2,7 @@ import { csv } from "d3-fetch";
 import ProcessTopo from "./ProcessTopo";
 import ProcessData from "./ProcessData";
 import CASES from "~/data/pa-cases.csv";
+import CONFIRMED from "~/data/pa-confirmed.csv";
 import DEATHS from "~/data/pa-deaths.csv";
 import TESTS from "~/data/pa-tests.csv";
 import { createMergedCountyData } from "./parse";
@@ -9,24 +10,27 @@ import convertInqTestingData from './convertInqData'
 
 export const loadData = () => {
   /* Fetch and parse files.*/
-  let casesPath, deathsPath, testsPath;
+  let casesPath, confirmedPath, deathsPath, testsPath;
   if (process.env.NODE_ENV === "development") {
     console.log("dev mode: using dummy data");
     casesPath = CASES;
+    confirmedPath = CONFIRMED;
     deathsPath = DEATHS;
     testsPath = TESTS;
   } else {
     const domain = process.env.FETCH_DOMAIN;
     casesPath = domain + "pa-cases.csv";
+    confirmedPath = domain + "pa-confirmed.csv";
     deathsPath = domain + "pa-deaths.csv";
     testsPath = domain + "pa-tests.csv";
   }
   return Promise.all([
     csv(casesPath),
+    csv(confirmedPath),
     csv(deathsPath),
     csv(testsPath),
     import("~/data/pa_county.json") // topojson file
-  ]).then(([paCases, paDeaths, paTests, countyMap]) => {
+  ]).then(([paCases, paConfirmed, paDeaths, paTests, countyMap]) => {
 
     // process cases
     const countyDataLabel = "countyData";
@@ -50,7 +54,7 @@ export const loadData = () => {
 
     // process tests
     const testDataLabel = "testData";
-    const convertedInqData = convertInqTestingData(paTests, paCases)
+    const convertedInqData = convertInqTestingData(paTests, paConfirmed)
     const processTests = new ProcessData(convertedInqData);
     const cleanPaTests = processTests
       .rearrange("category")
