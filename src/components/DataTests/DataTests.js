@@ -4,16 +4,18 @@ import DataDisplayContainer from "../DataDisplayContainer";
 import DataDisplayDesc from "../DataDisplayDesc";
 import DataDisplaySubContainer from "../DataDisplaySubContainer";
 import DataDisplayVizContainer from "../DataDisplayVizContainer";
-import { createXYPoints } from "../../utils/parse";
-import TestsChart from "./Chart";
 import { genTestsDescrip } from "../../utils/textFormat";
-import { xTickCalc } from "../../utils/chartHelpers";
+import convertDatesToUnix from "../../utils/convertDatesToUnix";
+import _ from "lodash"
+import filterCommonDates from "../../utils/filterCommonDates";
+import ChartCumulative from "../ChartCumulative";
+import CustomLegend from '../Legend';
 
 class DataTests extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      xYPointsArr: [],
+      chartData: [],
     };
   }
 
@@ -23,19 +25,28 @@ class DataTests extends React.Component {
     const { data } = this.context;
     // GET TESTS
     const tests = data.paTests.testData;
-    const posTests = tests.filter((item) => item.category === "positive")[0];
-    const negTests = tests.filter((item) => item.category === "negative")[0];
-    const posPoints = createXYPoints(posTests);
-    const negPoints = createXYPoints(negTests);
-    const xYPointsArr = [posPoints, negPoints];
+    let posTests = tests.filter((item) => item.category === "positive")[0].dates;
+    posTests = posTests.map((item) => {
+      const {value, ...otherProps } = item
+      return {...otherProps, posRunningTotal: value}
+      })
+    let totalTests = tests.filter((item) => item.category === "total")[0].dates;
+    totalTests = totalTests.map((item) => {
+      const {value, ...otherProps } = item
+      return {...otherProps, testsRunningTotal: value}
+      })
+    let [clnPosTests, clnTotalTests] = filterCommonDates([posTests, totalTests])
+    let mergedData = _.merge(clnPosTests, clnTotalTests);
+    mergedData = convertDatesToUnix(mergedData)
+    console.log(mergedData);
     this.setState({
-      xYPointsArr,
-    });
+      chartData: mergedData
+    })
   }
 
   render() {
-    const { xYPointsArr } = this.state;
     const { data } = this.context;
+    const { chartData } = this.state
     const TESTS = [
       {
         type: "tests",
@@ -44,8 +55,8 @@ class DataTests extends React.Component {
         desc: genTestsDescrip(data),
       },
     ];
-    const screenWidth = window.innerWidth;
-    const xTickTotal = xTickCalc(screenWidth);
+    const cumulativeLegend = <CustomLegend label1="Positive" label2="Total" />;
+
 
     return (
       <DataDisplayContainer>
@@ -53,12 +64,12 @@ class DataTests extends React.Component {
           <DataDisplayDesc desc={TESTS[0].desc} />
         </DataDisplaySubContainer>
         <DataDisplayVizContainer>
-          <TestsChart
-            data={xYPointsArr}
-            yAxisType={"linear"}
-            xTickTotal={xTickTotal}
-            yAxisTickTotal={TESTS[0].yAxisTickTotal}
-          />
+          <ChartCumulative 
+            data={chartData} 
+            customLegend={cumulativeLegend} 
+            posTotalKey="posRunningTotal" 
+            testsTotalKey="testsRunningTotal"
+            />
         </DataDisplayVizContainer>
       </DataDisplayContainer>
     );
