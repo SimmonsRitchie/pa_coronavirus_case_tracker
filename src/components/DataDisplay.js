@@ -9,7 +9,7 @@ import TestData from "./DataTests"
 const DISPLAY_BUTTONS = [
   {
     "id": "map",
-    "text": "COUNTY MAP"
+    "text": "STATE MAP"
   },
   {
     "id": "cases",
@@ -21,7 +21,7 @@ const DISPLAY_BUTTONS = [
   },
   {
     "id": "data",
-    "text": "COUNTY-BY-COUNTY STATS"
+    "text": "COUNTY STATS"
   },
 ]
 

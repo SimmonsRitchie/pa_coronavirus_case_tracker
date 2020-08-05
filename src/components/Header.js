@@ -4,10 +4,10 @@ const Header = () => (
   <div className="header__container">
       <div>
         <h2 className="title is-4 has-text-weight-bold header__title">
-          Pennsylvania Coronavirus Case Tracker
+          CORONAVIRUS CASE TRACKER
         </h2>
         <p className="">
-        Cases across the state are expected to increase at an exponential rate. Because of limited testing and other factors, experts believe the virus is far more widespread than case counts suggest.
+        The following is a summary of reported cases, deaths, and tests in Pennsylvania. Please keep in mind that because of limited testing and other factors, experts believe the virus is far more widespread than case counts suggest. 
         </p>
       </div>
   </div>
