@@ -13,11 +13,13 @@ import {
 import { formatUnix, formatK } from '../../utils/formatters'
 import { COLORS } from '../../utils/constants/colors';
 import CumulativeTooltip from './CumulativeTooltip';
+import ChartWrapper from '../ChartWrapper';
 
 
 const ChartCumulative = ({
-  data, customLegend, testsTotalKey, posTotalKey,
+  data, customLegend, testsTotalKey, posTotalKey, title
 }) => (
+  <ChartWrapper title={title}>
   <ResponsiveContainer>
     <AreaChart
       margin={{
@@ -70,6 +72,7 @@ const ChartCumulative = ({
       />
     </AreaChart>
   </ResponsiveContainer>
+  </ChartWrapper>
 );
 
 export default ChartCumulative;
