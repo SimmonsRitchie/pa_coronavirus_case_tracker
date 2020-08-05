@@ -25,6 +25,7 @@
     "d3-format": "^1.4.3",
     "d3-geo": "^1.12.1",
     "d3-scale": "^3.2.1",
+    "dayjs": "^1.8.32",
     "minimist": "^1.2.5",
     "moment": "^2.27.0",
     "parcel": "^1.12.4",
@@ -38,6 +39,7 @@
     "react-table": "^7.5.0",
     "react-tooltip": "^4.2.7",
     "react-vis": "^1.11.7",
+    "recharts": "^1.8.5",
     "throttle-debounce": "^2.2.1",
     "topojson-client": "^3.1.0"
   },

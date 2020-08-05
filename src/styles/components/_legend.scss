@@ -1,0 +1,36 @@
+.recharts-legend {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    display: inline;
+    font-size: 14px;
+    margin-right: 10px;
+    line-height: 1.4;
+    color: #666;
+    font-weight: bold;
+    .legend-item-color {
+      width: 10px;
+      height: 10px;
+      background: red;
+      margin-right: 4px;
+      display: inline-block;
+      vertical-align: middle;
+
+      &.line-color {
+        height: 2px;
+        width: 15px;
+      }
+    }
+  }
+}
+.recharts-default-legend {
+  li {
+    display: inline;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #666;
+    font-weight: bold;
+  }
+}

@@ -12,8 +12,9 @@
 }
 
 .data-display-desc__desc {
-  width: 70%;
-  font-size: $size-7;
+  text-align: left;
+  width: 100%;
+  font-size: $size-6;
   padding-bottom: $s-size;
   @media (min-width: $mid-breakpoint) {
     font-size: $size-6;
