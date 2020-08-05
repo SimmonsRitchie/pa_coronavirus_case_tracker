@@ -17,9 +17,9 @@ import ChartWrapper from '../ChartWrapper';
 
 
 const ChartCumulative = ({
-  data, customLegend, testsTotalKey, posTotalKey, title
+  data, customLegend, testsTotalKey, posTotalKey, title, description
 }) => (
-  <ChartWrapper title={title}>
+  <ChartWrapper title={title} description={description}>
   <ResponsiveContainer>
     <AreaChart
       margin={{

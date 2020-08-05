@@ -9,6 +9,7 @@ import DataDisplayContainer from "../DataDisplayContainer";
 import DataDisplaySubContainer from "../DataDisplaySubContainer";
 import DataDisplayVizContainer from "../DataDisplayVizContainer";
 import { createXYPoints } from "../../utils/parse";
+import ChartWrapper from "../ChartWrapper";
 
 const CHART_TYPES = [
   {
@@ -24,7 +25,7 @@ const CHART_TYPES = [
     buttonText: "Total",
     yAxisType: "linear",
     yAxisTickTotal: 5,
-    chartDesc: "This chart shows a running total of cases per day.",
+    chartDesc: "This chart shows a running total of confirmed and probable COVID-19 cases.",
   },
 ];
 
@@ -76,16 +77,15 @@ class Cases extends Component {
 
     return (
       <DataDisplayContainer>
-        <DataDisplaySubContainer>
-          <DataDisplayDesc desc={chartDesc} />
-        </DataDisplaySubContainer>
         <DataDisplayVizContainer>
-          <ChartLine
+        <ChartWrapper title="Running cases total" description={chartDesc}>
+            <ChartLine
             xYPoints={xYPoints}
             yAxisType={yAxisType}
             xTickTotal={xTickTotal}
             yAxisTickTotal={yAxisTickTotal}
           />
+        </ChartWrapper>
         </DataDisplayVizContainer>
       </DataDisplayContainer>
     );
