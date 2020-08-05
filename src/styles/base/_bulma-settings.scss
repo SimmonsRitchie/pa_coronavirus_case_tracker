@@ -2,6 +2,7 @@
 
 // Import Google Font
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,400i,600,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 // ---------------------------------------------------------------------
 // SPOTLIGHT VARS
@@ -44,7 +45,7 @@ $beige-lighter: #EFF0EB;
 
 // ---------------------------------------------------------------------
 // BULMA VARS - NON COLORS
-$family-sans-serif: "Raleway", Helvetica, Arial, sans-serif;
+$family-sans-serif: "Open Sans", Helvetica, Arial, sans-serif;
 $size-1: 3.5rem;
 $weight-light: 400;
 $weight-normal: 500;
