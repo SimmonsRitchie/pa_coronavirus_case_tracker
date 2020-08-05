@@ -13,10 +13,10 @@ const Stats = () => {
     <div className="stats__container">
       <div className="stats__row">
         <div className="stats__col">
-          <span className="stats__title">Reported cases</span>
+          <span className="stats__title">CASES</span>
         </div>
         <div className="stats__col">
-          <span className="stats__title">Deaths</span>
+          <span className="stats__title">DEATHS</span>
         </div>
       </div>
       <div className="stats__row">
