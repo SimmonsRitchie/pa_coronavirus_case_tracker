@@ -4,6 +4,7 @@ import Search from "./Search";
 import TableInner from "./Table";
 import { applySearchTerm } from "../../utils/search";
 import DataDisplayContainer from "../DataDisplayContainer";
+import ChartWrapper from "../ChartWrapper";
 
 class Table extends React.Component {
   state = {
@@ -54,7 +55,9 @@ class Table extends React.Component {
           handleTextChange={this.handleSearch}
           clearResults={this.clearResults}
         />
-        <TableInner data={filteredResults} />
+        <ChartWrapper>
+          <TableInner data={filteredResults} />
+        </ChartWrapper>
       </DataDisplayContainer>
     );
   }
