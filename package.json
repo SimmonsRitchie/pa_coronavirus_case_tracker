@@ -27,7 +27,7 @@
     "d3-scale": "^3.2.1",
     "dayjs": "^1.8.32",
     "minimist": "^1.2.5",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "parcel": "^1.12.4",
     "parcel-bundler": "^1.12.4",
     "raf": "3.3.2",
